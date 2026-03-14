@@ -1,0 +1,17 @@
+{
+  "name": "trello_test_automation_ts_playwright",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "playwright test --config=config/playwright.config.ts",
+    "test_with_1_retry": "playwright test --config=config/playwright.config.ts --retries=1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "devDependencies": {
+    "@playwright/test": "^1.58.2",
+    "@types/node": "^25.3.5"
+  }
+}
