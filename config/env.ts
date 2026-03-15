@@ -1,8 +1,19 @@
+import dotenv from 'dotenv'; // add it to get variables from .env file
+dotenv.config();
+
+function requireEnv(name: string): string {
+    const value = process.env[name];
+    if (!value) {
+        throw new Error(`Missing required environment variable: ${name}`);
+    }
+    return value;
+}
+
 export const ENV = {
-    baseUrl: process.env.BASE_URL ?? 'https://trello.com', // use it in playwright.config.ts
+    baseUrl: requireEnv('BASE_URL'), // use it in playwright.config.ts
     //apiUrl: process.env.API_URL ?? 'https://api.trello.com',
-    email: process.env.ADMIN_EMAIL ?? '',
-    password: process.env.ADMIN_PASSWORD ?? '',
+    email: requireEnv('EMAIL'),
+    password: requireEnv('PASSWORD'),
     //debug: process.env.DEBUG === 'true',
     //environment: process.env.ENV ?? 'local'
 };
