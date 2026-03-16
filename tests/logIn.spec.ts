@@ -7,7 +7,7 @@ test.describe('Log in tests', () => {
         await homePage.navigate();
     });
 
-    test.skip('Log in to Trello', {tag: '@log_in'}, async ({ homePage, loginPage, boardsPage }) => {
+    test('Log in to Trello', {tag: '@log_in'}, async ({ homePage, loginPage, boardsPage }) => {
         await test.step('Click the Log in button in the header menu', async() => {
             await homePage.headerMenu.clickLogIn();
         });
