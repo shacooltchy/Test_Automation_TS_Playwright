@@ -3,11 +3,6 @@ name: Playwright On Demand
 on:
   workflow_dispatch:
     inputs:
-      branch:
-        description: "Select branch"
-        required: true
-        type: string
-
       tag:
         description: "Test tag (optional)"
         required: false
@@ -26,22 +21,10 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Validate branch exists
-        run: |
-          BRANCH="${{ github.event.inputs.branch }}"
-          echo "Verify branch exists: $BRANCH"
-
-          if git ls-remote --heads origin "$BRANCH" | grep "$BRANCH" > /dev/null; then
-            echo "Branch exists — continuing."
-          else
-            echo "❌ Branch '$BRANCH' does not exist in the repository!"
-            exit 1
-          fi
-
-      - name: Checkout selected branch
+      - name: Checkout current branch
         uses: actions/checkout@v4
         with:
-          ref: ${{ github.event.inputs.branch }}
+          ref: ${{ github.ref_name }}
 
       - name: Install dependencies
         run: npm ci
