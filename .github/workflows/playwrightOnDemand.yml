@@ -1,4 +1,4 @@
-name: Playwright On Demand
+name: Playwright Tests On Demand
 
 on:
   workflow_dispatch:
@@ -15,6 +15,11 @@ on:
           - smoke
           - regression
           - critical
+
+env:
+  BASE_URL: ${{ secrets.BASE_URL }}
+  EMAIL: ${{ secrets.EMAIL }}
+  PASSWORD: ${{ secrets.PASSWORD }}
 
 jobs:
   run-tests:
@@ -41,7 +46,7 @@ jobs:
             npx playwright test --config=config/playwright.config.ts --grep-invert @log_in
           else
             echo "Running tests with tag: @$TAG"
-            npx playwright test --grep "@$TAG"
+            npx playwright test --config=config/playwright.config.ts --grep "@$TAG"
           fi
 
       - name: Upload Playwright HTML report
