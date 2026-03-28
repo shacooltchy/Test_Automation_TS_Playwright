@@ -6,7 +6,11 @@ export class DesignTeamsPage extends BasePage {
     readonly header: Header;
 
     constructor(page:Page) {
-        super(page, /teams\/design/, 'Trello for Design Teams | Trello');
+        super(page);
         this.header = new Header(page);
+    }
+
+    async expectPageIsVisible(): Promise<void> {
+        await super.expectPageIsVisible(/teams\/design/, 'Trello for Design Teams | Trello');
     }
 }

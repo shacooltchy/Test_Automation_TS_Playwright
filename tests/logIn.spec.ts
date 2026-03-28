@@ -33,7 +33,7 @@ test.describe('Log in tests', () => {
         });
     });
 
-    test('User should be redirected to sign up page if entered email is not registered', async ({ homePage, loginPage, signUpPage }) => {
+    test('User should be redirected to sign up page if entered email is not registered', {tag: '@smoke'}, async ({ homePage, loginPage, signUpPage }) => {
         await test.step('Click the Log in button in the header menu', async() => {
             await homePage.headerMenu.clickLogIn();
         });

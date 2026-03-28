@@ -1,9 +1,9 @@
 import { SolutionsLinkButton } from "../components/header-menu/SolutionsHeaderMenu";
 import { test } from "../fixtures/pages"; //to trzeba recznie dodac
 
-test.describe('Solutions tab navigation tests', () => {
+test.describe('Solutions tab navigation tests', {tag: '@smoke'}, () => {
     test.beforeEach(async({homePage}) => {
-        await homePage.goTo();
+        await homePage.navigate();
         await homePage.headerMenu.clickSolutions();
     });
 

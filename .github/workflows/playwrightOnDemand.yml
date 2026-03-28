@@ -43,7 +43,7 @@ jobs:
 
           if [ -z "$TAG" ]; then
             echo "No tag specified — running default tests"
-            npx playwright test --config=config/playwright.config.ts --grep-invert @log_in
+            npx playwright test --config=config/playwright.config.ts --grep @smoke
           else
             echo "Running tests with tag: @$TAG"
             npx playwright test --config=config/playwright.config.ts --grep "@$TAG"
