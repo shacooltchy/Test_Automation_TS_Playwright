@@ -10,11 +10,10 @@ import { RemoteTeamsPage } from '../pages/RemoteTeamsPage';
 import { LoginPage } from '../pages/LoginPage';
 import { BoardsPage } from '../pages/BoardsPage';
 import { SignUpPage } from '../pages/SignUpPage';
+import { BoardDetailsPage } from '../pages/BoardDetailsPage';
 
 //rozszerza domyślne fixture’y Playwrighta o nowe pola, np. homePage
 export const test = base.extend<{
-
-
   homePage: HomePage;
   automationPage: AutomationPage;
   marketingTeamsPage: MarketingTeamsPage;
@@ -26,6 +25,7 @@ export const test = base.extend<{
   loginPage: LoginPage;
   boardsPage: BoardsPage;
   signUpPage: SignUpPage;
+  boardDetailsPage: BoardDetailsPage;
 }>({
   homePage: async ({ page }, use) => {
     await use(new HomePage(page));
@@ -59,5 +59,8 @@ export const test = base.extend<{
   },
   signUpPage: async({page}, use) => {
     await use(new SignUpPage(page));
+  },
+  boardDetailsPage: async({page}, use) => {
+    await use(new BoardDetailsPage(page));
   }
 });

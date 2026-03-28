@@ -1,12 +1,16 @@
 import { Page } from "@playwright/test";
 import { BasePage } from "./BasePage";
-import { Header } from "../components/header";
+import { Header } from "../components/Header";
 
 export class StartupsPage extends BasePage {
     readonly header: Header;
 
     constructor(page: Page) {
-        super(page, /teams\/startups/, 'Trello for Startups | Trello' )
+        super(page);
         this.header = new Header(page);
+    }
+
+    async expectPageIsVisible(): Promise<void> {
+        await super.expectPageIsVisible(/teams\/startups/, 'Trello for Startups | Trello');
     }
 }

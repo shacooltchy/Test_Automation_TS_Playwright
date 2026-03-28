@@ -1,17 +1,16 @@
 import { Page } from "@playwright/test";
-import { Header } from "../components/header";
+import { Header } from "../components/Header";
 import { BasePage } from "./BasePage";
 
 export class MarketingTeamsPage extends BasePage{
     readonly header: Header;
 
     constructor(page: Page) {
-        super(page, /marketing/, 'Trello for Marketing Teams | Trello');
+        super(page);
         this.header = new Header(page);
     }
 
-    /*async expectMarketingTeamsPageVisible() {
-        await this.waitForUrl(/marketing/);
-        await this.waitForTitle('Trello for Marketing Teams | Trello');
-    }*/
+    async expectPageIsVisible(): Promise<void> {
+        await super.expectPageIsVisible(/marketing/, 'Trello for Marketing Teams | Trello');
+    }
 }

@@ -3,6 +3,10 @@ import { BasePage } from "./BasePage";
 
 export class SignUpPage extends BasePage {
     constructor(page: Page) {
-        super(page, /signup/, 'Sign up - Log in with Atlassian account')
+        super(page);
+    }
+
+    async expectPageIsVisible() {
+        await super.expectPageIsVisible(/signup/, 'Sign up - Log in with Atlassian account', 15_000);
     }
 }

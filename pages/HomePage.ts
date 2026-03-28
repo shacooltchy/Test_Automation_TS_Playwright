@@ -1,5 +1,5 @@
 import { Page } from "@playwright/test";
-import { Header } from "../components/header";
+import { Header } from "../components/Header";
 import { BasePage } from "./BasePage";
 import { HeaderMenu } from "../components/header-menu/HeaderMenu";
 import { FeaturesHeaderMenu } from "../components/header-menu/FeaturesHeaderMenu";
@@ -13,7 +13,7 @@ export class HomePage extends BasePage{
     readonly solutionsHeaderMenu: SolutionsHeaderMenu;
 
     constructor(page: Page) {
-        super(page, /home/, 'Capture, organize, and tackle your to-dos from anywhere | Trello' ); // <-- kluczowe przy rozszerzaniu BasePage!
+        super(page); // <-- kluczowe przy rozszerzaniu BasePage!
         this.header = new Header(page);
         this.headerMenu = new HeaderMenu(page);
         this.featuresHeaderMenu = new FeaturesHeaderMenu(page);
@@ -23,5 +23,4 @@ export class HomePage extends BasePage{
     async navigate() {
         await this.page.goto('/home');
     }
-
 }

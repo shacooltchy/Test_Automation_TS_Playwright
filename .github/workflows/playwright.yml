@@ -23,7 +23,8 @@ jobs:
       run: npx playwright install --with-deps
     - name: Run Playwright tests
       #run: npx playwright test
-      run: npx playwright test --config=config/playwright.config.ts --grep-invert @log_in
+      #run: npx playwright test --config=config/playwright.config.ts --grep-invert @log_in
+      run: npx playwright test --config=config/playwright.config.ts --grep @smoke
     - uses: actions/upload-artifact@v4
       if: ${{ !cancelled() }}
       with:

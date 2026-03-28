@@ -6,9 +6,8 @@ import { PlannerPage } from '../pages/PlannerPage';
 import { PowerUpsPage } from '../pages/PowerUpsPage';
 import { TemplatesPage } from '../pages/TemplatesPage';
 
-//grouped tests
-//use npx playwright test --grep "@groupTest" to run only tests with @groupTest tag
-test.describe('Features tab navigation tests - inbox, planner', {tag: '@groupTest'}, () => {
+//grouped tests with common setup in beforeEach hook, tagged with @smoke for selective execution
+test.describe('Features tab navigation tests - inbox, planner', {tag: '@smoke'}, () => {
     let homePage: HomePage;
 
     //use beforeEach hook to perform common operations
@@ -39,12 +38,7 @@ test.describe('Features tab navigation tests - inbox, planner', {tag: '@groupTes
     });
 });
 
-
-//separate tests
-test('Navigate to Automation page', async ({ homePage, automationPage }) => {
-    //const homePage = new HomePage(page);
-    //const automationPage = new AutomationPage(page);
-
+test('Navigate to Automation page', {tag: '@smoke'}, async ({ homePage, automationPage }) => {
     await homePage.navigate();
     await homePage.header.expectHeaderTitleIsVisible('Capture, organize, and tackle your to-dos from anywhere.');
     await homePage.headerMenu.clickFeatures();
@@ -54,7 +48,7 @@ test('Navigate to Automation page', async ({ homePage, automationPage }) => {
     await automationPage.header.expectHeaderTitleIsVisible('Automate your workflow with Trello');
 });
 
-test('Navigate to Power-Ups page', async ({ page }) => {
+test('Navigate to Power-Ups page', {tag: '@smoke'}, async ({ page }) => {
     const homePage = new HomePage(page);
     const powerUpsPage = new PowerUpsPage(page);
 
@@ -67,7 +61,7 @@ test('Navigate to Power-Ups page', async ({ page }) => {
     await powerUpsPage.header.expectHeaderTitleIsVisible('Power-Ups for Trello');
 });
 
-test('Navigate to Templates page', async ({ page }) => {
+test('Navigate to Templates page', {tag: '@smoke'}, async ({ page }) => {
     const homePage = new HomePage(page);
     const templatesPage = new TemplatesPage(page);
 
@@ -80,7 +74,7 @@ test('Navigate to Templates page', async ({ page }) => {
     await templatesPage.header.expectHeaderTitleIsVisible('Templates for Trello');
 });
 
-test('Navigate to Integrations page', async ({ page }) => {
+test('Navigate to Integrations page', {tag: '@smoke'}, async ({ page }) => {
     const homePage = new HomePage(page);
     const integrationsPage = new IntegrationsPage(page);
 
