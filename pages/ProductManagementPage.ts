@@ -1,6 +1,6 @@
 import { expect, Page } from "@playwright/test";
 import { BasePage } from "./BasePage";
-import { Header } from "../components/Header";
+import { Header } from "../components/header";
 
 export class ProductManagementPage extends BasePage{
     readonly header: Header;

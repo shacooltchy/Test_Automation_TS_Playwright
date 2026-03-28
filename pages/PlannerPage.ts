@@ -1,5 +1,5 @@
 import { Page } from "@playwright/test";
-import { Header } from "../components/Header";
+import { Header } from "../components/header";
 
 export class PlannerPage {
     private readonly page: Page;
