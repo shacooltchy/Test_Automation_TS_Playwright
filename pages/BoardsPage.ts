@@ -1,6 +1,6 @@
 import { Page } from "@playwright/test";
 import { BasePage } from "./BasePage";
-import { Dropdown } from "../components/dropdown";
+import { Dropdown } from "../components/Dropdown";
 
 export class BoardsPage extends BasePage {
     readonly visibilityDropdown: Dropdown;
