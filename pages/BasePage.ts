@@ -1,11 +1,20 @@
 import { expect, Locator, Page } from "@playwright/test";
+import { AuthenticatedHeader } from "../components/AuthenticatedHeader";
+import { AccountMenu } from "../components/AccountMenu";
+import { HeaderMenu } from "../components/header-menu/HeaderMenu";
 
 // miejsce na metody wykorzystywane na roznych stronach i ktore potrzebuje dostęp do page, nie dodawac locatorow - to tylko na page'ach i w komponentach
 export abstract class BasePage {
     protected readonly page: Page
+    readonly headerMenu: HeaderMenu;
+    readonly authenticatedHeader: AuthenticatedHeader;
+    readonly accountMenu: AccountMenu;
 
     protected constructor(page: Page) {
         this.page = page;
+        this.headerMenu = new HeaderMenu(page);
+        this.authenticatedHeader = new AuthenticatedHeader(page);
+        this.accountMenu = new AccountMenu(page);
     }
 
     async expectPageIsVisible(urlPart: string | RegExp, pageTitle: string | RegExp, timeout: number = 10_000) {

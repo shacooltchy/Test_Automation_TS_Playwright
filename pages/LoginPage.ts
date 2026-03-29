@@ -12,7 +12,7 @@ export class LoginPage extends BasePage {
         await expect(this.page).toHaveTitle('Log in to continue');
     }
 
-    async LogIn()
+    async logIn()
     {
         await this.enterEmail();
         await this.clickContinueLogInButton();

@@ -1,9 +1,7 @@
-import { test } from "../fixtures/pages";
-
+import { test } from "../../fixtures/pages";
 
 test.describe('Log in tests', () => {
-    test.beforeEach(async({page, homePage}) => {
-        //await page.goto('https://trello.com/');
+    test.beforeEach(async({homePage}) => {
         await homePage.navigate();
     });
 
