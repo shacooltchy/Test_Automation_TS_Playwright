@@ -1,9 +1,13 @@
 import { expect, Page } from "@playwright/test";
 import { BasePage } from "./BasePage";
+import { AuthenticatedHeader } from "../components/AuthenticatedHeader";
 
 export class BoardDetailsPage extends BasePage {
+    readonly authenticatedHeader: AuthenticatedHeader;
+
     constructor(page: Page) {
-        super(page);        
+        super(page);
+        this.authenticatedHeader = new AuthenticatedHeader(page);        
     };
 
     async expectPageIsVisible(boardName: string): Promise<void> {

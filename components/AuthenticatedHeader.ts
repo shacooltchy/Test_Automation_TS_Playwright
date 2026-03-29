@@ -19,7 +19,8 @@ export class AuthenticatedHeader {
         await this.memberButton.click();
     }
 
-    async clickBackToHomeButton() {
+    async clickBackToHomeButtonAndExpectBoardsPage() {
         await this.backToHomeButton.click();
+        await expect(this.page).toHaveURL(/\/boards/);
     }
 }

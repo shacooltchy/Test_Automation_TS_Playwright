@@ -2,23 +2,53 @@ import { test } from "../../fixtures/pages";
 import { generateTestDataName } from "../../utils/stringUtils";
 
 test.describe('Create board tests', () => {
-  test.beforeEach(async ({homePage, loginPage, boardsPage }) => {
-    await homePage.navigate();
-    await homePage.header.expectHeaderTitleIsVisible('Capture, organize, and tackle your to-dos from anywhere.');
-    await homePage.headerMenu.clickLogIn();
-    await loginPage.logIn();
-    await boardsPage.expectPageIsVisible();
-  });
+    test.beforeEach(async ({homePage, loginPage, boardsPage }) => {
+        await homePage.navigate();
+        await homePage.header.expectHeaderTitleIsVisible('Capture, organize, and tackle your to-dos from anywhere.');
+        await homePage.headerMenu.clickLogIn();
+        await loginPage.logIn();
+        await boardsPage.expectPageIsVisible();
+    });
 
-  test('Create new board', async ({ boardsPage, boardDetailsPage }) => {
-    let boardName = generateTestDataName("Board");
+    test('Create new board', async ({ boardsPage, boardDetailsPage }) => {
+        const boardName = generateTestDataName("Board");
+        await test.step('Click the Create new board tile', async () => {
+            await boardsPage.clickCreateNewBoardTile();
+        });
 
-    await boardsPage.clickCreateNewBoardTile();
-    await boardsPage.selectBoardBackground();
-    await boardsPage.enterBoardTitle(boardName);
-    //await boardsPage.selectBoardVisibility('Private');
-    await boardsPage.visibilityDropdown.selectOption('Private');
-    await boardsPage.clickCreateBoardSubmitButton();
-    await boardDetailsPage.expectPageIsVisible(boardName);
-  });
+        await test.step('Verify the Create board modal is visible', async () => {
+            await boardsPage.expectCreateBoardModalIsVisible();
+        });
+
+        await test.step('Select board background', async () => {
+            await boardsPage.selectBoardBackground();
+        });
+
+        await test.step('Enter board title', async () => {
+            await boardsPage.enterBoardTitle(boardName);
+        });
+
+        await test.step('Select board visibility', async () => {
+            //await boardsPage.selectBoardVisibility('Workspace All members');
+            //await boardsPage.selectBoardVisibilityUsingHelper('Workspace All members');
+
+            await boardsPage.visibilityDropdown.selectOption('Workspace All members');
+        });
+
+        await test.step('Click the Create board submit button', async () => {
+            await boardsPage.clickCreateBoardSubmitButton();
+        });
+
+        await test.step('Verify the new board details page is visible', async () => {
+            await boardDetailsPage.expectPageIsVisible(boardName);
+        });
+
+        await test.step('Go back to home', async () => {
+            await boardDetailsPage.authenticatedHeader.clickBackToHomeButtonAndExpectBoardsPage();
+        });
+
+        await test.step('Verify the new board is visible on the boards page', async () => {
+            await boardsPage.expectBoardIsVisibleInTheWorkspacesSection(boardName);
+        });
+    });
 });
