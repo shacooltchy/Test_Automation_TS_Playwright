@@ -6,7 +6,7 @@ test.describe('Create board tests', () => {
     await homePage.navigate();
     await homePage.header.expectHeaderTitleIsVisible('Capture, organize, and tackle your to-dos from anywhere.');
     await homePage.headerMenu.clickLogIn();
-    await loginPage.LogIn();
+    await loginPage.logIn();
     await boardsPage.expectPageIsVisible();
   });
 

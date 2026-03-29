@@ -11,6 +11,7 @@ import { LoginPage } from '../pages/LoginPage';
 import { BoardsPage } from '../pages/BoardsPage';
 import { SignUpPage } from '../pages/SignUpPage';
 import { BoardDetailsPage } from '../pages/BoardDetailsPage';
+import { LogOutConfirmationPage } from '../pages/LogOutConfirmationPage';
 
 //rozszerza domyślne fixture’y Playwrighta o nowe pola, np. homePage
 export const test = base.extend<{
@@ -26,6 +27,7 @@ export const test = base.extend<{
   boardsPage: BoardsPage;
   signUpPage: SignUpPage;
   boardDetailsPage: BoardDetailsPage;
+  logOutConfirmationPage: LogOutConfirmationPage;
 }>({
   homePage: async ({ page }, use) => {
     await use(new HomePage(page));
@@ -62,5 +64,8 @@ export const test = base.extend<{
   },
   boardDetailsPage: async({page}, use) => {
     await use(new BoardDetailsPage(page));
+  },
+  logOutConfirmationPage: async({page}, use) => {
+    await use(new LogOutConfirmationPage(page));
   }
 });
