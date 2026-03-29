@@ -20,6 +20,9 @@ env:
   BASE_URL: ${{ secrets.BASE_URL }}
   EMAIL: ${{ secrets.EMAIL }}
   PASSWORD: ${{ secrets.PASSWORD }}
+  API_URL: ${{ secrets.API_URL }}
+  TRELLO_TOKEN: ${{ secrets.TRELLO_TOKEN }}
+  TRELLO_KEY: ${{ secrets.TRELLO_KEY }}
 
 jobs:
   run-tests:
