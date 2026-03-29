@@ -31,13 +31,12 @@ export class BoardsPage extends BasePage {
         await this.page.getByTestId('create-board-title-input').fill(title);
     }
 
-    async selectBoardVisibility(visibility: 'Workspace' | 'Private' | 'Public' = 'Workspace'): Promise<void> {
+    async selectBoardVisibility(visibility: 'Private Only board members' | 'Workspace All members' | 'Public Anyone' = 'Workspace All members'): Promise<void> {
         await this.page.getByTestId('create-board-select-visibility').click();
         await this.page.getByRole('option', { name: visibility }).click();
     }
 
-    // Refactored method using helper function - only for demonstration purposes
-    async selectBoardVisibilityUsingHelper(visibility: 'Workspace' | 'Private' | 'Public' = 'Workspace'): Promise<void> {
+    async selectBoardVisibilityUsingHelper(visibility: 'Private Only board members' | 'Workspace All members' | 'Public Anyone' = 'Workspace All members'): Promise<void> {
         await selectFromDropdown(this.page.getByTestId('create-board-select-visibility'), visibility);
     }
 

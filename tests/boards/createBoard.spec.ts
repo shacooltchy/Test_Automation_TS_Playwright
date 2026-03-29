@@ -1,7 +1,11 @@
 import { test } from "../../fixtures/pages";
+import { deleteBoard } from "../../helpers/api/boards/deleteBoard";
+import { getBoards } from "../../helpers/api/boards/getBoards";
 import { generateTestDataName } from "../../utils/stringUtils";
 
-test.describe('Create board tests', () => {
+test.describe('Create board tests', {tag: '@boards'}, () => {
+    let boardName: string;
+
     test.beforeEach(async ({homePage, loginPage, boardsPage }) => {
         await homePage.navigate();
         await homePage.header.expectHeaderTitleIsVisible('Capture, organize, and tackle your to-dos from anywhere.');
@@ -10,8 +14,20 @@ test.describe('Create board tests', () => {
         await boardsPage.expectPageIsVisible();
     });
 
+    test.afterEach(async () => {
+        // Clean up created boards via API if needed
+
+        const boards = await getBoards();
+        const board = boards.find((b: any) => b.name === boardName);
+
+        if (board) {
+            await deleteBoard(board.id);
+        }
+    });
+
     test('Create new board', async ({ boardsPage, boardDetailsPage }) => {
-        const boardName = generateTestDataName("Board");
+        boardName = generateTestDataName("Board");
+
         await test.step('Click the Create new board tile', async () => {
             await boardsPage.clickCreateNewBoardTile();
         });
