@@ -1,7 +1,6 @@
 import { test } from "../../fixtures/pages";
 import { createBoard } from "../../helpers/api/boards/createBoard";
-import { deleteBoard } from "../../helpers/api/boards/deleteBoard";
-import { getBoards } from "../../helpers/api/boards/getBoards";
+import { deleteTestBoard } from "../../helpers/testDataHelpers/deleteTestBoard";
 
 test.describe('Delete board tests', () => {
     let boardName: string;
@@ -20,11 +19,7 @@ test.describe('Delete board tests', () => {
 
     test.afterEach(async () => {
         // Clean up created board via API if it still exists
-        const boards = await getBoards();
-        const board = boards.find((b: any) => b.name === boardName);
-        if (board) {
-            await deleteBoard(board.id);
-        }
+        await deleteTestBoard(boardName);
     });
 
     test('Delete a board', async ({ boardsPage, boardDetailsPage }) => {
