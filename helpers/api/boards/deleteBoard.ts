@@ -8,5 +8,4 @@ export async function deleteBoard(boardId: string): Promise<void> {
     if (!response.ok) {
         throw new Error(`Failed to delete board: ${response.status} ${response.statusText}`);
     }
-
 }

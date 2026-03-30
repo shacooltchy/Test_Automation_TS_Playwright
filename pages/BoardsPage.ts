@@ -45,7 +45,23 @@ export class BoardsPage extends BasePage {
     }
 
     async expectBoardIsVisibleInTheWorkspacesSection(boardName: string): Promise<void> {
+        await this.waitForNetworkIdle();
         const workspaceSection = this.page.getByRole('heading', { name: 'YOUR WORKSPACES', exact: true }).locator('..');
         await expect(workspaceSection.getByRole('link', { name: boardName, exact: true })).toBeVisible();
+    }
+
+    async expectBoardIsNotVisibleInTheWorkspacesSection(boardName: string): Promise<void> {
+        await this.waitForNetworkIdle();
+        const workspaceSection = this.page.getByRole('heading', { name: 'YOUR WORKSPACES', exact: true }).locator('..');
+        await expect(workspaceSection.getByRole('link', { name: boardName, exact: true })).not.toBeVisible();
+    }
+
+    private async waitForNetworkIdle(timeout: number = 10_000): Promise<void> {
+        await this.page.waitForLoadState('networkidle', { timeout });
+    }
+
+    async navigateToBoardFromWorkspacesSection(boardName: string): Promise<void> {
+        const workspaceSection = this.page.getByRole('heading', { name: 'YOUR WORKSPACES', exact: true }).locator('..');
+        await workspaceSection.getByRole('link', { name: boardName, exact: true }).click();
     }
 }
