@@ -16,7 +16,6 @@ test.describe('Create board tests', {tag: '@boards'}, () => {
 
     test.afterEach(async () => {
         // Clean up created boards via API if needed
-
         const boards = await getBoards();
         const board = boards.find((b: any) => b.name === boardName);
 
