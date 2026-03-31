@@ -11,6 +11,8 @@ export class BoardsPage extends BasePage {
         this.visibilityDropdown = new Dropdown(page, this.page.getByTestId('create-board-select-visibility'), ['Private Only board members', 'Workspace All members', 'Public Anyone']);
     }
 
+    private closedBoardsDialog = this.page.locator('#overlay-contents').getByRole('heading', { name: 'Closed boards' });
+
     async expectPageIsVisible(): Promise<void> {
         await super.expectPageIsVisible(/boards/, 'Boards | Trello');
     }
@@ -63,5 +65,32 @@ export class BoardsPage extends BasePage {
     async navigateToBoardFromWorkspacesSection(boardName: string): Promise<void> {
         const workspaceSection = this.page.getByRole('heading', { name: 'YOUR WORKSPACES', exact: true }).locator('..');
         await workspaceSection.getByRole('link', { name: boardName, exact: true }).click();
+    }
+
+    async clickViewAllClosedBoardsButton(): Promise<void> {
+        await this.page.getByRole('button', { name: 'View all closed boards' }).click();
+        await expect(this.closedBoardsDialog).toBeVisible();
+    }
+
+    async expectBoardIsVisibleInClosedBoards(boardName: string): Promise<void> {
+        await expect(this.closedBoardsDialog).toBeVisible();
+        await expect(this.page.getByRole('listitem').getByRole('link', {name: boardName})).toBeVisible();
+    }
+
+    async expectBoardIsNotVisibleInClosedBoards(boardName: string): Promise<void> {
+        await expect(this.closedBoardsDialog).toBeVisible();
+        await expect(this.page.getByRole('listitem').getByRole('link', {name: boardName})).not.toBeVisible();
+    }
+
+    async reopenBoardFromClosedBoardsDialog(boardName: string): Promise<void> {
+        await expect(this.closedBoardsDialog).toBeVisible();
+        await this.page.getByRole('listitem').filter({ hasText: boardName }).getByTestId('workspace-chooser-trigger-button').click();
+        await expect(this.page.locator('section').getByRole('banner').filter({ hasText: 'Select a Workspace' })).toBeVisible();
+        await this.page.getByTestId('workspace-chooser-reopen-button').click();
+    }
+
+    async closeClosedBoardsDialog(): Promise<void> {
+        await this.page.locator('#overlay-contents').getByTestId('CloseIcon').click();
+        await expect(this.page.locator('#overlay-contents').getByRole('heading', { name: 'Closed boards' })).not.toBeVisible();
     }
 }

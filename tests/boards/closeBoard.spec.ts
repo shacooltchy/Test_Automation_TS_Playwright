@@ -1,14 +1,15 @@
 import { test } from "../../fixtures/pages";
 import { createBoard } from "../../helpers/api/boards/createBoard";
+import { closeTestBoard } from "../../helpers/testDataHelpers/closeTestBoard";
 import { deleteTestBoard } from "../../helpers/testDataHelpers/deleteTestBoard";
 
-test.describe('Delete board tests', {tag: '@boards'}, () => {
+test.describe('Close board tests', {tag: '@boards'}, () => {
     let boardName: string;
-    test.beforeEach(async ({ homePage, loginPage, boardsPage }) => {
-        // Create a board via API
-        boardName = `Board to delete ${Date.now()}`;
-        await createBoard(boardName);
 
+    test.beforeEach(async ({homePage, loginPage, boardsPage }) => {
+        // Create a board via API
+        boardName = `Board to close ${Date.now()}`;
+        await createBoard(boardName);
         // Log in via UI
         await homePage.navigate();
         await homePage.header.expectHeaderTitleIsVisible('Capture, organize, and tackle your to-dos from anywhere.');
@@ -22,11 +23,11 @@ test.describe('Delete board tests', {tag: '@boards'}, () => {
         await deleteTestBoard(boardName);
     });
 
-    test('Delete a board', async ({ boardsPage, boardDetailsPage }) => {
+    test('Close a board', async ({ boardsPage, boardDetailsPage }) => {
         await test.step('Navigate to the board details page', async () => {
              await boardsPage.navigateToBoardFromWorkspacesSection(boardName);
              await boardDetailsPage.expectPageIsVisible(boardName);
-        });
+        }); 
 
         await test.step('Click on board menu button', async () => {
             await boardDetailsPage.clickOnBoardMenuButton();
@@ -44,25 +45,22 @@ test.describe('Delete board tests', {tag: '@boards'}, () => {
 
         await test.step('Verify the board is closed', async () => {
             await boardDetailsPage.expectBoardIsClosed();
+        }); 
+
+        await test.step('Navigate back to boards page', async () => {
+            await boardDetailsPage.authenticatedHeader.clickBackToHomeButtonAndExpectBoardsPage();
         });
 
-        await test.step('Click on board menu button again', async () => {
-            await boardDetailsPage.clickOnBoardMenuButton();
-            await boardDetailsPage.expectBoardMenuToBeVisible();
-        });
-
-        await test.step('Click on Delete board button', async () => {
-            await boardDetailsPage.clickDeleteBoardButton();
-            await boardDetailsPage.expectDeleteBoardConfirmationDialogToBeVisible();
-        });
-
-        await test.step('Confirm Delete board action', async () => {
-            await boardDetailsPage.confirmDeleteBoard();
-        });
-
-        await test.step('Verify the board is no longer visible in the workspace section', async () => {
-            await boardsPage.expectPageIsVisible();
+        await test.step('Verify the closed board is not visible in the workspaces section', async () => {
             await boardsPage.expectBoardIsNotVisibleInTheWorkspacesSection(boardName);
+        });
+
+        await test.step('Click View all closed boards button', async () => {
+            await boardsPage.clickViewAllClosedBoardsButton();
+        });
+
+        await test.step('Verify the closed board is visible in the closed boards dialog', async () => {
+            await boardsPage.expectBoardIsVisibleInClosedBoards(boardName);
         });
     });
 });
