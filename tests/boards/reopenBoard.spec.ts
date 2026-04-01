@@ -29,8 +29,16 @@ test.describe('Reopen board tests', {tag: '@boards'}, () => {
             await boardsPage.clickViewAllClosedBoardsButton();
         });
 
-        await test.step('Reopen the closed board from the closed boards dialog', async () => {
-            await boardsPage.reopenBoardFromClosedBoardsDialog(boardName);
+        await test.step('Click the reopen board button in the closed boards dialog', async () => {
+            await boardsPage.clickReopenBoardButtonInClosedBoardsDialog(boardName);
+        });
+
+        await test.step('Verify the Reopen board confirmation banner is visible in the closed boards dialog', async () => {
+            await boardsPage.expectReopenBoardConfirmationBannerInClosedBoardsDialog();
+        });
+
+        await test.step('Confirm Reopen board action in the closed boards dialog', async () => {
+            await boardsPage.confirmReopenBoardInClosedBoardsDialog();
         });
 
         await test.step('Verify the board is no longer visible in the closed boards dialog', async () => {
@@ -39,6 +47,47 @@ test.describe('Reopen board tests', {tag: '@boards'}, () => {
 
         await test.step('Close the closed boards dialog', async () => {
             await boardsPage.closeClosedBoardsDialog();
+        });
+
+        await test.step('Verify the reopened board is visible in the workspaces section', async () => {
+            await boardsPage.expectBoardIsVisibleInTheWorkspacesSection(boardName);
+        });
+    });
+
+    test('Reopen a closed board on the Board details page', async({ boardsPage, boardDetailsPage}) => {
+        await test.step('Click View all closed boards button', async () => {
+            await boardsPage.clickViewAllClosedBoardsButton();
+        });
+
+        await test.step('Navigate to the board details from the closed boards dialog', async () => {
+             await boardsPage.navigateToBoardFromClosedBoardsDialog(boardName);
+             await boardDetailsPage.expectPageIsVisible(boardName);
+        });
+
+        await test.step('Click on board menu button', async () => {
+            await boardDetailsPage.clickOnBoardMenuButton();
+            await boardDetailsPage.expectBoardMenuToBeVisible();
+        });
+
+        await test.step('Click on Reopen board button', async () => {
+            await boardDetailsPage.clickReopenBoardButtonInTheBoardMenu();
+        });
+
+        await test.step('Verify the Reopen board confirmation dialog is visible', async () => {
+            await boardDetailsPage.expectReopenBoardConfirmationDialogToBeVisible();
+        });
+
+        await test.step('Confirm Reopen board action', async () => {
+            await boardDetailsPage.confirmReopenBoard();
+        });
+
+        await test.step('Verify the board details page is visible and the board is reopened', async () => {
+            await boardDetailsPage.expectPageIsVisible(boardName);
+            await boardDetailsPage.expectBoardIsNotClosed();
+        });
+
+        await test.step('Navigate back to boards page', async () => {
+            await boardDetailsPage.authenticatedHeader.clickBackToHomeButtonAndExpectBoardsPage();
         });
 
         await test.step('Verify the reopened board is visible in the workspaces section', async () => {

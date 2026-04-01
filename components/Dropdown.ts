@@ -11,7 +11,7 @@ export class Dropdown {
         this.availableOptions = availableOptions;
     }
 
-    async selectOption(optionText: string): Promise<void> {
+    async select(optionText: string): Promise<void> {
         if (!this.availableOptions.includes(optionText)) {
             throw new Error(`Option "${optionText}" is not available in the dropdown. Available options are: ${this.availableOptions.join(', ')}`);
         }

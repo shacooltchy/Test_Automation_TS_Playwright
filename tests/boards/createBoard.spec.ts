@@ -1,3 +1,4 @@
+import { BoardVisibility } from "../../enums/BoardVisibility";
 import { test } from "../../fixtures/pages";
 import { deleteTestBoard } from "../../helpers/testDataHelpers/deleteTestBoard";
 import { generateTestDataName } from "../../utils/stringUtils";
@@ -41,7 +42,7 @@ test.describe('Create board tests', {tag: '@boards'}, () => {
             //await boardsPage.selectBoardVisibility('Workspace All members');
             //await boardsPage.selectBoardVisibilityUsingHelper('Workspace All members');
 
-            await boardsPage.visibilityDropdown.selectOption('Workspace All members');
+            await boardsPage.visibilityDropdown.select(BoardVisibility.Workspace);
         });
 
         await test.step('Click the Create board submit button', async () => {
