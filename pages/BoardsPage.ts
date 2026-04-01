@@ -1,17 +1,18 @@
-import { expect, Page } from "@playwright/test";
+import { expect, Locator, Page } from "@playwright/test";
 import { BasePage } from "./BasePage";
 import { Dropdown } from "../components/Dropdown";
-import { selectFromDropdown } from "../utils/dropdownHelpers";
+import { BoardVisibility } from "../enums/BoardVisibility";
 
 export class BoardsPage extends BasePage {
     readonly visibilityDropdown: Dropdown;
+    private readonly visibilityDropdownOptions = [BoardVisibility.Private, BoardVisibility.Workspace, BoardVisibility.Public];
+    private readonly closedBoardsDialog: Locator;
 
     constructor(page: Page) {
         super(page);
-        this.visibilityDropdown = new Dropdown(page, this.page.getByTestId('create-board-select-visibility'), ['Private Only board members', 'Workspace All members', 'Public Anyone']);
+        this.visibilityDropdown = new Dropdown(page, this.page.getByTestId('create-board-select-visibility'), this.visibilityDropdownOptions);
+        this.closedBoardsDialog = this.page.locator('#overlay-contents').getByRole('heading', { name: 'Closed boards' });
     }
-
-    private closedBoardsDialog = this.page.locator('#overlay-contents').getByRole('heading', { name: 'Closed boards' });
 
     async expectPageIsVisible(): Promise<void> {
         await super.expectPageIsVisible(/boards/, 'Boards | Trello');
@@ -33,14 +34,14 @@ export class BoardsPage extends BasePage {
         await this.page.getByTestId('create-board-title-input').fill(title);
     }
 
-    async selectBoardVisibility(visibility: 'Private Only board members' | 'Workspace All members' | 'Public Anyone' = 'Workspace All members'): Promise<void> {
+    /*async selectBoardVisibility(visibility: 'Private Only board members' | 'Workspace All members' | 'Public Anyone' = 'Workspace All members'): Promise<void> {
         await this.page.getByTestId('create-board-select-visibility').click();
         await this.page.getByRole('option', { name: visibility }).click();
     }
 
     async selectBoardVisibilityUsingHelper(visibility: 'Private Only board members' | 'Workspace All members' | 'Public Anyone' = 'Workspace All members'): Promise<void> {
         await selectFromDropdown(this.page.getByTestId('create-board-select-visibility'), visibility);
-    }
+    }*/
 
     async clickCreateBoardSubmitButton(): Promise<void> {
         await this.page.getByTestId('create-board-submit-button').click();
@@ -82,15 +83,26 @@ export class BoardsPage extends BasePage {
         await expect(this.page.getByRole('listitem').getByRole('link', {name: boardName})).not.toBeVisible();
     }
 
-    async reopenBoardFromClosedBoardsDialog(boardName: string): Promise<void> {
+    async clickReopenBoardButtonInClosedBoardsDialog(boardName: string): Promise<void> {
         await expect(this.closedBoardsDialog).toBeVisible();
         await this.page.getByRole('listitem').filter({ hasText: boardName }).getByTestId('workspace-chooser-trigger-button').click();
+    }
+
+    async expectReopenBoardConfirmationBannerInClosedBoardsDialog(): Promise<void> {
         await expect(this.page.locator('section').getByRole('banner').filter({ hasText: 'Select a Workspace' })).toBeVisible();
+    }
+
+    async confirmReopenBoardInClosedBoardsDialog(): Promise<void> {
         await this.page.getByTestId('workspace-chooser-reopen-button').click();
     }
 
     async closeClosedBoardsDialog(): Promise<void> {
         await this.page.locator('#overlay-contents').getByTestId('CloseIcon').click();
-        await expect(this.page.locator('#overlay-contents').getByRole('heading', { name: 'Closed boards' })).not.toBeVisible();
+        await expect(this.closedBoardsDialog).not.toBeVisible();
+    }
+
+    async navigateToBoardFromClosedBoardsDialog(boardName: string): Promise<void> {
+        await expect(this.closedBoardsDialog).toBeVisible();
+        await this.page.getByRole('listitem').getByRole('link', {name: boardName}).click();
     }
 }
