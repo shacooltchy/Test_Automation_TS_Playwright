@@ -1,13 +1,16 @@
 import { expect, Page } from "@playwright/test";
 import { BasePage } from "./BasePage";
 import { AuthenticatedHeader } from "../components/AuthenticatedHeader";
+import { BoardPopoverMenu } from "../components/BoardPopoverMenu";
 
 export class BoardDetailsPage extends BasePage {
     readonly authenticatedHeader: AuthenticatedHeader;
+    readonly boardMenu: BoardPopoverMenu;
 
     constructor(page: Page) {
         super(page);
-        this.authenticatedHeader = new AuthenticatedHeader(page);        
+        this.authenticatedHeader = new AuthenticatedHeader(page);
+        this.boardMenu = new BoardPopoverMenu(page);
     };
 
     async expectPageIsVisible(boardName: string): Promise<void> {
@@ -35,7 +38,7 @@ export class BoardDetailsPage extends BasePage {
 
     private async minimizeAdContainer(): Promise<void> {
         try {
-            await this.page.getByTestId('ad-container').getByRole('button', { name: 'Minimize' }).click({ timeout: 5_000 });
+            await this.page.getByTestId('ad-container').getByRole('button', { name: 'Minimize' }).click({ timeout: 2_500 });
         } catch (error) {
             //Ad container not found, skipping minimize step.
         }
@@ -43,29 +46,15 @@ export class BoardDetailsPage extends BasePage {
 
     private async closeNewFeaturesBannerIfVisible(): Promise<void> {
         const newFeaturesBanner = this.page.getByTestId('spotlight--dialog');
-        if (await newFeaturesBanner.isVisible({ timeout: 5_000 })) {
-            await newFeaturesBanner.getByRole('button', { name: 'Dismiss' }).click({ timeout: 5000 });
+        try {
+            await newFeaturesBanner.getByRole('button', { name: 'Dismiss' }).click({ timeout: 2_500 });
+        } catch (error) {
+            //Ad container not found, skipping minimize step.
         }
     }
 
     async clickOnBoardMenuButton(): Promise<void> {
         await this.page.getByTestId('board-header').getByRole('button', { name: 'Show menu' }).click();
-    }
-
-    async expectBoardMenuToBeVisible(): Promise<void> {
-        await expect(this.page.getByTestId('board-menu-popover')).toBeVisible();
-    }
-
-    async clickCloseBoardButton(): Promise<void> {
-        await this.page.getByTestId('board-menu-popover').getByRole('button', { name: 'Close board' }).click();
-    }
-
-    async expectCloseBoardConfirmationDialogToBeVisible(): Promise<void> {
-        await expect(this.page.getByRole('banner').filter({ hasText: 'Close board?' })).toBeVisible();
-    }
-
-    async confirmCloseBoard(): Promise<void> {
-        await this.page.getByTestId('popover-close-board-confirm').click();
     }
 
     async expectBoardIsClosed(): Promise<void> {
@@ -74,29 +63,5 @@ export class BoardDetailsPage extends BasePage {
 
     async expectBoardIsNotClosed(): Promise<void> {
         await expect(this.page.getByText('This board is closed. Reopen the board to make changes.')).not.toBeVisible();
-    }
-
-    async clickDeleteBoardButton(): Promise<void> {
-        await this.page.getByTestId('board-menu-popover').getByTestId('close-board-delete-board-button').click();
-    }
-
-    async expectDeleteBoardConfirmationDialogToBeVisible(): Promise<void> {
-        await expect(this.page.getByRole('banner').filter({ hasText: 'Delete board?' })).toBeVisible();
-    }
-
-    async confirmDeleteBoard(): Promise<void> {
-        await this.page.getByTestId('close-board-delete-board-confirm-button').click();
-    }
-
-    async clickReopenBoardButtonInTheBoardMenu(): Promise<void> {
-        await this.page.getByTestId('board-menu-popover').getByRole('button', { name: 'Reopen board' }).click();
-    }
-
-    async expectReopenBoardConfirmationDialogToBeVisible(): Promise<void> {
-        await expect(this.page.getByRole('banner').filter({ hasText: 'Select a Workspace' })).toBeVisible();
-    }
-
-    async confirmReopenBoard(): Promise<void> {
-        await this.page.getByTestId('workspace-chooser-reopen-button').click();
     }
 }

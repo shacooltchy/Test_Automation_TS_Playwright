@@ -1,6 +1,6 @@
+import { BoardMenuOptions } from "../../enums/BoardMenuOptions";
 import { test } from "../../fixtures/pages";
 import { createBoard } from "../../helpers/api/boards/createBoard";
-import { closeTestBoard } from "../../helpers/testDataHelpers/closeTestBoard";
 import { deleteTestBoard } from "../../helpers/testDataHelpers/deleteTestBoard";
 
 test.describe('Close board tests', {tag: '@boards'}, () => {
@@ -31,16 +31,16 @@ test.describe('Close board tests', {tag: '@boards'}, () => {
 
         await test.step('Click on board menu button', async () => {
             await boardDetailsPage.clickOnBoardMenuButton();
-            await boardDetailsPage.expectBoardMenuToBeVisible();
+            await boardDetailsPage.boardMenu.expectMenuToBeVisible();
         });
 
         await test.step('Click on Close board button', async () => {
-            await boardDetailsPage.clickCloseBoardButton();
-            await boardDetailsPage.expectCloseBoardConfirmationDialogToBeVisible();
+            await boardDetailsPage.boardMenu.clickOption(BoardMenuOptions.CloseBoard);
+            await boardDetailsPage.boardMenu.closeBoardConfirmationDialog.expectDialogToBeVisible();
         });
 
         await test.step('Confirm Close board action', async () => {
-            await boardDetailsPage.confirmCloseBoard();
+            await boardDetailsPage.boardMenu.closeBoardConfirmationDialog.clickConfirmButton();
         });
 
         await test.step('Verify the board is closed', async () => {

@@ -1,3 +1,4 @@
+import { BoardMenuOptions } from "../../enums/BoardMenuOptions";
 import { test } from "../../fixtures/pages";
 import { createBoard } from "../../helpers/api/boards/createBoard";
 import { deleteTestBoard } from "../../helpers/testDataHelpers/deleteTestBoard";
@@ -30,16 +31,16 @@ test.describe('Delete board tests', {tag: '@boards'}, () => {
 
         await test.step('Click on board menu button', async () => {
             await boardDetailsPage.clickOnBoardMenuButton();
-            await boardDetailsPage.expectBoardMenuToBeVisible();
+            await boardDetailsPage.boardMenu.expectMenuToBeVisible();
         });
 
         await test.step('Click on Close board button', async () => {
-            await boardDetailsPage.clickCloseBoardButton();
-            await boardDetailsPage.expectCloseBoardConfirmationDialogToBeVisible();
+            await boardDetailsPage.boardMenu.clickOption(BoardMenuOptions.CloseBoard);
+            await boardDetailsPage.boardMenu.closeBoardConfirmationDialog.expectDialogToBeVisible();
         });
 
         await test.step('Confirm Close board action', async () => {
-            await boardDetailsPage.confirmCloseBoard();
+            await boardDetailsPage.boardMenu.closeBoardConfirmationDialog.clickConfirmButton();
         });
 
         await test.step('Verify the board is closed', async () => {
@@ -48,16 +49,16 @@ test.describe('Delete board tests', {tag: '@boards'}, () => {
 
         await test.step('Click on board menu button again', async () => {
             await boardDetailsPage.clickOnBoardMenuButton();
-            await boardDetailsPage.expectBoardMenuToBeVisible();
+            await boardDetailsPage.boardMenu.expectMenuToBeVisible();
         });
 
         await test.step('Click on Delete board button', async () => {
-            await boardDetailsPage.clickDeleteBoardButton();
-            await boardDetailsPage.expectDeleteBoardConfirmationDialogToBeVisible();
+            await boardDetailsPage.boardMenu.clickOption(BoardMenuOptions.DeleteBoard);
+            await boardDetailsPage.boardMenu.deleteBoardConfirmationDialog.expectDialogToBeVisible();
         });
 
         await test.step('Confirm Delete board action', async () => {
-            await boardDetailsPage.confirmDeleteBoard();
+            await boardDetailsPage.boardMenu.deleteBoardConfirmationDialog.clickConfirmButton();
         });
 
         await test.step('Verify the board is no longer visible in the workspace section', async () => {
