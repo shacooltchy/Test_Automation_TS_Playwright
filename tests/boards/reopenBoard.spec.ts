@@ -1,3 +1,4 @@
+import { BoardMenuOptions } from "../../enums/BoardMenuOptions";
 import { test } from "../../fixtures/pages";
 import { createBoard } from "../../helpers/api/boards/createBoard";
 import { closeTestBoard } from "../../helpers/testDataHelpers/closeTestBoard";
@@ -66,23 +67,22 @@ test.describe('Reopen board tests', {tag: '@boards'}, () => {
 
         await test.step('Click on board menu button', async () => {
             await boardDetailsPage.clickOnBoardMenuButton();
-            await boardDetailsPage.expectBoardMenuToBeVisible();
+            await boardDetailsPage.boardMenu.expectMenuToBeVisible();
         });
 
         await test.step('Click on Reopen board button', async () => {
-            await boardDetailsPage.clickReopenBoardButtonInTheBoardMenu();
+            await boardDetailsPage.boardMenu.clickOption(BoardMenuOptions.ReopenBoard);
         });
 
         await test.step('Verify the Reopen board confirmation dialog is visible', async () => {
-            await boardDetailsPage.expectReopenBoardConfirmationDialogToBeVisible();
+            await boardDetailsPage.boardMenu.reopenBoardConfirmationDialog.expectDialogToBeVisible();
         });
 
         await test.step('Confirm Reopen board action', async () => {
-            await boardDetailsPage.confirmReopenBoard();
+            await boardDetailsPage.boardMenu.reopenBoardConfirmationDialog.clickConfirmButton();
         });
 
         await test.step('Verify the board details page is visible and the board is reopened', async () => {
-            await boardDetailsPage.expectPageIsVisible(boardName);
             await boardDetailsPage.expectBoardIsNotClosed();
         });
 

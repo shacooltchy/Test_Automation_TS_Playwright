@@ -30,7 +30,7 @@ export default defineConfig({
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
   use: {
     /* Changes default action timeout e.g. click */
-    //actionTimeout: 10_000,
+    actionTimeout: 10_000,
     
     /* Base URL to use in actions like `await page.goto('')`. */
     baseURL: ENV.baseUrl,
@@ -39,7 +39,7 @@ export default defineConfig({
     trace: 'on-first-retry',
   },
 
-  /* Changes default timeout for expect assertions from 5000 to 10_000ms */
+  /* Changes default timeout for expect assertions from 5000 to 15_000ms */
   expect: {
     timeout: 15_000,
   },
