@@ -1,13 +1,11 @@
 import { expect, Locator, Page } from "@playwright/test";
 
 export class ConfirmationDialog {
-    private readonly page: Page;
     private readonly dialog: Locator;
     private readonly confirmButtonName: string;
 
     constructor(page: Page, dialogTitle: string, confirmButtonName: string) {
-        this.page = page;
-        this.dialog = this.page.getByRole('dialog').getByRole('heading', { name: dialogTitle, exact: true }).locator('..').locator('..');
+        this.dialog = page.getByRole('dialog').filter({ has: page.getByRole('heading', { name: dialogTitle, exact: true }) });
         this.confirmButtonName = confirmButtonName;
     }
 
