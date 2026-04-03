@@ -30,24 +30,28 @@ test.describe('Reopen board tests', {tag: '@boards'}, () => {
             await boardsPage.clickViewAllClosedBoardsButton();
         });
 
+        await test.step('Verify the closed boards dialog is visible', async () => {
+            await boardsPage.closedBoardsDialog.expectDialogIsVisible();
+        });
+
         await test.step('Click the reopen board button in the closed boards dialog', async () => {
-            await boardsPage.clickReopenBoardButtonInClosedBoardsDialog(boardName);
+            await boardsPage.closedBoardsDialog.clickReopenBoardButton(boardName);
         });
 
         await test.step('Verify the Reopen board confirmation banner is visible in the closed boards dialog', async () => {
-            await boardsPage.expectReopenBoardConfirmationBannerInClosedBoardsDialog();
+            await boardsPage.closedBoardsDialog.reopenBoardConfirmationDialog.expectDialogToBeVisible();
         });
 
         await test.step('Confirm Reopen board action in the closed boards dialog', async () => {
-            await boardsPage.confirmReopenBoardInClosedBoardsDialog();
+            await boardsPage.closedBoardsDialog.reopenBoardConfirmationDialog.clickConfirmButton();
         });
 
         await test.step('Verify the board is no longer visible in the closed boards dialog', async () => {
-            await boardsPage.expectBoardIsNotVisibleInClosedBoards(boardName);
+            await boardsPage.closedBoardsDialog.expectBoardIsNotVisibleInClosedBoards(boardName);
         });
 
         await test.step('Close the closed boards dialog', async () => {
-            await boardsPage.closeClosedBoardsDialog();
+            await boardsPage.closedBoardsDialog.closeClosedBoardsDialog();
         });
 
         await test.step('Verify the reopened board is visible in the workspaces section', async () => {
@@ -61,8 +65,8 @@ test.describe('Reopen board tests', {tag: '@boards'}, () => {
         });
 
         await test.step('Navigate to the board details from the closed boards dialog', async () => {
-             await boardsPage.navigateToBoardFromClosedBoardsDialog(boardName);
-             await boardDetailsPage.expectPageIsVisible(boardName);
+            await boardsPage.closedBoardsDialog.navigateToBoard(boardName);
+            await boardDetailsPage.expectPageIsVisible(boardName);
         });
 
         await test.step('Click on board menu button', async () => {
