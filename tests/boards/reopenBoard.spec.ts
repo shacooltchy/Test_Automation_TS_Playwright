@@ -7,7 +7,7 @@ import { deleteTestBoard } from "../../helpers/testDataHelpers/deleteTestBoard";
 test.describe('Reopen board tests', {tag: '@boards'}, () => {
     let boardName: string;
     
-    test.beforeEach(async ({homePage, loginPage, boardsPage }) => {
+    test.beforeEach(async ({ homePage, loginPage, boardsPage }) => {
         // Create and close a board via API
         boardName = `Board to reopen ${Date.now()}`;
         await createBoard(boardName);

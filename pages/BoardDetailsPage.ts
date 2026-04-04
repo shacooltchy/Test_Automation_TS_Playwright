@@ -2,15 +2,21 @@ import { expect, Page } from "@playwright/test";
 import { BasePage } from "./BasePage";
 import { AuthenticatedHeader } from "../components/AuthenticatedHeader";
 import { BoardPopoverMenu } from "../components/BoardPopoverMenu";
+import { NewListForm } from "../components/NewListForm";
+import { List } from "../components/List";
 
 export class BoardDetailsPage extends BasePage {
     readonly authenticatedHeader: AuthenticatedHeader;
     readonly boardMenu: BoardPopoverMenu;
+    readonly newListForm: NewListForm;
+    readonly list: List;
 
     constructor(page: Page) {
         super(page);
         this.authenticatedHeader = new AuthenticatedHeader(page);
         this.boardMenu = new BoardPopoverMenu(page);
+        this.newListForm = new NewListForm(page);
+        this.list = new List(page);
     };
 
     async expectPageIsVisible(boardName: string): Promise<void> {
@@ -63,5 +69,9 @@ export class BoardDetailsPage extends BasePage {
 
     async expectBoardIsNotClosed(): Promise<void> {
         await expect(this.page.getByText('This board is closed. Reopen the board to make changes.')).not.toBeVisible();
+    }
+
+    async clickAddAListButton(): Promise<void> {
+        await this.page.getByTestId('list-composer-button').click();
     }
 }

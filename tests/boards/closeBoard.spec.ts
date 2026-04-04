@@ -6,7 +6,7 @@ import { deleteTestBoard } from "../../helpers/testDataHelpers/deleteTestBoard";
 test.describe('Close board tests', {tag: '@boards'}, () => {
     let boardName: string;
 
-    test.beforeEach(async ({homePage, loginPage, boardsPage }) => {
+    test.beforeEach(async ({ homePage, loginPage, boardsPage }) => {
         // Create a board via API
         boardName = `Board to close ${Date.now()}`;
         await createBoard(boardName);
@@ -60,7 +60,7 @@ test.describe('Close board tests', {tag: '@boards'}, () => {
         });
 
         await test.step('Verify the closed board is visible in the closed boards dialog', async () => {
-            await boardsPage.expectBoardIsVisibleInClosedBoards(boardName);
+            await boardsPage.closedBoardsDialog.expectBoardIsVisibleInClosedBoards(boardName);
         });
     });
 });
