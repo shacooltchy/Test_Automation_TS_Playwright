@@ -11,6 +11,10 @@ export class NewListForm {
         await expect(this.newListForm).toBeVisible();
     }
 
+    async expectNewListFormIsNotVisible(): Promise<void> {
+        await expect(this.newListForm).not.toBeVisible();
+    }
+
     async enterNewListName(name: string): Promise<void> {
         await this.newListForm.getByTestId('list-name-textarea').fill(name);
     }
@@ -19,7 +23,7 @@ export class NewListForm {
         await this.newListForm.getByTestId('list-composer-add-list-button').click();
     }
 
-    async clickCloseAddListFormButton(): Promise<void> {
+    async clickCancelAddListButton(): Promise<void> {
         await this.newListForm.getByTestId('list-composer-cancel-button').click();
     }
 }
