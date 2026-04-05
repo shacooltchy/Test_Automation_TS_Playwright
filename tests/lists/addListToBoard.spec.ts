@@ -1,3 +1,4 @@
+import { expect } from "@playwright/test";
 import { test } from "../../fixtures/pages";
 import { createBoard } from "../../helpers/api/boards/createBoard";
 import { deleteTestBoard } from "../../helpers/testDataHelpers/deleteTestBoard";
@@ -22,6 +23,28 @@ test.describe('Add a list test', () => {
     test.afterEach(async () => {
         // Clean up created board via API
         await deleteTestBoard(boardName);
+    });
+
+    test('Cancel adding list to the board', async({boardDetailsPage}) => {
+        await test.step('Click Add a list button', async() => {
+            await boardDetailsPage.clickAddAListButton();
+        });
+
+        await test.step('Verify new list form is visible', async() => {
+            await boardDetailsPage.newListForm.expectNewListFormIsVisible();
+        });
+
+        await test.step('Click add list cancel button', async() => {
+            boardDetailsPage.newListForm.clickCancelAddListButton();
+        });
+
+        await test.step('Verify Add list form is not visible', async() => {
+            boardDetailsPage.newListForm.expectNewListFormIsNotVisible();
+        });
+
+        await test.step('Verify Add list button is visible', async() => {
+            await expect(boardDetailsPage.addListButton).toBeVisible();
+        });
     });
 
     test('Add a list to the board', async({ boardDetailsPage }) => {
