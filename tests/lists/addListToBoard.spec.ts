@@ -5,6 +5,7 @@ import { deleteTestBoard } from "../../helpers/testDataHelpers/deleteTestBoard";
 
 test.describe('Add a list test', () => {
     let boardName: string;
+    
     test.beforeEach(async({ homePage, loginPage, boardsPage, boardDetailsPage }) => {
         // Create a board via API
         boardName = `Board ${Date.now()}`;
