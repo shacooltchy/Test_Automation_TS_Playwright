@@ -10,4 +10,8 @@ export class Alert {
     async expectAlertIsVisible() {
         await expect(this.alert).toBeVisible();
     }
+
+    async clickUndoButton() {
+        await this.alert.getByRole('button', {name: 'Undo'}).click();
+    }
 }

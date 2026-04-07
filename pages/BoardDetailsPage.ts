@@ -1,6 +1,6 @@
 import { expect, Locator, Page } from "@playwright/test";
 import { BasePage } from "./BasePage";
-import { BoardPopoverMenu } from "../components/BoardPopoverMenu";
+import { BoardPopoverMenu } from "../components/boardMenu/BoardPopoverMenu";
 import { NewListForm } from "../components/NewListForm";
 import { List } from "../components/List";
 import { Alert } from "../components/Alert";
@@ -10,6 +10,7 @@ export class BoardDetailsPage extends BasePage {
     readonly newListForm: NewListForm;
     readonly list: List;
     readonly listArchivedAlert: Alert;
+    readonly unarchivedListAlert: Alert;
 
     readonly addListButton: Locator;
 
@@ -19,6 +20,7 @@ export class BoardDetailsPage extends BasePage {
         this.newListForm = new NewListForm(page);
         this.list = new List(page);
         this.listArchivedAlert = new Alert(page, 'List archived');
+        this.unarchivedListAlert = new Alert(page, 'Unarchived list');
 
         this.addListButton = page.getByTestId('list-composer-button');
     };
