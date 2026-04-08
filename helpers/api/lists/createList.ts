@@ -1,6 +1,6 @@
 import { ENV } from "../../../config/env";
 
-export async function createList(listName: string, idBoard: string) {
+export async function createList(listName: string, idBoard: string): Promise<any> {
     const url = `${ENV.apiUrl}/lists?key=${ENV.apiKey}&token=${ENV.apiToken}`;
     const response = await fetch(url, {
         method: 'POST',
