@@ -1,11 +1,15 @@
 import { expect, Locator, Page } from "@playwright/test";
+import { ConfirmationDialog } from "../ConfirmationDialog";
 
 export class ArchivedItems {
     private readonly page: Page;
     private readonly archivedItemsPopover: Locator;
+    readonly deleteItemConfirmationDialog: ConfirmationDialog;
+
     constructor(page: Page) {
         this.page = page;
         this.archivedItemsPopover = page.getByTestId('board-menu-popover').filter({has: page.getByRole('heading', {name: 'Archived items', exact: true})});
+        this.deleteItemConfirmationDialog = new ConfirmationDialog(page, 'Delete list?', 'Delete');
     }
 
     async expectPopoverIsVisible(): Promise<void> {
