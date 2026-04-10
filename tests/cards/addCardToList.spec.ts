@@ -1,0 +1,73 @@
+import { test } from "../../fixtures/pages";
+import { createBoard } from "../../helpers/api/boards/createBoard";
+import { createList } from "../../helpers/api/lists/createList";
+import { deleteTestBoard } from "../../helpers/testDataHelpers/deleteTestBoard";
+import { generateTestDataName } from "../../utils/stringUtils";
+
+test.describe('Add a card to the list tests', () => {
+    let boardName: string;
+    let listName: string;
+        
+    test.beforeEach(async({ homePage, loginPage, boardsPage, boardDetailsPage }) => {
+        // Create a board and a list via API
+        boardName = `Board ${Date.now()}`;
+        listName = `List ${Date.now()}`;
+        const board = await createBoard(boardName);
+        await createList(listName, board.id);
+                        
+        // Log in via UI
+        await homePage.navigate();
+        await homePage.header.expectHeaderTitleIsVisible('Capture, organize, and tackle your to-dos from anywhere.');
+        await homePage.headerMenu.clickLogIn();
+        await loginPage.logIn();
+        await boardsPage.expectPageIsVisible();
+        await boardsPage.navigateToBoardFromWorkspacesSection(boardName);
+        await boardDetailsPage.expectPageIsVisible(boardName);
+    });
+                
+    test.afterEach(async () => {
+        // Clean up created board via API
+        await deleteTestBoard(boardName);
+    });
+    
+    test('Add a card', async({ boardDetailsPage } ) => {
+        const cardTitle = generateTestDataName('Card');
+        const cardTitle2 = generateTestDataName('Card_2');
+
+        await test.step('Click add a card button', async() => {
+            await boardDetailsPage.list.clickAddACardButton(listName);
+        });
+
+        await test.step('Enter a card title', async() => {
+            await boardDetailsPage.list.enterATitle(cardTitle)
+        });
+
+        await test.step('Click Add Card button', async() => {
+            await boardDetailsPage.list.clickAddCardButton();
+        });
+
+        await test.step('Verify card is added', async() => {
+            await boardDetailsPage.list.card.expectCardIsVisible(cardTitle);
+        });
+
+        await test.step('Enter a title of another card', async() => {
+            await boardDetailsPage.list.enterATitle(cardTitle2)
+        });
+
+        await test.step('Click Add Card button', async() => {
+            await boardDetailsPage.list.clickAddCardButton();
+        });
+
+        await test.step('Verify card is added', async() => {
+            await boardDetailsPage.list.card.expectCardIsVisible(cardTitle2);
+        });
+
+        await test.step('Close add a card form', async() => {
+            await boardDetailsPage.list.clickCloseAddCardFormButton();
+        });
+
+        await test.step('Verify add card form is not visible', async() => {
+            await boardDetailsPage.list.expectAddCardFormIsNotVisible();
+        });
+    });
+});
