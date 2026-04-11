@@ -30,7 +30,7 @@ test.describe('Log out tests', {tag: '@log_out'}, () => {
 
         await test.step('Verify the user is logged out and redirected to home page', async () => {
             await expect(page).toHaveURL(ENV.baseUrl);
-            await expect(page.getByTestId('bignav').getByRole('link', { name: 'Log in' })).toBeVisible();
+            await expect(page.getByText('FeaturesSolutionsPlansPricingResourcesLog in').getByRole('link', { name: 'Log in' })).toBeVisible();
         });
     });
 });

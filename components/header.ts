@@ -8,7 +8,11 @@ export class Header {
         this.page = page;
     }
 
-    async expectHeaderTitleIsVisible(headerTitle: string): Promise<void> {
-        await expect(this.page.getByRole('heading', { name: headerTitle, exact: true })).toBeVisible({timeout: 10_000});
+    async expectHeaderTitleIsVisible(headerTitle: string, alternativeHeaderTitle?: string): Promise<void> {
+        if(alternativeHeaderTitle) {
+            await expect(this.page.getByRole('heading', { name: headerTitle, exact: true }).or(this.page.getByRole('heading', { name: alternativeHeaderTitle, exact: true }))).toBeVisible({timeout: 10_000});
+        } else {
+            await expect(this.page.getByRole('heading', { name: headerTitle, exact: true })).toBeVisible({timeout: 10_000});
+        }
     }
 }

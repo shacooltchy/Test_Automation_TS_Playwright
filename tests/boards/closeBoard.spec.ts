@@ -1,4 +1,4 @@
-import { BoardMenuOptions } from "../../enums/BoardMenuOptions";
+import { BoardMenuOption } from "../../enums/BoardMenuOption";
 import { test } from "../../fixtures/pages";
 import { createBoard } from "../../helpers/api/boards/createBoard";
 import { deleteTestBoard } from "../../helpers/testDataHelpers/deleteTestBoard";
@@ -12,10 +12,11 @@ test.describe('Close board tests', {tag: '@boards'}, () => {
         await createBoard(boardName);
         // Log in via UI
         await homePage.navigate();
-        await homePage.header.expectHeaderTitleIsVisible('Capture, organize, and tackle your to-dos from anywhere.');
+        await homePage.expectPageIsVisible();
         await homePage.headerMenu.clickLogIn();
         await loginPage.logIn();
         await boardsPage.expectPageIsVisible();
+        await boardsPage.closeNewFeaturesBannerIfVisible();
     });
 
     test.afterEach(async () => {
@@ -35,7 +36,7 @@ test.describe('Close board tests', {tag: '@boards'}, () => {
         });
 
         await test.step('Click on Close board button', async () => {
-            await boardDetailsPage.boardMenu.clickOption(BoardMenuOptions.CloseBoard);
+            await boardDetailsPage.boardMenu.clickOption(BoardMenuOption.CloseBoard);
             await boardDetailsPage.boardMenu.closeBoardConfirmationDialog.expectDialogToBeVisible();
         });
 

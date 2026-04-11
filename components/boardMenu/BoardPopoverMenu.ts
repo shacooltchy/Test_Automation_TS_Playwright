@@ -1,5 +1,5 @@
 import { expect, Locator, Page } from "@playwright/test";
-import { BoardMenuOptions } from "../../enums/BoardMenuOptions";
+import { BoardMenuOption } from "../../enums/BoardMenuOption";
 import { ConfirmationDialog } from "../ConfirmationDialog";
 import { ArchivedItems } from "./ArchivedItems";
 
@@ -23,7 +23,7 @@ export class BoardPopoverMenu {
         await expect(this.popoverMenu).toBeVisible();
     }
 
-    async clickOption(option: BoardMenuOptions): Promise<void> {
+    async clickOption(option: BoardMenuOption): Promise<void> {
         await this.popoverMenu.getByRole('button', { name: option }).click();
     }
 }

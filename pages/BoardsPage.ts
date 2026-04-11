@@ -19,6 +19,16 @@ export class BoardsPage extends BasePage {
         await super.expectPageIsVisible(/boards/, 'Boards | Trello');
     }
 
+    // refactor
+    async closeNewFeaturesBannerIfVisible(): Promise<void> {
+        const newFeaturesBanner = this.page.getByTestId('spotlight--dialog');
+        try {
+            await newFeaturesBanner.getByRole('button', { name: 'Dismiss' }).click({ timeout: 10_000 });
+        } catch (error) {
+            //Ad container not found, skipping minimize step.
+        }
+    }
+
     async clickCreateNewBoardTile(): Promise<void> {
         await this.page.getByTestId('create-board-tile').click();
     }
