@@ -1,7 +1,6 @@
 import { Page } from "@playwright/test";
 import { Header } from "../components/header";
 import { BasePage } from "./BasePage";
-import { HeaderMenu } from "../components/header-menu/HeaderMenu";
 import { FeaturesHeaderMenu } from "../components/header-menu/FeaturesHeaderMenu";
 import { SolutionsHeaderMenu } from "../components/header-menu/SolutionsHeaderMenu";
 
@@ -20,5 +19,9 @@ export class HomePage extends BasePage{
 
     async navigate() {
         await this.page.goto('/home');
+    }
+
+    async expectPageIsVisible(): Promise<void> {
+        await this.header.expectHeaderTitleIsVisible('Capture, organize, and tackle your to-dos from anywhere.', 'Trello brings all your tasks, teammates, and tools together');
     }
 }

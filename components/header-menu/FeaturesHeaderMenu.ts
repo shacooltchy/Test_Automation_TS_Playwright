@@ -20,7 +20,7 @@ export class FeaturesHeaderMenu {
     }
 
     async expectFeaturesMenuTabIsVisible() {
-        await expect(this.page.getByTestId('bignav').getByText('Explore the features that help your team succeed')).toBeVisible();
+        await expect(this.page.getByRole('heading', { name: 'Explore the features that help your team succeed' })).toBeVisible();
     }
 
     async clickInboxLinkButton() {

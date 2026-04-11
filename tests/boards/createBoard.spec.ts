@@ -8,10 +8,11 @@ test.describe('Create board tests', {tag: '@boards'}, () => {
 
     test.beforeEach(async ({homePage, loginPage, boardsPage }) => {
         await homePage.navigate();
-        await homePage.header.expectHeaderTitleIsVisible('Capture, organize, and tackle your to-dos from anywhere.');
+        await homePage.expectPageIsVisible();
         await homePage.headerMenu.clickLogIn();
         await loginPage.logIn();
         await boardsPage.expectPageIsVisible();
+        await boardsPage.closeNewFeaturesBannerIfVisible();
     });
 
     test.afterEach(async () => {

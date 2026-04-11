@@ -1,4 +1,4 @@
-export enum BoardMenuOptions {
+export enum BoardMenuOption {
     ArchivedItems = 'Archived items',
     CloseBoard = 'Close board',
     ReopenBoard = 'Reopen board',

@@ -1,4 +1,4 @@
-import { BoardMenuOptions } from '../../enums/BoardMenuOptions';
+import { BoardMenuOption } from '../../enums/BoardMenuOption';
 import { test } from '../../fixtures/pages'
 import { createBoard } from '../../helpers/api/boards/createBoard';
 import { archiveUnarchiveList } from '../../helpers/api/lists/archiveUnarchiveList';
@@ -19,7 +19,7 @@ test.describe('Unarchive a list tests', () => {
                 
         // Log in via UI
         await homePage.navigate();
-        await homePage.header.expectHeaderTitleIsVisible('Capture, organize, and tackle your to-dos from anywhere.');
+        await homePage.expectPageIsVisible();
         await homePage.headerMenu.clickLogIn();
         await loginPage.logIn();
         await boardsPage.expectPageIsVisible();
@@ -39,7 +39,7 @@ test.describe('Unarchive a list tests', () => {
         });
     
         await test.step('Click Archived items option', async() => {
-            await boardDetailsPage.boardMenu.clickOption(BoardMenuOptions.ArchivedItems);
+            await boardDetailsPage.boardMenu.clickOption(BoardMenuOption.ArchivedItems);
         });
     
         await test.step('Verify Archived Items popover is visible', async() => {

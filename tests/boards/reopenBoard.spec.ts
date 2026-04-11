@@ -1,4 +1,4 @@
-import { BoardMenuOptions } from "../../enums/BoardMenuOptions";
+import { BoardMenuOption } from "../../enums/BoardMenuOption";
 import { test } from "../../fixtures/pages";
 import { createBoard } from "../../helpers/api/boards/createBoard";
 import { closeTestBoard } from "../../helpers/testDataHelpers/closeTestBoard";
@@ -14,10 +14,11 @@ test.describe('Reopen board tests', {tag: '@boards'}, () => {
         await closeTestBoard(boardName);
         // Log in via UI
         await homePage.navigate();
-        await homePage.header.expectHeaderTitleIsVisible('Capture, organize, and tackle your to-dos from anywhere.');
+        await homePage.expectPageIsVisible();
         await homePage.headerMenu.clickLogIn();
         await loginPage.logIn();
         await boardsPage.expectPageIsVisible();
+        await boardsPage.closeNewFeaturesBannerIfVisible();
     });
     
     test.afterEach(async () => {
@@ -75,7 +76,7 @@ test.describe('Reopen board tests', {tag: '@boards'}, () => {
         });
 
         await test.step('Click on Reopen board button', async () => {
-            await boardDetailsPage.boardMenu.clickOption(BoardMenuOptions.ReopenBoard);
+            await boardDetailsPage.boardMenu.clickOption(BoardMenuOption.ReopenBoard);
         });
 
         await test.step('Verify the Reopen board confirmation dialog is visible', async () => {

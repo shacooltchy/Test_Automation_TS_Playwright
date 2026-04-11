@@ -12,7 +12,7 @@ export class HeaderMenu {
 
     constructor(page: Page) {
         this.page = page;
-        this.componentRoot = page.getByTestId('bignav');
+        this.componentRoot = page.getByText('FeaturesSolutionsPlansPricingResourcesLog in');
         this.featuresButton = page.getByRole('button', { name: 'Features' });
         this.solutionsButton = this.componentRoot.getByRole('button', { name: 'Solutions' });
         this.plansButton = page.getByRole('button', { name: 'Plans' });
