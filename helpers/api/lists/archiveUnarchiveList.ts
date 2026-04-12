@@ -8,6 +8,10 @@ export async function archiveUnarchiveList (listId: string, archived: boolean): 
     })
     
     if (!response.ok) {
-        throw new Error(`Failed to archive the list: ${response.status} ${response.statusText}`);
+        if(archived) {
+            throw new Error(`Failed to archive the list: ${response.status} ${response.statusText}`);
+        } else {
+            throw new Error(`Failed to unarchive the list: ${response.status} ${response.statusText}`);
+        }
     }
 }
