@@ -3,11 +3,10 @@ import { createList } from "../../helpers/api/lists/createList";
 import { createBoard } from "../../helpers/api/boards/createBoard";
 import { deleteTestBoard } from "../../helpers/testDataHelpers/deleteTestBoard";
 import { createNewCard } from "../../helpers/api/cards/createNewCard";
-import { BoardDetailsPage } from "../../pages/BoardDetailsPage";
 import { CardEditorOption } from "../../enums/CardEditorOption";
 import { BoardMenuOption } from "../../enums/BoardMenuOption";
 
-test.describe('Archive a card tests', () => {
+test.describe('Archive a card tests', {tag: '@cards'}, () => {
     let boardName: string;
     let listName: string;
     let cardTitle: string;
@@ -37,7 +36,7 @@ test.describe('Archive a card tests', () => {
         await deleteTestBoard(boardName);
     });
 
-    test('Archive a card', async( {boardDetailsPage} ) => {
+    test('Archive a card in the quick card editor', async( {boardDetailsPage} ) => {
         await test.step('Click edit card button', async() => {
             await boardDetailsPage.list.card.clickEditCardButton(cardTitle);
         });
