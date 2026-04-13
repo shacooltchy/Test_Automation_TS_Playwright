@@ -1,3 +1,3 @@
-export enum CardEditorOption {
+export enum QuickCardEditorOption {
     Archive = 'quick-card-editor-archive'
 }

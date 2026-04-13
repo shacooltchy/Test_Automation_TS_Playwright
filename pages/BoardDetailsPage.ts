@@ -4,6 +4,7 @@ import { BoardPopoverMenu } from "../components/boardMenu/BoardPopoverMenu";
 import { NewListForm } from "../components/NewListForm";
 import { List } from "../components/List";
 import { Alert } from "../components/Alert";
+import { CardEditor } from "../components/CardEditor";
 
 export class BoardDetailsPage extends BasePage {
     readonly boardMenu: BoardPopoverMenu;
@@ -11,6 +12,7 @@ export class BoardDetailsPage extends BasePage {
     readonly list: List;
     readonly listArchivedAlert: Alert;
     readonly unarchivedListAlert: Alert;
+    readonly cardEditor: CardEditor;
 
     readonly addListButton: Locator;
 
@@ -21,6 +23,7 @@ export class BoardDetailsPage extends BasePage {
         this.list = new List(page);
         this.listArchivedAlert = new Alert(page, 'List archived');
         this.unarchivedListAlert = new Alert(page, 'Unarchived list');
+        this.cardEditor = new CardEditor(page);
 
         this.addListButton = page.getByTestId('list-composer-button');
     };
