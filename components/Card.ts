@@ -10,6 +10,10 @@ export class Card {
         this.quickCardEditor = new QuickCardEditor(page);
     }
 
+    async clickCard(cardTitle: string): Promise<void> {
+        await this.card.filter({hasText: cardTitle}).click();
+    }
+
     async expectCardIsVisible(cardTitle: string): Promise<void> {
         await expect(this.card.filter({hasText: cardTitle})).toBeVisible();
     }
