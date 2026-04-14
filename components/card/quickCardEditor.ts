@@ -1,5 +1,5 @@
 import { expect, Locator, Page } from "@playwright/test";
-import { QuickCardEditorOption } from "../enums/QuickCardEditorOption";
+import { QuickCardEditorOption } from "../../enums/QuickCardEditorOption";
 
 export class QuickCardEditor {
     private readonly editor: Locator;
