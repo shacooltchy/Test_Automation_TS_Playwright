@@ -45,6 +45,10 @@ export class ArchivedItems {
         await this.archivedItemsPopover.getByTestId('board-menu-container').locator('div').filter({has: this.page.getByText(itemName, {exact: true})}).getByRole('button').filter({has: this.page.getByTestId('TrashIcon')}).click();
     }
 
+    async openCardEditor(cardTitle: string) {
+        await this.archivedItemsPopover.getByTestId('trello-card').filter({has: this.page.getByText(cardTitle, {exact: true})}).click();
+    }
+
     async close(): Promise<void> {
         await this.archivedItemsPopover.getByRole('button', { name: 'Close popover' }).click();
     }

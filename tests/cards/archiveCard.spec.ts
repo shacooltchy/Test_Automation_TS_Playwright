@@ -84,7 +84,7 @@ test.describe('Archive a card tests', {tag: '@cards'}, () => {
             await boardDetailsPage.cardEditor.expectCardEditorIsVisible();
         });
 
-        await test.step('Click Actions button in the card editor', async() => {
+        await test.step('Click the Actions button in the card editor', async() => {
             await boardDetailsPage.cardEditor.clickActionsButton();
         });
 

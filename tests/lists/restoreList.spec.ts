@@ -32,7 +32,7 @@ test.describe('Unarchive a list tests', () => {
         await deleteTestBoard(boardName);
     });
 
-    test('Unarchive a list', async({ boardDetailsPage } ) => {
+    test('Restore a list', async({ boardDetailsPage } ) => {
         await test.step('Open board menu', async() => {
             await boardDetailsPage.clickOnBoardMenuButton();
             await boardDetailsPage.boardMenu.expectMenuToBeVisible();
