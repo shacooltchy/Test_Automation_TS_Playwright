@@ -1,4 +1,4 @@
-import { SolutionsLinkButton } from "../components/header-menu/SolutionsHeaderMenu";
+import { SolutionsLinkButton } from "../components/headerMenu/solutionsHeaderMenu1234";
 import { test } from "../fixtures/pages"; //to trzeba recznie dodac
 
 test.describe('Solutions tab navigation tests', {tag: '@smoke'}, () => {
