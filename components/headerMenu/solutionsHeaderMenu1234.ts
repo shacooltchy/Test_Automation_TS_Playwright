@@ -1,4 +1,4 @@
-import { Locator, Page } from "@playwright/test";
+import { Page } from "@playwright/test";
 
 //refactoring z uzyciem enuma
 export class SolutionsHeaderMenu {

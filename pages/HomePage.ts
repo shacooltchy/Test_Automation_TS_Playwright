@@ -1,8 +1,9 @@
 import { Page } from "@playwright/test";
 import { Header } from "../components/header";
 import { BasePage } from "./BasePage";
-import { FeaturesHeaderMenu } from "../components/header-menu/FeaturesHeaderMenu";
-import { SolutionsHeaderMenu } from "../components/header-menu/SolutionsHeaderMenu";
+import { FeaturesHeaderMenu } from "../components/headerMenu/featuresHeaderMenu";
+import { SolutionsHeaderMenu } from "../components/headerMenu/solutionsHeaderMenu1234";
+//import { SolutionsHeaderMenu } from "../components/headerMenu/solutionsHeaderMenu1234";
 
 //na page'ach metody biznesowe, komponenty i lokatory specyficzne dla strony
 export class HomePage extends BasePage{

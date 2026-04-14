@@ -1,10 +1,12 @@
 import { expect, Locator, Page } from "@playwright/test";
 import { BasePage } from "./BasePage";
-import { BoardPopoverMenu } from "../components/boardMenu/BoardPopoverMenu";
-import { NewListForm } from "../components/NewListForm";
-import { List } from "../components/List";
-import { Alert } from "../components/Alert";
-import { CardEditor } from "../components/CardEditor";
+import { BoardPopoverMenu } from "../components/board/boardMenu/boardPopoverMenu";
+import { NewListForm } from "../components/list/newListForm";
+import { List } from "../components/list/list";
+import { Alert } from "../components/alert123";
+import { CardEditor } from "../components/card/cardEditor123";
+//import { Alert } from "../components/alert123";
+//import { CardEditor } from "../components/card/cardEditor123";
 
 export class BoardDetailsPage extends BasePage {
     readonly boardMenu: BoardPopoverMenu;

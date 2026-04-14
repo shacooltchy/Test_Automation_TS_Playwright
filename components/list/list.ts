@@ -1,6 +1,6 @@
 import { expect, Locator, Page } from "@playwright/test";
-import { ListActionsPopover } from "./ListActionsPopover";
-import { Card } from "./Card";
+import { ListActionsPopover } from "./listActionsPopover";
+import { Card } from "../card/card";
 
 export class List {
     private readonly list: Locator;

@@ -1,8 +1,8 @@
-import { expect, Locator, Page } from "@playwright/test";
+import { expect, Page } from "@playwright/test";
 import { BasePage } from "./BasePage";
-import { Dropdown } from "../components/Dropdown";
 import { BoardVisibility } from "../enums/BoardVisibility";
-import { ClosedBoardsDialog } from "../components/ClosedBoardsDialog";
+import { ClosedBoardsDialog } from "../components/board/closedBoardsDialog";
+import { Dropdown } from "../components/dropdown123";
 
 export class BoardsPage extends BasePage {
     readonly visibilityDropdown: Dropdown;

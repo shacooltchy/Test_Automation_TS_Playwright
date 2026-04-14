@@ -1,5 +1,5 @@
 import { expect, Locator, Page } from "@playwright/test";
-import { QuickCardEditor } from "./QuickCardEditor";
+import { QuickCardEditor } from "./quickCardEditor";
 
 export class Card {
     private readonly card: Locator;
