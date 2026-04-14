@@ -1,6 +1,6 @@
 import { expect, Locator, Page } from "@playwright/test";
 import { AuthenticatedHeader } from "../components/authHeader/authenticatedHeader";
-import { HeaderMenu } from "../components/header-menu/headerMenu";
+import { HeaderMenu } from "../components/headerMenu/headerMenu";
 
 // miejsce na metody wykorzystywane na roznych stronach i ktore potrzebuje dostęp do page, nie dodawac locatorow - to tylko na page'ach i w komponentach
 export abstract class BasePage {
