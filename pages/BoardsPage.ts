@@ -2,7 +2,7 @@ import { expect, Page } from "@playwright/test";
 import { BasePage } from "./BasePage";
 import { BoardVisibility } from "../enums/BoardVisibility";
 import { ClosedBoardsDialog } from "../components/board/closedBoardsDialog";
-import { Dropdown } from "../components/dropdown123";
+import { Dropdown } from "../components/dropdown";
 
 export class BoardsPage extends BasePage {
     readonly visibilityDropdown: Dropdown;

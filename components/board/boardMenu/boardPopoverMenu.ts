@@ -1,8 +1,7 @@
 import { expect, Locator, Page } from "@playwright/test";
 import { BoardMenuOption } from "../../../enums/BoardMenuOption";
-//import { ConfirmationDialog } from "../../confirmationDialog123";
 import { ArchivedItems } from "./archivedItems";
-import { ConfirmationDialog } from "../../confirmationDialog123";
+import { ConfirmationDialog } from "../../confirmationDialog";
 
 export class BoardPopoverMenu {
     private readonly popoverMenu: Locator;
