@@ -3,8 +3,10 @@ import { BasePage } from "./BasePage";
 import { BoardPopoverMenu } from "../components/board/boardMenu/boardPopoverMenu";
 import { NewListForm } from "../components/list/newListForm";
 import { List } from "../components/list/list";
-import { Alert } from "../components/alert";
-import { CardEditor } from "../components/card/cardEditor";
+import { Alert } from "../components/alert123";
+import { CardEditor } from "../components/card/cardEditor123";
+//import { Alert } from "../components/alert123";
+//import { CardEditor } from "../components/card/cardEditor123";
 
 export class BoardDetailsPage extends BasePage {
     readonly boardMenu: BoardPopoverMenu;
