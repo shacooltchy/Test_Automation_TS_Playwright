@@ -33,4 +33,8 @@ export class CardEditor {
     async expectCardIsArchived(): Promise<void> {
         expect((this.editor.getByText('This card was archived on'))).toBeVisible();
     }
+
+    async expectCardIsNotArchived(): Promise<void> {
+        expect((this.editor.getByText('This card was archived on'))).not.toBeVisible();
+    }
 }

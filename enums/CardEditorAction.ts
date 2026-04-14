@@ -1,3 +1,4 @@
 export enum CardEditorAction {
-    Archive = 'Archive'
+    Archive = 'Archive',
+    Restore = 'Restore'
 }
