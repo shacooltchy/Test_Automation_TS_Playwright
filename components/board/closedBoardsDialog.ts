@@ -1,5 +1,5 @@
 import { expect, Locator, Page } from "@playwright/test";
-import { ConfirmationDialog } from "../confirmationDialog";
+import { ConfirmationDialog } from "../confirmationDialog123";
 
 export class ClosedBoardsDialog {
     private readonly dialog: Locator;
