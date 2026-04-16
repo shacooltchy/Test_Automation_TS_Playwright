@@ -12,7 +12,7 @@ test.describe('Create board tests', {tag: '@boards'}, () => {
         await homePage.headerMenu.clickLogIn();
         await loginPage.logIn();
         await boardsPage.expectPageIsVisible();
-        await boardsPage.closeNewFeaturesBannerIfVisible();
+        await boardsPage.newFeaturesBanner.closeIfVisible();
     });
 
     test.afterEach(async () => {
@@ -40,9 +40,6 @@ test.describe('Create board tests', {tag: '@boards'}, () => {
         });
 
         await test.step('Select board visibility', async () => {
-            //await boardsPage.selectBoardVisibility('Workspace All members');
-            //await boardsPage.selectBoardVisibilityUsingHelper('Workspace All members');
-
             await boardsPage.visibilityDropdown.select(BoardVisibility.Workspace);
         });
 

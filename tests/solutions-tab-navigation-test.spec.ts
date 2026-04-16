@@ -4,6 +4,7 @@ import { test } from "../fixtures/pages"; //to trzeba recznie dodac
 test.describe('Solutions tab navigation tests', {tag: '@smoke'}, () => {
     test.beforeEach(async({homePage}) => {
         await homePage.navigate();
+        await homePage.cookieBanner.close();
         await homePage.headerMenu.clickSolutions();
     });
 

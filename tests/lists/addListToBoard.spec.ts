@@ -18,8 +18,10 @@ test.describe('Add a list test', () => {
         await homePage.headerMenu.clickLogIn();
         await loginPage.logIn();
         await boardsPage.expectPageIsVisible();
+        await boardsPage.newFeaturesBanner.closeIfVisible();
         await boardsPage.navigateToBoardFromWorkspacesSection(boardName);
         await boardDetailsPage.expectPageIsVisible(boardName);
+        await boardDetailsPage.adBanner.minimizeIfVisible();
     });
 
     test.afterEach(async () => {
