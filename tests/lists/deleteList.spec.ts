@@ -4,6 +4,7 @@ import { createList } from "../../helpers/api/lists/createList";
 import { archiveUnarchiveList } from "../../helpers/api/lists/archiveUnarchiveList";
 import { deleteTestBoard } from "../../helpers/testDataHelpers/deleteTestBoard";
 import { BoardMenuOption } from "../../enums/BoardMenuOption";
+import { randomName } from "../../utils/stringUtils";
 
 test.describe('Delete a list tests', () => {
     let boardName: string;
@@ -11,8 +12,8 @@ test.describe('Delete a list tests', () => {
     
     test.beforeEach(async({ homePage, loginPage, boardsPage, boardDetailsPage }) => {
         // Create a board, a list and archive a list via API
-        boardName = `Board ${Date.now()}`;
-        listName = `List ${Date.now()}`;
+        boardName = randomName('Board');
+        listName = randomName('List');
         const board = await createBoard(boardName);
         const list = await createList(listName, board.id);
         await archiveUnarchiveList(list.id, true);

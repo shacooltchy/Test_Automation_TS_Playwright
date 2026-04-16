@@ -2,13 +2,14 @@ import { expect } from "@playwright/test";
 import { test } from "../../fixtures/pages";
 import { createBoard } from "../../helpers/api/boards/createBoard";
 import { deleteTestBoard } from "../../helpers/testDataHelpers/deleteTestBoard";
+import { randomName } from "../../utils/stringUtils";
 
 test.describe('Add a list test', () => {
     let boardName: string;
     
     test.beforeEach(async({ homePage, loginPage, boardsPage, boardDetailsPage }) => {
         // Create a board via API
-        boardName = `Board ${Date.now()}`;
+        boardName = randomName('Board');
         await createBoard(boardName);
         
         // Log in via UI
@@ -49,7 +50,7 @@ test.describe('Add a list test', () => {
     });
 
     test('Add a list to the board', async({ boardDetailsPage }) => {
-        let listName = `List ${Date.now()}`
+        let listName = randomName('List');
         await test.step('Click Add a list button', async() => {
             await boardDetailsPage.clickAddAListButton();
         });

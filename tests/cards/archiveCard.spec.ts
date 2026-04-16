@@ -6,6 +6,7 @@ import { createNewCard } from "../../helpers/api/cards/createNewCard";
 import { BoardMenuOption } from "../../enums/BoardMenuOption";
 import { QuickCardEditorOption } from "../../enums/QuickCardEditorOption";
 import { CardEditorAction } from "../../enums/CardEditorAction";
+import { randomName } from "../../utils/stringUtils";
 
 test.describe('Archive a card tests', {tag: '@cards'}, () => {
     let boardName: string;
@@ -14,9 +15,9 @@ test.describe('Archive a card tests', {tag: '@cards'}, () => {
             
     test.beforeEach(async({ homePage, loginPage, boardsPage, boardDetailsPage }) => {
         // Create a board and, a list and a card via API
-        boardName = `Board ${Date.now()}`;
-        listName = `List ${Date.now()}`;
-        cardTitle = `Card ${Date.now()}`;
+        boardName = randomName('Board');
+        listName = randomName('List');
+        cardTitle = randomName('Card');
 
         const board = await createBoard(boardName);
         const list = await createList(listName, board.id);
@@ -51,7 +52,7 @@ test.describe('Archive a card tests', {tag: '@cards'}, () => {
         });
 
         await test.step('Verify card is not visible in the list', async() => {
-            await boardDetailsPage.list.card.expectCardIsNotVisible(cardTitle);
+            await boardDetailsPage.list.card.expectCardIsNotVisible(cardTitle, listName);
         });
 
         await test.step('Click the board menu', async() => {
@@ -105,7 +106,7 @@ test.describe('Archive a card tests', {tag: '@cards'}, () => {
         });
 
         await test.step('Verify card is not visible in the list', async() => {
-            await boardDetailsPage.list.card.expectCardIsNotVisible(cardTitle);
+            await boardDetailsPage.list.card.expectCardIsNotVisible(cardTitle, listName);
         });
 
         await test.step('Click the board menu', async() => {

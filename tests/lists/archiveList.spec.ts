@@ -4,6 +4,7 @@ import {test} from "../../fixtures/pages";
 import { createBoard } from "../../helpers/api/boards/createBoard";
 import { addListToBoard } from "../../helpers/testDataHelpers/addListToBoard";
 import { deleteTestBoard } from "../../helpers/testDataHelpers/deleteTestBoard";
+import { randomName } from "../../utils/stringUtils";
 
 test.describe('Archive a list tests', () => {
     let boardName: string;
@@ -11,8 +12,8 @@ test.describe('Archive a list tests', () => {
 
     test.beforeEach(async({ homePage, loginPage, boardsPage, boardDetailsPage }) => {
         // Create a board and a list via API
-        boardName = `Board ${Date.now()}`;
-        listName = `List ${Date.now()}`;
+        boardName = randomName('Board');
+        listName = randomName('List');
         await createBoard(boardName);
         await addListToBoard(listName, boardName);
             

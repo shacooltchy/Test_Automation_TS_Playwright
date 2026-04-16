@@ -4,6 +4,7 @@ import { createBoard } from "../../helpers/api/boards/createBoard";
 import { createNewCard } from "../../helpers/api/cards/createNewCard";
 import { createList } from "../../helpers/api/lists/createList";
 import { deleteTestBoard } from "../../helpers/testDataHelpers/deleteTestBoard";
+import { randomName } from "../../utils/stringUtils";
 
 test.describe('Copy list tests', () => {
     let boardName: string;
@@ -12,9 +13,9 @@ test.describe('Copy list tests', () => {
 
     test.beforeEach(async({ homePage, loginPage, boardsPage, boardDetailsPage }) => {
         // Create a board and a list via API
-        boardName = `Board ${Date.now()}`;
-        listName = `List ${Date.now()}`;
-        cardTitle = `Card ${Date.now()}`;
+        boardName = randomName('Board');
+        listName = randomName('List');
+        cardTitle = randomName('Card');
         const board = await createBoard(boardName);
         const list = await createList(listName, board.id);
         await createNewCard(cardTitle, list.id);

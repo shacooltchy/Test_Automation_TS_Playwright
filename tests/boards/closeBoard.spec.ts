@@ -2,13 +2,14 @@ import { BoardMenuOption } from "../../enums/BoardMenuOption";
 import { test } from "../../fixtures/pages";
 import { createBoard } from "../../helpers/api/boards/createBoard";
 import { deleteTestBoard } from "../../helpers/testDataHelpers/deleteTestBoard";
+import { randomName } from "../../utils/stringUtils";
 
 test.describe('Close board tests', {tag: '@boards'}, () => {
     let boardName: string;
 
     test.beforeEach(async ({ homePage, loginPage, boardsPage }) => {
         // Create a board via API
-        boardName = `Board to close ${Date.now()}`;
+        boardName = randomName('Board');
         await createBoard(boardName);
         // Log in via UI
         await homePage.navigate();
