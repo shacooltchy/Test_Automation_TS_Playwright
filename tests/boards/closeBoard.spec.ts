@@ -17,7 +17,7 @@ test.describe('Close board tests', {tag: '@boards'}, () => {
         await homePage.headerMenu.clickLogIn();
         await loginPage.logIn();
         await boardsPage.expectPageIsVisible();
-        await boardsPage.closeNewFeaturesBannerIfVisible();
+        await boardsPage.newFeaturesBanner.closeIfVisible();
     });
 
     test.afterEach(async () => {
@@ -29,6 +29,7 @@ test.describe('Close board tests', {tag: '@boards'}, () => {
         await test.step('Navigate to the board details page', async () => {
              await boardsPage.navigateToBoardFromWorkspacesSection(boardName);
              await boardDetailsPage.expectPageIsVisible(boardName);
+             await boardDetailsPage.adBanner.minimizeIfVisible();
         }); 
 
         await test.step('Click on board menu button', async () => {
