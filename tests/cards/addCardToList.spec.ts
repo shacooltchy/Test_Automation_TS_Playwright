@@ -1,3 +1,4 @@
+import { ListAction } from "../../enums/ListAction";
 import { test } from "../../fixtures/pages";
 import { createBoard } from "../../helpers/api/boards/createBoard";
 import { createList } from "../../helpers/api/lists/createList";
@@ -68,6 +69,30 @@ test.describe('Add a card to the list tests', {tag: '@cards'}, () => {
 
         await test.step('Verify add card form is not visible', async() => {
             await boardDetailsPage.list.expectAddCardFormIsNotVisible();
+        });
+    });
+
+    test('Add a card using list actions menu', async({ boardDetailsPage } ) => {
+        const cardTitle = generateTestDataName('Card');
+
+        await test.step('Open list actions', async() => {
+            await boardDetailsPage.list.openListActionsPopover(listName);
+        });
+
+        await test.step('Click Add a card option', async() => {
+            await boardDetailsPage.list.listActions.clickAction(ListAction.AddCard);
+        });
+
+        await test.step('Enter a card title', async() => {
+            await boardDetailsPage.list.enterATitle(cardTitle)
+        });
+
+        await test.step('Click Add Card button', async() => {
+            await boardDetailsPage.list.clickAddCardButton();
+        });
+
+        await test.step('Verify card is added', async() => {
+            await boardDetailsPage.list.card.expectCardIsVisible(cardTitle, listName);
         });
     });
 });
