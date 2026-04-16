@@ -6,6 +6,7 @@ import { archiveUnarchiveCard } from "../../helpers/api/cards/archiveUnarchiveCa
 import { createNewCard } from "../../helpers/api/cards/createNewCard";
 import { createList } from "../../helpers/api/lists/createList";
 import { deleteTestBoard } from "../../helpers/testDataHelpers/deleteTestBoard";
+import { randomName } from "../../utils/stringUtils";
 
 test.describe('Unarchive a card tests', {tag: '@cards'}, () => {
     let boardName: string;
@@ -14,9 +15,9 @@ test.describe('Unarchive a card tests', {tag: '@cards'}, () => {
             
     test.beforeEach(async({ homePage, loginPage, boardsPage, boardDetailsPage }) => {
         // Create a board and, a list,a card and archive a card via API
-        boardName = `Board ${Date.now()}`;
-        listName = `List ${Date.now()}`;
-        cardTitle = `Card ${Date.now()}`;
+        boardName = randomName('Board');
+        listName = randomName('List');
+        cardTitle = randomName('Card');
 
         const board = await createBoard(boardName);
         const list = await createList(listName, board.id);

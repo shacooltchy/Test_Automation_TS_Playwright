@@ -3,7 +3,7 @@ import { test } from "../../fixtures/pages";
 import { createBoard } from "../../helpers/api/boards/createBoard";
 import { createList } from "../../helpers/api/lists/createList";
 import { deleteTestBoard } from "../../helpers/testDataHelpers/deleteTestBoard";
-import { generateTestDataName } from "../../utils/stringUtils";
+import { randomName } from "../../utils/stringUtils";
 
 test.describe('Add a card to the list tests', {tag: '@cards'}, () => {
     let boardName: string;
@@ -11,8 +11,8 @@ test.describe('Add a card to the list tests', {tag: '@cards'}, () => {
         
     test.beforeEach(async({ homePage, loginPage, boardsPage, boardDetailsPage }) => {
         // Create a board and a list via API
-        boardName = `Board ${Date.now()}`;
-        listName = `List ${Date.now()}`;
+        boardName = randomName('Board');
+        listName = randomName('List');
         const board = await createBoard(boardName);
         await createList(listName, board.id);
                         
@@ -32,8 +32,8 @@ test.describe('Add a card to the list tests', {tag: '@cards'}, () => {
     });
     
     test('Add a card', async({ boardDetailsPage } ) => {
-        const cardTitle = generateTestDataName('Card');
-        const cardTitle2 = generateTestDataName('Card_2');
+        const cardTitle = randomName('Card');
+        const cardTitle2 = randomName('Card_2');
 
         await test.step('Click add a card button', async() => {
             await boardDetailsPage.list.clickAddACardButton(listName);
@@ -73,7 +73,7 @@ test.describe('Add a card to the list tests', {tag: '@cards'}, () => {
     });
 
     test('Add a card using list actions menu', async({ boardDetailsPage } ) => {
-        const cardTitle = generateTestDataName('Card');
+        const cardTitle = randomName('Card');
 
         await test.step('Open list actions', async() => {
             await boardDetailsPage.list.openListActionsPopover(listName);

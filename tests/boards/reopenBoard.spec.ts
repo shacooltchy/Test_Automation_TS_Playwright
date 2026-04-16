@@ -3,13 +3,14 @@ import { test } from "../../fixtures/pages";
 import { createBoard } from "../../helpers/api/boards/createBoard";
 import { closeTestBoard } from "../../helpers/testDataHelpers/closeTestBoard";
 import { deleteTestBoard } from "../../helpers/testDataHelpers/deleteTestBoard";
+import { randomName } from "../../utils/stringUtils";
 
 test.describe('Reopen board tests', {tag: '@boards'}, () => {
     let boardName: string;
     
     test.beforeEach(async ({ homePage, loginPage, boardsPage }) => {
         // Create and close a board via API
-        boardName = `Board to reopen ${Date.now()}`;
+        boardName = randomName('Board');
         await createBoard(boardName);
         await closeTestBoard(boardName);
         // Log in via UI

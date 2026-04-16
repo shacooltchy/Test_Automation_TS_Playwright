@@ -1,7 +1,7 @@
 import { BoardVisibility } from "../../enums/BoardVisibility";
 import { test } from "../../fixtures/pages";
 import { deleteTestBoard } from "../../helpers/testDataHelpers/deleteTestBoard";
-import { generateTestDataName } from "../../utils/stringUtils";
+import { randomName } from "../../utils/stringUtils";
 
 test.describe('Create board tests', {tag: '@boards'}, () => {
     let boardName: string;
@@ -21,7 +21,7 @@ test.describe('Create board tests', {tag: '@boards'}, () => {
     });
 
     test('Create new board', async ({ boardsPage, boardDetailsPage }) => {
-        boardName = generateTestDataName("Board");
+        boardName = randomName('Board');
 
         await test.step('Click the Create new board tile', async () => {
             await boardsPage.clickCreateNewBoardTile();
