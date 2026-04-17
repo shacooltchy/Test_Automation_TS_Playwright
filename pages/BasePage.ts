@@ -23,21 +23,19 @@ export abstract class BasePage {
         this.adBanner = new adBanner(page);
     }
 
-    async expectPageIsVisible(urlPart: string | RegExp, pageTitle: string | RegExp, timeout: number = 10_000) {
-        await this.waitForUrl(urlPart, timeout);
-        await this.waitForTitle(pageTitle);
-    }
+    async expectPageIsVisible(urlPart: string | RegExp, pageTitle: string | RegExp, alternativePageTitle?: string | RegExp) {
+        await expect(this.page).toHaveURL(urlPart, {timeout: 10_000});
 
-    async waitForUrl(urlPart: string | RegExp, timeout: number = 10_000 ) {
-        await expect(this.page).toHaveURL(urlPart, {timeout: timeout});
-    }
+        if (alternativePageTitle) {
+            const regex =
+                pageTitle instanceof RegExp || alternativePageTitle instanceof RegExp
+                    ? new RegExp(`${pageTitle}|${alternativePageTitle}`)
+                    : new RegExp(`(${pageTitle})|(${alternativePageTitle})`);
 
-    async waitForTitle(pageTitle: string | RegExp) {
-        await expect(this.page).toHaveTitle(pageTitle);
-    }
-
-    async waitForVisible(locator: Locator) {
-        await expect(locator).toBeVisible();
+            await expect(this.page).toHaveTitle(regex);
+        } else {
+            await expect(this.page).toHaveTitle(pageTitle);
+        }
     }
 
     async screenShot(name: string) {

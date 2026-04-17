@@ -9,7 +9,7 @@ export class cookieBanner {
 
     async close(): Promise<void> {
         try {
-        await this.cookieBanner.waitFor({state: 'visible', timeout: 500});
+        await this.cookieBanner.waitFor({state: 'visible', timeout: 1500});
         await this.cookieBanner.getByRole('button', {name: 'Close'}).click();
         await expect(this.cookieBanner).not.toBeVisible();
         } catch {

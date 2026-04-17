@@ -1,20 +1,23 @@
 import { expect, Locator, Page } from "@playwright/test";
-import { ListActionsPopover } from "./listActionsPopover";
+import { ListActionsMenu } from "./listActionsMenu";
 import { Card } from "../card/card";
 import { ConfirmationDialog } from "../confirmationDialog";
+import { MoveListActionDialog } from "./moveListActionDialog";
 
 export class List {
     private readonly page: Page;
     private readonly list: Locator;
-    readonly listActions: ListActionsPopover;
+    readonly listActionsMenu: ListActionsMenu;
     readonly copyListConfirmationDialog: ConfirmationDialog;
+    readonly moveListActionDialog: MoveListActionDialog;
     readonly card: Card;
 
     constructor(page: Page) {
         this.page = page;
         this.list = page.getByTestId('list');
-        this.listActions = new ListActionsPopover(page);
+        this.listActionsMenu = new ListActionsMenu(page);
         this.copyListConfirmationDialog = new ConfirmationDialog(page, 'Copy list', 'Create list', true);
+        this.moveListActionDialog = new MoveListActionDialog(page);
         this.card = new Card(page);
     }
 
@@ -26,7 +29,7 @@ export class List {
         await expect(this.list.filter({hasText: listName})).not.toBeVisible();
     }
 
-    async openListActionsPopover(listName: string): Promise<void> {
+    async openListActionsMenu(listName: string): Promise<void> {
         await this.list.filter({hasText: listName}).getByTestId('list-edit-menu-button').click();
     }
 

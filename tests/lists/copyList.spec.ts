@@ -39,12 +39,12 @@ test.describe('Copy list tests', () => {
 
     test('Copy a list', async({ boardDetailsPage }) => {
         await test.step('Open list actions', async() => {
-            await boardDetailsPage.list.openListActionsPopover(listName);
-            await boardDetailsPage.list.listActions.expectActionsListPopoverIsVisible();
+            await boardDetailsPage.list.openListActionsMenu(listName);
+            await boardDetailsPage.list.listActionsMenu.expectListActionsMenuIsVisible();
         });
 
         await test.step('Click Copy list option', async() => {
-            await boardDetailsPage.list.listActions.clickAction(ListAction.CopyList);
+            await boardDetailsPage.list.listActionsMenu.clickAction(ListAction.CopyList);
         });
 
         await test.step('Verify Copy list confirmation dialog is visible', async() => {

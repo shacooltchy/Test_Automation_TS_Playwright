@@ -8,6 +8,7 @@ test.describe('Log out tests', {tag: '@log_out'}, () => {
         await homePage.headerMenu.clickLogIn();
         await loginPage.logIn();
         await boardsPage.expectPageIsVisible();
+        await boardsPage.newFeaturesBanner.closeIfVisible();
     });
 
     test('Log out of Trello', async ({ page, boardsPage, logOutConfirmationPage }) => {

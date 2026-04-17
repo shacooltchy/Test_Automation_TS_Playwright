@@ -23,7 +23,7 @@ export class LoginPage extends BasePage {
     }
 
     async enterEmail(email: string = ENV.email) {
-        await this.page.getByTestId('username').fill(email);
+        await this.page.getByTestId('username').fill(email, {timeout: 15_000});
     }
 
     async clickContinueLogInButton()
