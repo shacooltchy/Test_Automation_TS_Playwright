@@ -36,12 +36,12 @@ test.describe('Archive a list tests', () => {
 
     test('Archive a list', async({ boardDetailsPage } ) => {
         await test.step('Open Actions List', async() => {
-            await boardDetailsPage.list.openListActionsPopover(listName);
-            await boardDetailsPage.list.listActions.expectActionsListPopoverIsVisible();
+            await boardDetailsPage.list.openListActionsMenu(listName);
+            await boardDetailsPage.list.listActionsMenu.expectListActionsMenuIsVisible();
         });
 
         await test.step('Click Archive this list option', async() => {
-            await boardDetailsPage.list.listActions.clickAction(ListAction.ArchiveThisList);
+            await boardDetailsPage.list.listActionsMenu.clickAction(ListAction.ArchiveThisList);
         });
 
         await test.step('Verify list alert is visible', async() => {
@@ -76,12 +76,12 @@ test.describe('Archive a list tests', () => {
 
     test('Undo archiving a list in the alert modal', async({ boardDetailsPage }) => {
         await test.step('Open Actions List', async() => {
-            await boardDetailsPage.list.openListActionsPopover(listName);
-            await boardDetailsPage.list.listActions.expectActionsListPopoverIsVisible();
+            await boardDetailsPage.list.openListActionsMenu(listName);
+            await boardDetailsPage.list.listActionsMenu.expectListActionsMenuIsVisible();
         });
 
         await test.step('Click Archive this list option', async() => {
-            await boardDetailsPage.list.listActions.clickAction(ListAction.ArchiveThisList);
+            await boardDetailsPage.list.listActionsMenu.clickAction(ListAction.ArchiveThisList);
         });
 
         await test.step('Verify list is not visible on the board', async() => {
@@ -89,7 +89,7 @@ test.describe('Archive a list tests', () => {
         });
 
         await test.step('Click undo button in the List archived alert modal', async() => {
-            await boardDetailsPage.listArchivedAlert.clickUndoButton();
+            await boardDetailsPage.listArchivedAlert.clickButton('Undo');
         });
 
         await test.step('Verify Unarchived list alert is visible', async() => {

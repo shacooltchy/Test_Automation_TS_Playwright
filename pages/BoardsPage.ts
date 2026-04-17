@@ -1,17 +1,15 @@
 import { expect, Page } from "@playwright/test";
 import { BasePage } from "./BasePage";
-import { BoardVisibility } from "../enums/BoardVisibility";
 import { ClosedBoardsDialog } from "../components/board/closedBoardsDialog";
 import { Dropdown } from "../components/dropdown";
 
 export class BoardsPage extends BasePage {
     readonly visibilityDropdown: Dropdown;
-    private readonly visibilityDropdownOptions = [BoardVisibility.Private, BoardVisibility.Workspace, BoardVisibility.Public];
     readonly closedBoardsDialog: ClosedBoardsDialog;
 
     constructor(page: Page) {
         super(page);
-        this.visibilityDropdown = new Dropdown(page, this.page.getByTestId('create-board-select-visibility'), this.visibilityDropdownOptions);
+        this.visibilityDropdown = new Dropdown(page, this.page.getByTestId('create-board-select-visibility'));
         this.closedBoardsDialog = new ClosedBoardsDialog(page);
     }
 

@@ -12,6 +12,7 @@ export class BoardDetailsPage extends BasePage {
     readonly list: List;
     readonly listArchivedAlert: Alert;
     readonly unarchivedListAlert: Alert;
+    readonly movedListAlert: Alert;
     readonly cardEditor: CardEditor;
 
     readonly addListButton: Locator;
@@ -23,6 +24,7 @@ export class BoardDetailsPage extends BasePage {
         this.list = new List(page);
         this.listArchivedAlert = new Alert(page, 'List archived');
         this.unarchivedListAlert = new Alert(page, 'Unarchived list');
+        this.movedListAlert = new Alert(page, /Moved list .+ to .+ successfully./);
         this.cardEditor = new CardEditor(page);
 
         this.addListButton = page.getByTestId('list-composer-button');
@@ -47,5 +49,29 @@ export class BoardDetailsPage extends BasePage {
 
     async clickAddAListButton(): Promise<void> {
         await this.addListButton.click();
+    }
+
+    async expectListPosition(uniqueListName: string, position: number): Promise<void> {
+        const lists = this.page.getByTestId('list-wrapper');
+        const count = await lists.count();
+        let listPosition: number | null = null;
+
+        for (let i = 0; i < count; i++) {
+            const name = await lists
+                .nth(i)
+                .locator('[data-testid="list-name"] span')
+                .innerText();
+
+            if (name.trim() === uniqueListName.trim()) {
+                listPosition = i + 1; // Adding 1 to convert from 0-based index to 1-based position
+                break;
+            }
+        }
+
+        if (listPosition === null) {
+            throw new Error(`List with name "${uniqueListName}" not found`);
+        }
+
+        expect(listPosition).toBe(position);
     }
 }

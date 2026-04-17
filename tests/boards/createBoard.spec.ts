@@ -40,7 +40,7 @@ test.describe('Create board tests', {tag: '@boards'}, () => {
         });
 
         await test.step('Select board visibility', async () => {
-            await boardsPage.visibilityDropdown.select(BoardVisibility.Workspace);
+            await boardsPage.visibilityDropdown.selectOption(BoardVisibility.Workspace);
         });
 
         await test.step('Click the Create board submit button', async () => {

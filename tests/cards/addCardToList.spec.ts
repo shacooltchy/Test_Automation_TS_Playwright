@@ -78,11 +78,11 @@ test.describe('Add a card to the list tests', {tag: '@cards'}, () => {
         const cardTitle = randomName('Card');
 
         await test.step('Open list actions', async() => {
-            await boardDetailsPage.list.openListActionsPopover(listName);
+            await boardDetailsPage.list.openListActionsMenu(listName);
         });
 
         await test.step('Click Add a card option', async() => {
-            await boardDetailsPage.list.listActions.clickAction(ListAction.AddCard);
+            await boardDetailsPage.list.listActionsMenu.clickAction(ListAction.AddCard);
         });
 
         await test.step('Enter a card title', async() => {
