@@ -1,24 +1,23 @@
 import { ListAction } from "../../enums/ListAction";
 import { test } from "../../fixtures/pages";
 import { createBoard } from "../../helpers/api/boards/createBoard";
-import { archiveUnarchiveList } from "../../helpers/api/lists/archiveUnarchiveList";
 import { createList } from "../../helpers/api/lists/createList";
 import { deleteTestBoard } from "../../helpers/testDataHelpers/deleteTestBoard";
 import { randomName } from "../../utils/stringUtils";
 
-test.describe('Move list tests', () => {
+test.describe('Move list to another board tests', () => {
     let boardName: string;
     let boardName2: string;
     let listName: string;
 
     test.beforeEach(async({ homePage, loginPage, boardsPage, boardDetailsPage }) => {
-        // Create 2 boards, a list and archive a list via API
+        // Create 2 boards and a list via API
         boardName = randomName('Board');
         boardName2 = randomName('Board_2');
         listName = randomName('List');
         const board = await createBoard(boardName);
-        const board2 = await createBoard(boardName2);
-        const list = await createList(listName, board.id);
+        await createBoard(boardName2);
+        await createList(listName, board.id);
                             
         // Log in via UI
         await homePage.navigate();
