@@ -4,7 +4,7 @@ import { BoardPopoverMenu } from "../components/board/boardMenu/boardPopoverMenu
 import { NewListForm } from "../components/list/newListForm";
 import { List } from "../components/list/list";
 import { Alert } from "../components/alert";
-import { CardEditor } from "../components/card/cardEditor";
+import { CardEditor } from "../components/card/cardEditor/cardEditor";
 
 export class BoardDetailsPage extends BasePage {
     readonly boardMenu: BoardPopoverMenu;
