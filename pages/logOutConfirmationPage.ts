@@ -1,5 +1,5 @@
 import { Locator, Page } from "@playwright/test";
-import { BasePage } from "./BasePage";
+import { BasePage } from "./basePage";
 
 export class LogOutConfirmationPage extends BasePage {
 private readonly logOutButton: Locator;

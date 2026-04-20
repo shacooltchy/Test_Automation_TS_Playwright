@@ -3,7 +3,7 @@ import { createBoard } from "../../helpers/api/boards/createBoard";
 import { createList } from "../../helpers/api/lists/createList";
 import { archiveUnarchiveList } from "../../helpers/api/lists/archiveUnarchiveList";
 import { deleteTestBoard } from "../../helpers/testDataHelpers/deleteTestBoard";
-import { BoardMenuOption } from "../../enums/BoardMenuOption";
+import { BoardMenuOption } from "../../enums/boardMenuOption";
 import { randomName } from "../../utils/stringUtils";
 
 test.describe('Delete a list tests', () => {

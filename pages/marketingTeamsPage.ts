@@ -1,6 +1,6 @@
 import { Page } from "@playwright/test";
 import { Header } from "../components/header";
-import { BasePage } from "./BasePage";
+import { BasePage } from "./basePage";
 
 export class MarketingTeamsPage extends BasePage{
     readonly header: Header;

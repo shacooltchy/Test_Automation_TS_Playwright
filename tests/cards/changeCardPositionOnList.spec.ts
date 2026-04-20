@@ -4,7 +4,7 @@ import { createBoard } from "../../helpers/api/boards/createBoard";
 import { deleteTestBoard } from "../../helpers/testDataHelpers/deleteTestBoard";
 import { createNewCard } from "../../helpers/api/cards/createNewCard";
 import { randomName } from "../../utils/stringUtils";
-import { QuickCardEditorOption } from "../../enums/QuickCardEditorOption";
+import { QuickCardEditorOption } from "../../enums/quickCardEditorOption";
 
 test.describe('Change card position on list tests', {tag: '@cards'}, () => {
     let boardName: string;

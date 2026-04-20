@@ -1,4 +1,4 @@
-import { ListAction } from "../../enums/ListAction";
+import { ListAction } from "../../enums/listAction";
 import { test } from "../../fixtures/pages";
 import { createBoard } from "../../helpers/api/boards/createBoard";
 import { createList } from "../../helpers/api/lists/createList";

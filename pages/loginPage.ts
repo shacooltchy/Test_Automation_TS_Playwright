@@ -1,5 +1,5 @@
 import { expect, Page } from "@playwright/test";
-import { BasePage } from "./BasePage";
+import { BasePage } from "./basePage";
 import { ENV } from "../config/env";
 
 export class LoginPage extends BasePage {
