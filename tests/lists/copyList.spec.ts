@@ -1,4 +1,4 @@
-import { ListAction } from "../../enums/listAction1";
+import { ListAction } from "../../enums/listAction";
 import {test} from "../../fixtures/pages";
 import { createBoard } from "../../helpers/api/boards/createBoard";
 import { createNewCard } from "../../helpers/api/cards/createNewCard";

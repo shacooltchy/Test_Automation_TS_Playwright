@@ -1,4 +1,4 @@
-import { BoardMenuOption } from '../../enums/boardMenuOption1';
+import { BoardMenuOption } from '../../enums/boardMenuOption';
 import { test } from '../../fixtures/pages'
 import { createBoard } from '../../helpers/api/boards/createBoard';
 import { archiveUnarchiveList } from '../../helpers/api/lists/archiveUnarchiveList';

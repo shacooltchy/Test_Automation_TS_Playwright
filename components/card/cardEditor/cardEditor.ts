@@ -1,5 +1,5 @@
 import { expect, Locator, Page } from "@playwright/test";
-import { CardEditorAction } from "../../../enums/cardEditorAction1";
+import { CardEditorAction } from "../../../enums/cardEditorAction";
 import { AddToCardDialog } from "./addToCardDialog";
 import { LabelsDialog } from "./labelsDialog";
 

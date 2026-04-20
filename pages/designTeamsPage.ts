@@ -1,5 +1,5 @@
 import { Page } from "@playwright/test";
-import { BasePage } from "./basePage1";
+import { BasePage } from "./basePage";
 import { Header } from "../components/header";
 
 export class DesignTeamsPage extends BasePage {

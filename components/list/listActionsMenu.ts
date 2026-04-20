@@ -1,5 +1,5 @@
 import { expect, Locator, Page } from "@playwright/test";
-import { ListAction } from "../../enums/listAction1";
+import { ListAction } from "../../enums/listAction";
 
 export class ListActionsMenu {
     private readonly listActionsMenu: Locator;

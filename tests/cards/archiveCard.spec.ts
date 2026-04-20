@@ -3,9 +3,9 @@ import { createList } from "../../helpers/api/lists/createList";
 import { createBoard } from "../../helpers/api/boards/createBoard";
 import { deleteTestBoard } from "../../helpers/testDataHelpers/deleteTestBoard";
 import { createNewCard } from "../../helpers/api/cards/createNewCard";
-import { BoardMenuOption } from "../../enums/boardMenuOption1";
-import { QuickCardEditorOption } from "../../enums/quickCardEditorOption1";
-import { CardEditorAction } from "../../enums/cardEditorAction1";
+import { BoardMenuOption } from "../../enums/boardMenuOption";
+import { QuickCardEditorOption } from "../../enums/quickCardEditorOption";
+import { CardEditorAction } from "../../enums/cardEditorAction";
 import { randomName } from "../../utils/stringUtils";
 
 test.describe('Archive a card tests', {tag: '@cards'}, () => {

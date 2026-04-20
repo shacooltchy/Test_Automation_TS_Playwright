@@ -1,5 +1,5 @@
 import { expect, Locator, Page } from "@playwright/test";
-import { BoardMenuOption } from "../../../enums/boardMenuOption1";
+import { BoardMenuOption } from "../../../enums/boardMenuOption";
 import { ArchivedItems } from "./archivedItems";
 import { ConfirmationDialog } from "../../confirmationDialog";
 

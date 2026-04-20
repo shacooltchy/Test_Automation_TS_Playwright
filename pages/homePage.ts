@@ -1,6 +1,6 @@
 import { Page } from "@playwright/test";
 import { Header } from "../components/header";
-import { BasePage } from "./basePage1";
+import { BasePage } from "./basePage";
 import { FeaturesHeaderMenu } from "../components/headerMenu/featuresHeaderMenu";
 import { SolutionsHeaderMenu } from "../components/headerMenu/solutionsHeaderMenu";
 

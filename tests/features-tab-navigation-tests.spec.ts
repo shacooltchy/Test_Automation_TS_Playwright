@@ -1,10 +1,10 @@
 import { test } from '../fixtures/pages'; //extended playwright test
-import { HomePage } from '../pages/homePage1';
-import { InboxPage } from '../pages/inboxPage1';
-import { IntegrationsPage } from '../pages/integrationsPage1';
-import { PlannerPage } from '../pages/plannerPage1';
-import { PowerUpsPage } from '../pages/powerUpsPage1';
-import { TemplatesPage } from '../pages/templatesPage1';
+import { HomePage } from '../pages/homePage';
+import { InboxPage } from '../pages/inboxPage';
+import { IntegrationsPage } from '../pages/integrationsPage';
+import { PlannerPage } from '../pages/plannerPage';
+import { PowerUpsPage } from '../pages/powerUpsPage';
+import { TemplatesPage } from '../pages/templatesPage';
 
 //grouped tests with common setup in beforeEach hook, tagged with @smoke for selective execution
 //inbox and planner are sometimes not available - bug?
