@@ -52,4 +52,10 @@ export class List {
     async expectAddCardFormIsNotVisible(): Promise<void> {
         await expect(this.list.getByRole('form')).not.toBeVisible();
     }
+
+    async expectCardPositionInList(cardTitle: string, listName: string, position: number): Promise<void> {
+        const list = this.list.filter({has: this.page.getByRole('heading', {name: listName, exact: true})});
+        const cards = list.getByTestId('list-card');
+        await expect(cards.nth(position-1)).toHaveText(cardTitle); // Position is 1-based index, while nth() uses 0-based index
+    }
 }

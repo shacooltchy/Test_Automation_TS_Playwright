@@ -46,7 +46,7 @@ test.describe('Archive a card tests', {tag: '@cards'}, () => {
         });
 
         await test.step('Verify quick card editor is visible', async() => {
-            await boardDetailsPage.list.card.quickCardEditor.expectQuickCardEditorIsVisible();
+            await boardDetailsPage.list.card.quickCardEditor.expectQuickCardEditorVisible();
         });
 
         await test.step('Click archive button in the quick card editor', async() => {
