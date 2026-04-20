@@ -1,5 +1,5 @@
-import { BoardMenuOption } from "../../enums/BoardMenuOption";
-import { ListAction } from "../../enums/ListAction";
+import { BoardMenuOption } from "../../enums/boardMenuOption1";
+import { ListAction } from "../../enums/listAction1";
 import {test} from "../../fixtures/pages";
 import { createBoard } from "../../helpers/api/boards/createBoard";
 import { addListToBoard } from "../../helpers/testDataHelpers/addListToBoard";

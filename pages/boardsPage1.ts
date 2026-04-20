@@ -1,5 +1,5 @@
 import { expect, Page } from "@playwright/test";
-import { BasePage } from "./BasePage";
+import { BasePage } from "./basePage1";
 import { ClosedBoardsDialog } from "../components/board/closedBoardsDialog";
 import { Dropdown } from "../components/dropdown";
 

@@ -1,17 +1,17 @@
 import { test as base } from '@playwright/test';
-import { AutomationPage } from '../pages/AutomationPage';
-import { MarketingTeamsPage } from '../pages/MarketingTeamsPage';
-import { HomePage } from '../pages/HomePage';
-import { ProductManagementPage } from '../pages/ProductManagementPage';
-import { EngineeringTeamsPage } from '../pages/EngineeringTeamsPage';
-import { DesignTeamsPage } from '../pages/DesignTeamsPage';
-import { StartupsPage } from '../pages/StartupsPage';
-import { RemoteTeamsPage } from '../pages/RemoteTeamsPage';
-import { LoginPage } from '../pages/LoginPage';
-import { BoardsPage } from '../pages/BoardsPage';
-import { SignUpPage } from '../pages/SignUpPage';
-import { BoardDetailsPage } from '../pages/BoardDetailsPage';
-import { LogOutConfirmationPage } from '../pages/LogOutConfirmationPage';
+import { AutomationPage } from '../pages/automationPage1';
+import { MarketingTeamsPage } from '../pages/marketingTeamsPage1';
+import { HomePage } from '../pages/homePage1';
+import { ProductManagementPage } from '../pages/productManagementPage1';
+import { EngineeringTeamsPage } from '../pages/engineeringTeamsPage1';
+import { DesignTeamsPage } from '../pages/designTeamsPage1';
+import { StartupsPage } from '../pages/startupsPage1';
+import { RemoteTeamsPage } from '../pages/remoteTeamsPage1';
+import { LoginPage } from '../pages/loginPage1';
+import { BoardsPage } from '../pages/boardsPage1';
+import { SignUpPage } from '../pages/signUpPage1';
+import { BoardDetailsPage } from '../pages/boardDetailsPage1';
+import { LogOutConfirmationPage } from '../pages/logOutConfirmationPage1';
 
 //rozszerza domyślne fixture’y Playwrighta o nowe pola, np. homePage
 export const test = base.extend<{

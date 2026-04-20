@@ -1,5 +1,5 @@
-import { BoardMenuOption } from "../../enums/BoardMenuOption";
-import { CardEditorAction } from "../../enums/CardEditorAction";
+import { BoardMenuOption } from "../../enums/boardMenuOption1";
+import { CardEditorAction } from "../../enums/cardEditorAction1";
 import { test } from "../../fixtures/pages";
 import { createBoard } from "../../helpers/api/boards/createBoard";
 import { archiveUnarchiveCard } from "../../helpers/api/cards/archiveUnarchiveCard";

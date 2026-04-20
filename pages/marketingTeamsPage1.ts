@@ -1,8 +1,8 @@
 import { Page } from "@playwright/test";
-import { BasePage } from "./BasePage";
 import { Header } from "../components/header";
+import { BasePage } from "./basePage1";
 
-export class StartupsPage extends BasePage {
+export class MarketingTeamsPage extends BasePage{
     readonly header: Header;
 
     constructor(page: Page) {
@@ -11,6 +11,6 @@ export class StartupsPage extends BasePage {
     }
 
     async expectPageIsVisible(): Promise<void> {
-        await super.expectPageIsVisible(/teams\/startups/, 'Trello for Startups | Trello');
+        await super.expectPageIsVisible(/marketing/, 'Trello for Marketing Teams | Trello');
     }
 }

@@ -1,5 +1,5 @@
 import { expect, Page } from "@playwright/test";
-import { BasePage } from "./BasePage";
+import { BasePage } from "./basePage1";
 import { Header } from "../components/header";
 
 export class ProductManagementPage extends BasePage{

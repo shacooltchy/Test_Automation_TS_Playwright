@@ -1,4 +1,4 @@
-import { BoardVisibility } from "../../enums/BoardVisibility";
+import { BoardVisibility } from "../../enums/boardVisibility1";
 import { test } from "../../fixtures/pages";
 import { deleteTestBoard } from "../../helpers/testDataHelpers/deleteTestBoard";
 import { randomName } from "../../utils/stringUtils";

@@ -1,5 +1,5 @@
 import { expect, Locator, Page } from "@playwright/test";
-import { BasePage } from "./BasePage";
+import { BasePage } from "./basePage1";
 import { BoardPopoverMenu } from "../components/board/boardMenu/boardPopoverMenu";
 import { NewListForm } from "../components/list/newListForm";
 import { List } from "../components/list/list";
