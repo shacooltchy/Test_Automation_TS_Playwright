@@ -54,7 +54,7 @@ test.describe('Archive a card tests', {tag: '@cards'}, () => {
         });
 
         await test.step('Verify card is not visible in the list', async() => {
-            await boardDetailsPage.list.card.expectCardIsNotVisible(cardTitle, listName);
+            await boardDetailsPage.list.card.expectCardNotVisible(cardTitle, listName);
         });
 
         await test.step('Click the board menu', async() => {
@@ -108,7 +108,7 @@ test.describe('Archive a card tests', {tag: '@cards'}, () => {
         });
 
         await test.step('Verify card is not visible in the list', async() => {
-            await boardDetailsPage.list.card.expectCardIsNotVisible(cardTitle, listName);
+            await boardDetailsPage.list.card.expectCardNotVisible(cardTitle, listName);
         });
 
         await test.step('Click the board menu', async() => {

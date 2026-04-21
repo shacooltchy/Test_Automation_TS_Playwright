@@ -70,12 +70,12 @@ test.describe('Copy list tests', () => {
         });
 
         await test.step('Verify the card from the original list is copied to the new list', async() => {
-            await boardDetailsPage.list.card.expectCardIsVisible(cardTitle, copiedListName);
+            await boardDetailsPage.list.card.expectCardVisible(cardTitle, copiedListName);
         });
 
         await test.step('Verify the original list is still visible', async() => {
             await boardDetailsPage.list.expectListIsVisible(listName);
-            await boardDetailsPage.list.card.expectCardIsVisible(cardTitle, listName);
+            await boardDetailsPage.list.card.expectCardVisible(cardTitle, listName);
         });
     });
 });
