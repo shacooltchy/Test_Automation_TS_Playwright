@@ -80,7 +80,7 @@ test.describe('Unarchive a card tests', {tag: '@cards'}, () => {
         });
 
         await test.step('Verify card is visible on the board', async() => {
-            await boardDetailsPage.list.card.expectCardIsVisible(cardTitle, listName);
+            await boardDetailsPage.list.card.expectCardVisible(cardTitle, listName);
         });
     });
 
@@ -135,7 +135,7 @@ test.describe('Unarchive a card tests', {tag: '@cards'}, () => {
         });
 
         await test.step('Verify card is visible on the board', async() => {
-            await boardDetailsPage.list.card.expectCardIsVisible(cardTitle, listName);
+            await boardDetailsPage.list.card.expectCardVisible(cardTitle, listName);
         });
     });
 });

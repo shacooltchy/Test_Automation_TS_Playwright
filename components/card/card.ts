@@ -16,12 +16,12 @@ export class Card {
         await this.card.filter({hasText: cardTitle}).click();
     }
 
-    async expectCardIsVisible(cardTitle: string, listName: string): Promise<void> {
+    async expectCardVisible(cardTitle: string, listName: string): Promise<void> {
         const list = this.page.getByTestId('list').filter({has: this.page.getByRole('heading', {name: listName, exact: true})});
         await expect(list.getByTestId('list-card').filter({hasText: cardTitle})).toBeVisible();
     }
 
-    async expectCardIsNotVisible(cardTitle: string, listName: string): Promise<void> {
+    async expectCardNotVisible(cardTitle: string, listName: string): Promise<void> {
         const list = this.page.getByTestId('list').filter({has: this.page.getByRole('heading', {name: listName, exact: true})});
         await expect(list.getByTestId('list-card').filter({hasText: cardTitle})).not.toBeVisible();
     }
