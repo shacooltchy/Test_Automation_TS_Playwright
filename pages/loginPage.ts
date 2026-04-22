@@ -7,7 +7,7 @@ export class LoginPage extends BasePage {
         super(page);
     }
 
-    async expectPageIsVisible() {
+    async expectPageVisible() {
         await expect(this.page).toHaveURL(/login/);
         await expect(this.page).toHaveTitle('Log in to continue');
     }

@@ -10,7 +10,7 @@ export class MarketingTeamsPage extends BasePage{
         this.header = new Header(page);
     }
 
-    async expectPageIsVisible(): Promise<void> {
-        await super.expectPageIsVisible(/marketing/, 'Trello for Marketing Teams | Trello');
+    async expectPageVisible(): Promise<void> {
+        await super.expectPageVisible(/marketing/, 'Trello for Marketing Teams | Trello');
     }
 }

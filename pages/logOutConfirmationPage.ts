@@ -9,8 +9,8 @@ private readonly logOutButton: Locator;
         this.logOutButton = page.getByTestId('logout-button');
     }
 
-    async expectPageIsVisible() {
-        await super.expectPageIsVisible(/\/logout/, 'Log out of your Atlassian account - Log in with Atlassian account');
+    async expectPageVisible() {
+        await super.expectPageVisible(/\/logout/, 'Log out of your Atlassian account - Log in with Atlassian account');
     }
 
     async clickLogOutButton() {

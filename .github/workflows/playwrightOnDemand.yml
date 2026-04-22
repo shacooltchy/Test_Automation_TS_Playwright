@@ -15,6 +15,7 @@ on:
           - smoke
           - regression
           - critical
+          - card
 
 env:
   BASE_URL: ${{ secrets.BASE_URL }}

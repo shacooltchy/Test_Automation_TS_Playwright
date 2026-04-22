@@ -13,8 +13,8 @@ export class BoardsPage extends BasePage {
         this.closedBoardsDialog = new ClosedBoardsDialog(page);
     }
 
-    async expectPageIsVisible(): Promise<void> {
-        await super.expectPageIsVisible(/boards/, 'Boards | Trello');
+    async expectPageVisible(): Promise<void> {
+        await super.expectPageVisible(/\/boards/, 'Boards | Trello');
     }
 
     async clickCreateNewBoardTile(): Promise<void> {

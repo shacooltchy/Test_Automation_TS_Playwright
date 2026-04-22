@@ -21,13 +21,13 @@ test.describe('Move list to another board tests', () => {
                             
         // Log in via UI
         await homePage.navigate();
-        await homePage.expectPageIsVisible();
+        await homePage.expectPageVisible();
         await homePage.headerMenu.clickLogIn();
         await loginPage.logIn();
-        await boardsPage.expectPageIsVisible();
+        await boardsPage.expectPageVisible();
         await boardsPage.newFeaturesBanner.closeIfVisible();
         await boardsPage.navigateToBoardFromWorkspacesSection(boardName);
-        await boardDetailsPage.expectPageIsVisible(boardName);
+        await boardDetailsPage.expectPageVisible(boardName);
         await boardDetailsPage.adBanner.minimizeIfVisible();
     });
 
@@ -72,10 +72,10 @@ test.describe('Move list to another board tests', () => {
         });
 
         await test.step('Navigate to the destination board', async() => {
-            await boardDetailsPage.authenticatedHeader.clickBackToHomeButtonAndExpectBoardsPage();
-            await boardsPage.expectPageIsVisible();
+            await boardDetailsPage.authenticatedHeader.clickBackToHomeButton();
+            await boardsPage.expectPageVisible();
             await boardsPage.navigateToBoardFromWorkspacesSection(boardName2);
-            await boardDetailsPage.expectPageIsVisible(boardName2);
+            await boardDetailsPage.expectPageVisible(boardName2);
         });
 
         await test.step('Verify list is visible on the destination board', async() => {

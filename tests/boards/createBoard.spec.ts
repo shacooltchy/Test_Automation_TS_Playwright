@@ -8,10 +8,10 @@ test.describe('Create board tests', {tag: '@boards'}, () => {
 
     test.beforeEach(async ({homePage, loginPage, boardsPage }) => {
         await homePage.navigate();
-        await homePage.expectPageIsVisible();
+        await homePage.expectPageVisible();
         await homePage.headerMenu.clickLogIn();
         await loginPage.logIn();
-        await boardsPage.expectPageIsVisible();
+        await boardsPage.expectPageVisible();
         await boardsPage.newFeaturesBanner.closeIfVisible();
     });
 
@@ -48,11 +48,12 @@ test.describe('Create board tests', {tag: '@boards'}, () => {
         });
 
         await test.step('Verify the new board details page is visible', async () => {
-            await boardDetailsPage.expectPageIsVisible(boardName);
+            await boardDetailsPage.expectPageVisible(boardName);
         });
 
         await test.step('Go back to home', async () => {
-            await boardDetailsPage.authenticatedHeader.clickBackToHomeButtonAndExpectBoardsPage();
+            await boardDetailsPage.authenticatedHeader.clickBackToHomeButton();
+            await boardsPage.expectPageVisible();
         });
 
         await test.step('Verify the new board is visible on the boards page', async () => {

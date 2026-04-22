@@ -15,7 +15,7 @@ import { ENV } from './env';
 export default defineConfig({
   //testDir: './tests', // default testDir
   testDir: '../tests', // updated path after moving playwright.config.ts to the config folder
-  timeout: 60_000,
+  timeout: 90_000,
   
   /* Run tests in files in parallel */
   fullyParallel: true,

@@ -6,7 +6,7 @@ export class SignUpPage extends BasePage {
         super(page);
     }
 
-    async expectPageIsVisible() {
-        await super.expectPageIsVisible(/signup/, 'Sign up - Log in with Atlassian account', 'Sign up');
+    async expectPageVisible() {
+        await super.expectPageVisible(/signup/, 'Sign up - Log in with Atlassian account', 'Sign up');
     }
 }

@@ -13,10 +13,10 @@ test.describe('Close board tests', {tag: '@boards'}, () => {
         await createBoard(boardName);
         // Log in via UI
         await homePage.navigate();
-        await homePage.expectPageIsVisible();
+        await homePage.expectPageVisible();
         await homePage.headerMenu.clickLogIn();
         await loginPage.logIn();
-        await boardsPage.expectPageIsVisible();
+        await boardsPage.expectPageVisible();
         await boardsPage.newFeaturesBanner.closeIfVisible();
     });
 
@@ -28,7 +28,7 @@ test.describe('Close board tests', {tag: '@boards'}, () => {
     test('Close a board', async ({ boardsPage, boardDetailsPage }) => {
         await test.step('Navigate to the board details page', async () => {
              await boardsPage.navigateToBoardFromWorkspacesSection(boardName);
-             await boardDetailsPage.expectPageIsVisible(boardName);
+             await boardDetailsPage.expectPageVisible(boardName);
              await boardDetailsPage.adBanner.minimizeIfVisible();
         }); 
 
@@ -51,7 +51,8 @@ test.describe('Close board tests', {tag: '@boards'}, () => {
         }); 
 
         await test.step('Navigate back to boards page', async () => {
-            await boardDetailsPage.authenticatedHeader.clickBackToHomeButtonAndExpectBoardsPage();
+            await boardDetailsPage.authenticatedHeader.clickBackToHomeButton();
+            await boardsPage.expectPageVisible();
         });
 
         await test.step('Verify the closed board is not visible in the workspaces section', async () => {

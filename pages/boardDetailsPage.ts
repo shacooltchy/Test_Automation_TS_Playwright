@@ -30,7 +30,7 @@ export class BoardDetailsPage extends BasePage {
         this.addListButton = page.getByTestId('list-composer-button');
     };
 
-    async expectPageIsVisible(boardName: string): Promise<void> {
+    async expectPageVisible(boardName: string): Promise<void> {
         await expect(this.page).toHaveTitle(boardName + ' | Trello');
         await expect(this.page.getByTestId('board-name-container')).toHaveText(boardName);
     }

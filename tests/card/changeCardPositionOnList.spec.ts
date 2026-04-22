@@ -6,7 +6,7 @@ import { createNewCard } from "../../helpers/api/cards/createNewCard";
 import { randomName } from "../../utils/stringUtils";
 import { QuickCardEditorOption } from "../../enums/quickCardEditorOption";
 
-test.describe('Change card position on list tests', {tag: '@cards'}, () => {
+test.describe('Change card position on list tests', {tag: '@card'}, () => {
     let boardName: string;
     let listName: string;
     let cardTitle: string;
@@ -24,13 +24,13 @@ test.describe('Change card position on list tests', {tag: '@cards'}, () => {
 
         // Log in via UI
         await homePage.navigate();
-        await homePage.expectPageIsVisible();
+        await homePage.expectPageVisible();
         await homePage.headerMenu.clickLogIn();
         await loginPage.logIn();
-        await boardsPage.expectPageIsVisible();
+        await boardsPage.expectPageVisible();
         await boardsPage.newFeaturesBanner.closeIfVisible();
         await boardsPage.navigateToBoardFromWorkspacesSection(boardName);
-        await boardDetailsPage.expectPageIsVisible(boardName);
+        await boardDetailsPage.expectPageVisible(boardName);
         await boardDetailsPage.adBanner.minimizeIfVisible();
     });
                     
