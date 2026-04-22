@@ -23,7 +23,7 @@ export abstract class BasePage {
         this.adBanner = new adBanner(page);
     }
 
-    async expectPageIsVisible(urlPart: string | RegExp, pageTitle: string | RegExp, alternativePageTitle?: string | RegExp) {
+    async expectPageVisible(urlPart: string | RegExp, pageTitle: string | RegExp, alternativePageTitle?: string | RegExp) {
         await expect(this.page).toHaveURL(urlPart, {timeout: 10_000});
 
         if (alternativePageTitle) {

@@ -21,7 +21,7 @@ export class HomePage extends BasePage{
         await this.page.goto('/home');
     }
 
-    async expectPageIsVisible(): Promise<void> {
+    async expectPageVisible(): Promise<void> {
         await this.header.expectHeaderTitleIsVisible('Capture, organize, and tackle your to-dos from anywhere.', 'Trello brings all your tasks, teammates, and tools together');
     }
 }

@@ -10,7 +10,7 @@ export class RemoteTeamsPage extends BasePage {
         this.header = new Header(page)
     }
     
-    async expectPageIsVisible(): Promise<void> {
-        await super.expectPageIsVisible(/teams\/remote-team-management/, 'Trello for Remote Teams | Trello');
+    async expectPageVisible(): Promise<void> {
+        await super.expectPageVisible(/teams\/remote-team-management/, 'Trello for Remote Teams | Trello');
     }
 }

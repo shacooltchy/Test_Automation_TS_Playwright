@@ -15,7 +15,7 @@ test.describe.skip('Features tab navigation tests - inbox, planner', {tag: '@smo
     test.beforeEach(async ({page}) => {
         homePage = new HomePage(page);
         await homePage.navigate();
-        await homePage.expectPageIsVisible();
+        await homePage.expectPageVisible();
     });
 
     test('Navigate to Inbox page', async ({page}) => {
@@ -41,7 +41,7 @@ test.describe.skip('Features tab navigation tests - inbox, planner', {tag: '@smo
 
 test('Navigate to Automation page', {tag: '@smoke'}, async ({ homePage, automationPage }) => {
     await homePage.navigate();
-    await homePage.expectPageIsVisible();
+    await homePage.expectPageVisible();
     await homePage.headerMenu.clickFeatures();
     await homePage.featuresHeaderMenu.expectFeaturesMenuTabIsVisible();
     await homePage.featuresHeaderMenu.clickAutomationLinkButton();
@@ -54,7 +54,7 @@ test('Navigate to Power-Ups page', {tag: '@smoke'}, async ({ page }) => {
     const powerUpsPage = new PowerUpsPage(page);
 
     await homePage.navigate();
-    await homePage.expectPageIsVisible();
+    await homePage.expectPageVisible();
     await homePage.headerMenu.clickFeatures();
     await homePage.featuresHeaderMenu.expectFeaturesMenuTabIsVisible();
     await homePage.featuresHeaderMenu.clickPowerUpsLinkButton();
@@ -67,7 +67,7 @@ test('Navigate to Templates page', {tag: '@smoke'}, async ({ page }) => {
     const templatesPage = new TemplatesPage(page);
 
     await homePage.navigate();
-    await homePage.expectPageIsVisible();
+    await homePage.expectPageVisible();
     await homePage.headerMenu.clickFeatures();
     await homePage.featuresHeaderMenu.expectFeaturesMenuTabIsVisible();
     await homePage.featuresHeaderMenu.clickTemplatesLinkButton();
@@ -80,7 +80,7 @@ test('Navigate to Integrations page', {tag: '@smoke'}, async ({ page }) => {
     const integrationsPage = new IntegrationsPage(page);
 
     await homePage.navigate();
-    await homePage.expectPageIsVisible();
+    await homePage.expectPageVisible();
     await homePage.headerMenu.clickFeatures();
     await homePage.featuresHeaderMenu.expectFeaturesMenuTabIsVisible();
     await homePage.featuresHeaderMenu.clickIntegrationsLinkButton();

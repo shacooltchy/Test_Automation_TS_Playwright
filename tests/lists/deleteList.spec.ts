@@ -20,13 +20,13 @@ test.describe('Delete a list tests', () => {
                     
         // Log in via UI
         await homePage.navigate();
-        await homePage.expectPageIsVisible();
+        await homePage.expectPageVisible();
         await homePage.headerMenu.clickLogIn();
         await loginPage.logIn();
-        await boardsPage.expectPageIsVisible();
+        await boardsPage.expectPageVisible();
         await boardsPage.newFeaturesBanner.closeIfVisible();
         await boardsPage.navigateToBoardFromWorkspacesSection(boardName);
-        await boardDetailsPage.expectPageIsVisible(boardName);
+        await boardDetailsPage.expectPageVisible(boardName);
         await boardDetailsPage.adBanner.minimizeIfVisible();
     });
             

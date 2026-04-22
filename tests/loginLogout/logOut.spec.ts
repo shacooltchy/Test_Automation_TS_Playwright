@@ -7,7 +7,7 @@ test.describe('Log out tests', {tag: '@log_out'}, () => {
         await homePage.navigate();
         await homePage.headerMenu.clickLogIn();
         await loginPage.logIn();
-        await boardsPage.expectPageIsVisible();
+        await boardsPage.expectPageVisible();
         await boardsPage.newFeaturesBanner.closeIfVisible();
     });
 
@@ -22,7 +22,7 @@ test.describe('Log out tests', {tag: '@log_out'}, () => {
         });
 
         await test.step('Verify the log out page is visible', async () => {
-            await logOutConfirmationPage.expectPageIsVisible();
+            await logOutConfirmationPage.expectPageVisible();
         });
 
         await test.step('Click the Log out button in the log out confirmation page', async () => {

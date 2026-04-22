@@ -27,7 +27,7 @@ test.describe('Log in tests', () => {
         });
 
         await test.step('Verify the user is logged in', async() => {
-            await boardsPage.expectPageIsVisible();
+            await boardsPage.expectPageVisible();
         });
     });
 
@@ -45,7 +45,7 @@ test.describe('Log in tests', () => {
         });
 
         await test.step('Expect user is redirected to sign up page', async() => {
-            await signUpPage.expectPageIsVisible();
+            await signUpPage.expectPageVisible();
         });
     });
 });

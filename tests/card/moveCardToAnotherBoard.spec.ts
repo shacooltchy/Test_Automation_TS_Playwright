@@ -6,45 +6,49 @@ import { createNewCard } from "../../helpers/api/cards/createNewCard";
 import { randomName } from "../../utils/stringUtils";
 import { QuickCardEditorOption } from "../../enums/quickCardEditorOption";
 
-test.describe('Move card to another list', {tag: '@cards'}, () => {
+test.describe('Move card to another board', {tag: '@card'}, () => {
     let boardName: string;
     let listName: string;
     let cardTitle: string;
+    let boardName2: string;
     let listName2: string;
     let cardTitle2: string;
             
     test.beforeEach(async({ homePage, loginPage, boardsPage, boardDetailsPage }) => {
-        // Create a board, lists and a card via API
+        // Create boards, lists and cards via API
         boardName = randomName('Board');
         listName = randomName('List');
         cardTitle = randomName('Card');
+        boardName2 = randomName('Board 2');
         listName2 = randomName('List 2');
         cardTitle2 = randomName('Card 2');
         
         const board = await createBoard(boardName);
         const list = await createList(listName, board.id);
         await createNewCard(cardTitle, list.id);
-        const list2 = await createList(listName2, board.id);
+        const board2 = await createBoard(boardName2);
+        const list2 = await createList(listName2, board2.id);
         await createNewCard(cardTitle2, list2.id); // Create a card in the second list to be able to move the first card before it and verify the position
 
-        // Log in via UI
+        // Log in via UI and navigate to the first board
         await homePage.navigate();
-        await homePage.expectPageIsVisible();
+        await homePage.expectPageVisible();
         await homePage.headerMenu.clickLogIn();
         await loginPage.logIn();
-        await boardsPage.expectPageIsVisible();
+        await boardsPage.expectPageVisible();
         await boardsPage.newFeaturesBanner.closeIfVisible();
         await boardsPage.navigateToBoardFromWorkspacesSection(boardName);
-        await boardDetailsPage.expectPageIsVisible(boardName);
+        await boardDetailsPage.expectPageVisible(boardName);
         await boardDetailsPage.adBanner.minimizeIfVisible();
     });
                     
     test.afterEach(async () => {
         // Clean up created board via API
         await deleteTestBoard(boardName);
+        await deleteTestBoard(boardName2);
     });
 
-    test('Move card to another list in the quick card editor', async( {boardDetailsPage} ) => {
+    test('Move card to another board', async( {boardDetailsPage, boardsPage} ) => {
         await test.step('Click edit card button', async() => {
             await boardDetailsPage.list.card.clickEditCardButton(cardTitle);
         });
@@ -59,6 +63,10 @@ test.describe('Move card to another list', {tag: '@cards'}, () => {
 
         await test.step('Verify Move card dialog is visible', async() => {
             await boardDetailsPage.list.card.quickCardEditor.moveCardActionDialog.expectDialogToBeVisible();
+        });
+
+        await test.step('Select new board', async() => {
+            await boardDetailsPage.list.card.quickCardEditor.moveCardActionDialog.boardSelectDropdown.selectOption(boardName2);
         });
 
         await test.step('Select new list', async() => {
@@ -81,12 +89,19 @@ test.describe('Move card to another list', {tag: '@cards'}, () => {
             await boardDetailsPage.list.card.quickCardEditor.expectQuickCardEditorNotVisible();
         });
 
-        await test.step('Verify card is visible in the new list', async() => {
-            await boardDetailsPage.list.card.expectCardVisible(cardTitle, listName2);
-        });
-
         await test.step('Verify card is not visible in the old list', async() => {
             await boardDetailsPage.list.card.expectCardNotVisible(cardTitle, listName);
+        });
+
+        await test.step('Navigate to the second board', async() => {
+            await boardDetailsPage.authenticatedHeader.clickBackToHomeButton();
+            await boardsPage.expectPageVisible();
+            await boardsPage.navigateToBoardFromWorkspacesSection(boardName2);
+            await boardDetailsPage.expectPageVisible(boardName2);
+        });
+
+        await test.step('Verify card is visible in the new list', async() => {
+            await boardDetailsPage.list.card.expectCardVisible(cardTitle, listName2);
         });
 
         await test.step('Verify card position in the new list', async() => {

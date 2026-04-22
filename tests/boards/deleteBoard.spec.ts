@@ -13,10 +13,10 @@ test.describe('Delete board tests', {tag: '@boards'}, () => {
 
         // Log in via UI
         await homePage.navigate();
-        await homePage.expectPageIsVisible();
+        await homePage.expectPageVisible();
         await homePage.headerMenu.clickLogIn();
         await loginPage.logIn();
-        await boardsPage.expectPageIsVisible();
+        await boardsPage.expectPageVisible();
         await boardsPage.newFeaturesBanner.closeIfVisible();
     });
 
@@ -28,7 +28,7 @@ test.describe('Delete board tests', {tag: '@boards'}, () => {
     test('Delete a board', async ({ boardsPage, boardDetailsPage }) => {
         await test.step('Navigate to the board details page', async () => {
             await boardsPage.navigateToBoardFromWorkspacesSection(boardName);
-            await boardDetailsPage.expectPageIsVisible(boardName);
+            await boardDetailsPage.expectPageVisible(boardName);
             await boardDetailsPage.adBanner.minimizeIfVisible();
         });
 
@@ -65,7 +65,7 @@ test.describe('Delete board tests', {tag: '@boards'}, () => {
         });
 
         await test.step('Verify the board is no longer visible in the workspace section', async () => {
-            await boardsPage.expectPageIsVisible();
+            await boardsPage.expectPageVisible();
             await boardsPage.expectBoardIsNotVisibleInTheWorkspacesSection(boardName);
         });
     });

@@ -15,10 +15,10 @@ test.describe('Reopen board tests', {tag: '@boards'}, () => {
         await closeTestBoard(boardName);
         // Log in via UI
         await homePage.navigate();
-        await homePage.expectPageIsVisible();
+        await homePage.expectPageVisible();
         await homePage.headerMenu.clickLogIn();
         await loginPage.logIn();
-        await boardsPage.expectPageIsVisible();
+        await boardsPage.expectPageVisible();
         await boardsPage.newFeaturesBanner.closeIfVisible();
     });
     
@@ -68,7 +68,7 @@ test.describe('Reopen board tests', {tag: '@boards'}, () => {
 
         await test.step('Navigate to the board details from the closed boards dialog', async () => {
             await boardsPage.closedBoardsDialog.navigateToBoard(boardName);
-            await boardDetailsPage.expectPageIsVisible(boardName);
+            await boardDetailsPage.expectPageVisible(boardName);
             await boardDetailsPage.adBanner.minimizeIfVisible();
         });
 
@@ -94,7 +94,8 @@ test.describe('Reopen board tests', {tag: '@boards'}, () => {
         });
 
         await test.step('Navigate back to boards page', async () => {
-            await boardDetailsPage.authenticatedHeader.clickBackToHomeButtonAndExpectBoardsPage();
+            await boardDetailsPage.authenticatedHeader.clickBackToHomeButton();
+            await boardsPage.expectPageVisible();
         });
 
         await test.step('Verify the reopened board is visible in the workspaces section', async () => {
