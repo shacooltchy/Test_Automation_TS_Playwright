@@ -15,7 +15,16 @@ export class AddToCardDialog {
         await expect(this.dialog).not.toBeVisible();
     }
 
-    async clickAddLabel(): Promise<void> {
-        await this.dialog.getByRole('button', { name: 'Labels' }).click();
+    async clickAddToCardAction(action: AddToCardAction): Promise<void> {
+        await this.dialog.getByRole('button', { name: action }).click();
     }
+}
+
+export enum AddToCardAction {
+    Labels = 'Labels',
+    Dates = 'Dates',
+    Checklist = 'Checklist',
+    Members = 'Members',
+    Attachments = 'Attachments',
+    CustomFields = 'Custom Fields'
 }

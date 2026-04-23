@@ -6,7 +6,7 @@ import { createNewCard } from "../../helpers/api/cards/createNewCard";
 import { randomName } from "../../utils/stringUtils";
 import { AddToCardAction } from "../../components/card/cardEditor/addToCardDialog";
 
-test.describe('Add card label tests', {tag: '@card'}, () => {
+test.describe('Add date to a card', {tag: '@card'}, () => {
     let boardName: string;
     let listName: string;
     let cardTitle: string;
@@ -21,7 +21,7 @@ test.describe('Add card label tests', {tag: '@card'}, () => {
         const list = await createList(listName, board.id);
         await createNewCard(cardTitle, list.id);
 
-        // Log in via UI
+        // Log in via UI and navigate to a board
         await homePage.navigate();
         await homePage.expectPageVisible();
         await homePage.headerMenu.clickLogIn();
@@ -38,7 +38,7 @@ test.describe('Add card label tests', {tag: '@card'}, () => {
         await deleteTestBoard(boardName);
     });
 
-    test('Add a label to a card', async( {boardDetailsPage} ) => {
+    test('Add due date to a card', async( {boardDetailsPage} ) => {
         await test.step('Click card', async() => {
             await boardDetailsPage.list.card.clickCard(cardTitle);
         });
@@ -55,28 +55,33 @@ test.describe('Add card label tests', {tag: '@card'}, () => {
             await boardDetailsPage.cardEditor.addToCardDialog.expectDialogIsVisible();
         });
 
-        await test.step('Click the Labels button in the Add to card dialog', async() => {
-            await boardDetailsPage.cardEditor.addToCardDialog.clickAddToCardAction(AddToCardAction.Labels);
+        await test.step('Click the Dates button in the Add to card dialog', async() => {
+            await boardDetailsPage.cardEditor.addToCardDialog.clickAddToCardAction(AddToCardAction.Dates);
         });
 
-        await test.step('Verify Labels dialog is visible', async() => {
-            await boardDetailsPage.cardEditor.labelsDialog.expectDialogIsVisible();
+        await test.step('Verify Dates dialog is visible', async() => {
+            await boardDetailsPage.cardEditor.datesDialog.expectDialogIsVisible();
         });
 
-        await test.step('Click a label in the Labels dialog', async() => {
-            await boardDetailsPage.cardEditor.labelsDialog.clickLabel('yellow');
+        await test.step('Select date in calendar', async() => {
+            await boardDetailsPage.cardEditor.datesDialog.calendar.selectDate('8/23/2027');
         });
 
-        await test.step('Close the Labels dialog', async() => {
-            await boardDetailsPage.cardEditor.labelsDialog.closeDialog();
+        await test.step('Click Save button in the Dates dialog', async() => {
+            await boardDetailsPage.cardEditor.datesDialog.clickSaveButton();
         });
 
-        await test.step('Verify Labels dialog is not visible', async() => {
-            await boardDetailsPage.cardEditor.labelsDialog.expectDialogIsNotVisible();
+        await test.step('Verify due date is added to the card editor', async() => {
+            await boardDetailsPage.cardEditor.expectDueDate('Aug 23, 2027');
         });
 
-        await test.step('Verify label is added to the card editor', async() => {
-            await boardDetailsPage.cardEditor.expectLabel('yellow');
+        await test.step('Close card editor', async() => {
+            await boardDetailsPage.cardEditor.clickCloseButton();
+            await boardDetailsPage.cardEditor.expectCardEditorIsNotVisible();
+        });
+
+        await test.step('Verify due date is added to the card', async() => {
+            await boardDetailsPage.list.card.expectCardHasDueDate(cardTitle, listName);
         });
     });
 });

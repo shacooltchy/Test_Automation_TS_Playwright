@@ -2,18 +2,21 @@ import { expect, Locator, Page } from "@playwright/test";
 import { CardEditorAction } from "../../../enums/cardEditorAction";
 import { AddToCardDialog } from "./addToCardDialog";
 import { LabelsDialog } from "./labelsDialog";
+import { DatesDialog } from "./datesDialog";
 
 export class CardEditor {
     private readonly page: Page;
     private readonly editor: Locator;
     readonly addToCardDialog: AddToCardDialog;
     readonly labelsDialog: LabelsDialog;
+    readonly datesDialog: DatesDialog;
 
     constructor(page: Page) {
         this.page = page;
         this.editor = page.getByTestId('card-back-name');
         this.addToCardDialog = new AddToCardDialog(page);
         this.labelsDialog = new LabelsDialog(page);
+        this.datesDialog = new DatesDialog(page);
     }
 
     async clickAddButton(): Promise<void> {
@@ -63,5 +66,9 @@ export class CardEditor {
             await expect(this.editor.getByLabel(`Color: none, title: ${labelTitle}`, { exact: true })).toBeVisible();
             return;
         }
+    }
+
+    async expectDueDate(dateString: string /*format: Jun 18, 2027*/): Promise<void> {
+        await expect(this.editor.getByTestId('due-date-badge-checkbox').filter({hasText: dateString})).toBeVisible();
     }
 }
