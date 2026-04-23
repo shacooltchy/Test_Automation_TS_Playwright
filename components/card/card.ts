@@ -30,4 +30,9 @@ export class Card {
         await this.card.filter({hasText: cardTitle}).hover();
         await this.card.filter({hasText: cardTitle}).getByTestId('quick-card-editor-button').click();
     }
+
+    async expectCardHasDueDate(cardTitle: string, listName: string) {
+        const list = this.page.getByTestId('list').filter({has: this.page.getByRole('heading', {name: listName, exact: true})});
+        await expect(list.getByTestId('list-card').filter({hasText: cardTitle}).getByTestId('badge-due-date-not-completed')).toBeVisible();
+    }
 }
