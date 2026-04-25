@@ -6,7 +6,7 @@ import { createNewCard } from "../../helpers/api/cards/createNewCard";
 import { randomName } from "../../utils/stringUtils";
 import { AddToCardAction } from "../../components/card/cardEditor/addToCardDialog";
 
-test.describe('Add date to a card', {tag: '@card'}, () => {
+test.describe('Add checklist to a card', {tag: '@card'}, () => {
     let boardName: string;
     let listName: string;
     let cardTitle: string;
@@ -38,7 +38,7 @@ test.describe('Add date to a card', {tag: '@card'}, () => {
         await deleteTestBoard(boardName);
     });
 
-    test('Add due date to a card', async( {boardDetailsPage} ) => {
+    test('Add checklist', async( {boardDetailsPage} ) => {
         await test.step('Click card', async() => {
             await boardDetailsPage.list.card.clickCard(cardTitle);
         });
@@ -55,33 +55,30 @@ test.describe('Add date to a card', {tag: '@card'}, () => {
             await boardDetailsPage.cardEditor.addToCardDialog.expectDialogIsVisible();
         });
 
-        await test.step('Click the Dates button in the Add to card dialog', async() => {
-            await boardDetailsPage.cardEditor.addToCardDialog.clickAddToCardAction(AddToCardAction.Dates);
+        await test.step('Click the Checklist button in the Add to card dialog', async() => {
+            await boardDetailsPage.cardEditor.addToCardDialog.clickAddToCardAction(AddToCardAction.Checklist);
         });
 
-        await test.step('Verify Dates dialog is visible', async() => {
-            await boardDetailsPage.cardEditor.datesDialog.expectDialogIsVisible();
+        await test.step('Verify Checklist dialog is visible', async() => {
+            await boardDetailsPage.cardEditor.addChecklistDialog.expectDialogVisible();
         });
 
-        await test.step('Select date in calendar', async() => {
-            await boardDetailsPage.cardEditor.datesDialog.calendar.selectDate('8/23/2027');
+        let checklistTitle = randomName('Checklist');
+        await test.step('Enter checklist title', async() => {
+            
+            await boardDetailsPage.cardEditor.addChecklistDialog.enterTitle(checklistTitle);
         });
 
-        await test.step('Click Save button in the Dates dialog', async() => {
-            await boardDetailsPage.cardEditor.datesDialog.clickSaveButton();
+        await test.step('Click the Add button', async() => {
+            await boardDetailsPage.cardEditor.addChecklistDialog.clickActionButton();
         });
 
-        await test.step('Verify due date is added to the card editor', async() => {
-            await boardDetailsPage.cardEditor.expectDueDate('Aug 23, 2027', false);
+        await test.step('Verify Add checklist dialog is not visible', async() => {
+            await boardDetailsPage.cardEditor.addChecklistDialog.expectDialogNotVisible();
         });
 
-        await test.step('Close card editor', async() => {
-            await boardDetailsPage.cardEditor.clickCloseButton();
-            await boardDetailsPage.cardEditor.expectCardEditorIsNotVisible();
-        });
-
-        await test.step('Verify due date is added to the card', async() => {
-            await boardDetailsPage.list.card.expectCardHasDueDate(cardTitle, listName);
+        await test.step('Verify checklist is added to the card editor', async() => {
+            await boardDetailsPage.cardEditor.checklist.expectVisible(checklistTitle);
         });
     });
 });

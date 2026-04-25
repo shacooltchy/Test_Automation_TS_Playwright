@@ -48,7 +48,7 @@ test.describe('Move list to another board tests', () => {
         });
 
         await test.step('Verify Move list dialog is visible', async() => {
-            await boardDetailsPage.list.moveListActionDialog.expectDialogToBeVisible();
+            await boardDetailsPage.list.moveListActionDialog.expectDialogVisible();
         });
 
         await test.step('Select the destination board', async() => {

@@ -3,6 +3,8 @@ import { CardEditorAction } from "../../../enums/cardEditorAction";
 import { AddToCardDialog } from "./addToCardDialog";
 import { LabelsDialog } from "./labelsDialog";
 import { DatesDialog } from "./datesDialog";
+import { AddChecklistDialog } from "./checklist/addChecklistDialog";
+import { Checklist } from "./checklist/checklist";
 
 export class CardEditor {
     private readonly page: Page;
@@ -10,6 +12,8 @@ export class CardEditor {
     readonly addToCardDialog: AddToCardDialog;
     readonly labelsDialog: LabelsDialog;
     readonly datesDialog: DatesDialog;
+    readonly addChecklistDialog: AddChecklistDialog;
+    readonly checklist: Checklist;
 
     constructor(page: Page) {
         this.page = page;
@@ -17,6 +21,8 @@ export class CardEditor {
         this.addToCardDialog = new AddToCardDialog(page);
         this.labelsDialog = new LabelsDialog(page);
         this.datesDialog = new DatesDialog(page);
+        this.addChecklistDialog = new AddChecklistDialog(page);
+        this.checklist = new Checklist(page);
     }
 
     async clickAddButton(): Promise<void> {
@@ -68,7 +74,13 @@ export class CardEditor {
         }
     }
 
-    async expectDueDate(dateString: string /*format: Jun 18, 2027*/): Promise<void> {
-        await expect(this.editor.getByTestId('due-date-badge-checkbox').filter({hasText: dateString})).toBeVisible();
+    async expectDueDate(dateString: string /*format: Jun 18, 2027*/, overdue: boolean): Promise<void> {
+        const dueDateBadge = this.editor.getByTestId('due-date-badge-checkbox');
+        await expect(dueDateBadge.filter({hasText: dateString})).toBeVisible();
+        if(overdue) {
+            await expect(dueDateBadge.filter({hasText: "Overdue"})).toBeVisible();
+        } else {
+            await expect(dueDateBadge.filter({hasText: "Overdue"})).not.toBeVisible();
+        }
     }
 }

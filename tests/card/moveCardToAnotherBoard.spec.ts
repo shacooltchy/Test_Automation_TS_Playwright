@@ -62,7 +62,7 @@ test.describe('Move card to another board', {tag: '@card'}, () => {
         });
 
         await test.step('Verify Move card dialog is visible', async() => {
-            await boardDetailsPage.list.card.quickCardEditor.moveCardActionDialog.expectDialogToBeVisible();
+            await boardDetailsPage.list.card.quickCardEditor.moveCardActionDialog.expectDialogVisible();
         });
 
         await test.step('Select new board', async() => {

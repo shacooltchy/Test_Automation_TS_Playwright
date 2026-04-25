@@ -53,7 +53,7 @@ test.describe('Change card position on list tests', {tag: '@card'}, () => {
         });
 
         await test.step('Verify Move card dialog is visible', async() => {
-            await boardDetailsPage.list.card.quickCardEditor.moveCardActionDialog.expectDialogToBeVisible();
+            await boardDetailsPage.list.card.quickCardEditor.moveCardActionDialog.expectDialogVisible();
         });
 
         await test.step('Select new position', async() => {
