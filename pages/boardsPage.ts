@@ -25,7 +25,7 @@ export class BoardsPage extends BasePage {
         await expect(this.page.getByRole('dialog').getByRole('heading', { name: 'Create board' })).toBeVisible();
     }
 
-    async selectBoardBackground(backgroundName: string = 'Snow-capped mountains under a dramatic cloudy sky'): Promise<void> {
+    async selectBoardBackground(backgroundName: string = 'A lone car drives down a dirt road toward mountains.'): Promise<void> {
         await this.page.getByRole('radio', { name: backgroundName }).click();
     }
 

@@ -9,7 +9,7 @@ export class ActionDialog {
         this.actionButtonName = actionButton;
     }
 
-    async expectDialogToBeVisible(): Promise<void> {
+    async expectDialogVisible(): Promise<void> {
         await expect(this.dialog).toBeVisible();
     }
 
