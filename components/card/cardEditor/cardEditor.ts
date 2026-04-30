@@ -14,6 +14,7 @@ export class CardEditor {
     readonly datesDialog: DatesDialog;
     readonly addChecklistDialog: AddChecklistDialog;
     readonly checklist: Checklist;
+    
 
     constructor(page: Page) {
         this.page = page;
@@ -29,12 +30,12 @@ export class CardEditor {
         await this.editor.getByRole('button', { name: 'Add to card' }).click();
     }
 
-    async expectCardEditorIsVisible(): Promise<void> {
-        expect(this.editor).toBeVisible();
+    async expectVisible(): Promise<void> {
+        await expect(this.editor).toBeVisible();
     }
 
-    async expectCardEditorIsNotVisible(): Promise<void> {
-        expect(this.editor).not.toBeVisible();
+    async expectNotVisible(): Promise<void> {
+        await expect(this.editor).not.toBeVisible();
     }
 
     async clickActionsButton() {
@@ -49,11 +50,11 @@ export class CardEditor {
         await this.page.getByRole('button', {name: action}).click();
     }
 
-    async expectCardIsArchived(): Promise<void> {
+    async expectCardArchived(): Promise<void> {
         await expect((this.editor.getByText('This card was archived on'))).toBeVisible();
     }
 
-    async expectCardIsNotArchived(): Promise<void> {
+    async expectCardNotArchived(): Promise<void> {
         await expect((this.editor.getByText('This card was archived on'))).not.toBeVisible();
     }
 

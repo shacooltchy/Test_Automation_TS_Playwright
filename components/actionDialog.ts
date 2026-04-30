@@ -4,8 +4,8 @@ export class ActionDialog {
     readonly dialog: Locator;
     private readonly actionButtonName: string;
 
-    constructor(page: Page, dialogTitle: string, actionButton: string) {
-        this.dialog = page.getByRole('dialog').filter({ has: page.getByRole('heading', { name: dialogTitle, exact: true }) });
+    constructor(page: Page, dialogTitle: string, actionButton: string, exactTitle: boolean = true) {
+        this.dialog = page.getByRole('dialog').filter({ has: page.getByRole('heading', { name: dialogTitle, exact: exactTitle }) });
         this.actionButtonName = actionButton;
     }
 

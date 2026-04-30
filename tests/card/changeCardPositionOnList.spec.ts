@@ -2,7 +2,7 @@ import { test } from "../../fixtures/pages";
 import { createList } from "../../helpers/api/lists/createList";
 import { createBoard } from "../../helpers/api/boards/createBoard";
 import { deleteTestBoard } from "../../helpers/testDataHelpers/deleteTestBoard";
-import { createNewCard } from "../../helpers/api/cards/createNewCard";
+import { createCard } from "../../helpers/api/cards/createCard";
 import { randomName } from "../../utils/stringUtils";
 import { QuickCardEditorOption } from "../../enums/quickCardEditorOption";
 
@@ -19,8 +19,8 @@ test.describe('Change card position on list tests', {tag: '@card'}, () => {
 
         const board = await createBoard(boardName);
         const list = await createList(listName, board.id);
-        await createNewCard(cardTitle, list.id);
-        await createNewCard(randomName('Card'), list.id); // Create a second card to be able to change position of the first card
+        await createCard(cardTitle, list.id);
+        await createCard(randomName('Card'), list.id); // Create a second card to be able to change position of the first card
 
         // Log in via UI
         await homePage.navigate();
