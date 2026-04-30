@@ -2,7 +2,7 @@ import { test } from "../../fixtures/pages";
 import { createList } from "../../helpers/api/lists/createList";
 import { createBoard } from "../../helpers/api/boards/createBoard";
 import { deleteTestBoard } from "../../helpers/testDataHelpers/deleteTestBoard";
-import { createNewCard } from "../../helpers/api/cards/createNewCard";
+import { createCard } from "../../helpers/api/cards/createCard";
 import { BoardMenuOption } from "../../enums/boardMenuOption";
 import { QuickCardEditorOption } from "../../enums/quickCardEditorOption";
 import { CardEditorAction } from "../../enums/cardEditorAction";
@@ -21,7 +21,7 @@ test.describe('Archive a card tests', {tag: '@card'}, () => {
 
         const board = await createBoard(boardName);
         const list = await createList(listName, board.id);
-        await createNewCard(cardTitle, list.id);
+        await createCard(cardTitle, list.id);
 
         // Log in via UI
         await homePage.navigate();
@@ -84,7 +84,7 @@ test.describe('Archive a card tests', {tag: '@card'}, () => {
         });
 
         await test.step('Verify card editor is visible', async() => {
-            await boardDetailsPage.cardEditor.expectCardEditorIsVisible();
+            await boardDetailsPage.cardEditor.expectVisible();
         });
 
         await test.step('Click the Actions button in the card editor', async() => {
@@ -96,7 +96,7 @@ test.describe('Archive a card tests', {tag: '@card'}, () => {
         });
 
         await test.step('Verify card is marked Archived', async() => {
-            await boardDetailsPage.cardEditor.expectCardIsArchived();
+            await boardDetailsPage.cardEditor.expectCardArchived();
         });
 
         await test.step('Close the card editor', async() => {
@@ -104,7 +104,7 @@ test.describe('Archive a card tests', {tag: '@card'}, () => {
         });
 
         await test.step('Verify card editor is not visible', async() => {
-            await boardDetailsPage.cardEditor.expectCardEditorIsNotVisible();
+            await boardDetailsPage.cardEditor.expectNotVisible();
         });
 
         await test.step('Verify card is not visible in the list', async() => {

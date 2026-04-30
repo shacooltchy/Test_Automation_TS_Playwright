@@ -1,6 +1,6 @@
 import { ENV } from "../../../config/env";
 
-export async function createNewCard(cardTitle: string, idList: string) {
+export async function createCard(cardTitle: string, idList: string) {
     const url = `${ENV.apiUrl}/cards?idList=${idList}&name=${cardTitle}&key=${ENV.apiKey}&token=${ENV.apiToken}`;
     const response = await fetch(url, {
         method: 'POST',

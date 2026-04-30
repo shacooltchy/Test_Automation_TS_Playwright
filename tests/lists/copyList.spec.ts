@@ -1,7 +1,7 @@
 import { ListAction } from "../../enums/listAction";
 import {test} from "../../fixtures/pages";
 import { createBoard } from "../../helpers/api/boards/createBoard";
-import { createNewCard } from "../../helpers/api/cards/createNewCard";
+import { createCard } from "../../helpers/api/cards/createCard";
 import { createList } from "../../helpers/api/lists/createList";
 import { deleteTestBoard } from "../../helpers/testDataHelpers/deleteTestBoard";
 import { randomName } from "../../utils/stringUtils";
@@ -18,7 +18,7 @@ test.describe('Copy list tests', () => {
         cardTitle = randomName('Card');
         const board = await createBoard(boardName);
         const list = await createList(listName, board.id);
-        await createNewCard(cardTitle, list.id);
+        await createCard(cardTitle, list.id);
         
         // Log in via UI
         await homePage.navigate();

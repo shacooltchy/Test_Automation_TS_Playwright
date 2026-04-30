@@ -2,7 +2,7 @@ import { test } from "../../fixtures/pages";
 import { createList } from "../../helpers/api/lists/createList";
 import { createBoard } from "../../helpers/api/boards/createBoard";
 import { deleteTestBoard } from "../../helpers/testDataHelpers/deleteTestBoard";
-import { createNewCard } from "../../helpers/api/cards/createNewCard";
+import { createCard } from "../../helpers/api/cards/createCard";
 import { randomName } from "../../utils/stringUtils";
 import { QuickCardEditorOption } from "../../enums/quickCardEditorOption";
 
@@ -23,9 +23,9 @@ test.describe('Move card to another list', {tag: '@card'}, () => {
         
         const board = await createBoard(boardName);
         const list = await createList(listName, board.id);
-        await createNewCard(cardTitle, list.id);
+        await createCard(cardTitle, list.id);
         const list2 = await createList(listName2, board.id);
-        await createNewCard(cardTitle2, list2.id); // Create a card in the second list to be able to move the first card before it and verify the position
+        await createCard(cardTitle2, list2.id); // Create a card in the second list to be able to move the first card before it and verify the position
 
         // Log in via UI
         await homePage.navigate();

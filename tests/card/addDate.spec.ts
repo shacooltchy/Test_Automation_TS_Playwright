@@ -2,7 +2,7 @@ import { test } from "../../fixtures/pages";
 import { createList } from "../../helpers/api/lists/createList";
 import { createBoard } from "../../helpers/api/boards/createBoard";
 import { deleteTestBoard } from "../../helpers/testDataHelpers/deleteTestBoard";
-import { createNewCard } from "../../helpers/api/cards/createNewCard";
+import { createCard } from "../../helpers/api/cards/createCard";
 import { randomName } from "../../utils/stringUtils";
 import { AddToCardAction } from "../../components/card/cardEditor/addToCardDialog";
 
@@ -19,7 +19,7 @@ test.describe('Add date to a card', {tag: '@card'}, () => {
 
         const board = await createBoard(boardName);
         const list = await createList(listName, board.id);
-        await createNewCard(cardTitle, list.id);
+        await createCard(cardTitle, list.id);
 
         // Log in via UI and navigate to a board
         await homePage.navigate();
@@ -44,7 +44,7 @@ test.describe('Add date to a card', {tag: '@card'}, () => {
         });
 
         await test.step('Verify card editor is visible', async() => {
-            await boardDetailsPage.cardEditor.expectCardEditorIsVisible();
+            await boardDetailsPage.cardEditor.expectVisible();
         });
 
         await test.step('Click Add button in the card editor', async() => {
@@ -77,7 +77,7 @@ test.describe('Add date to a card', {tag: '@card'}, () => {
 
         await test.step('Close card editor', async() => {
             await boardDetailsPage.cardEditor.clickCloseButton();
-            await boardDetailsPage.cardEditor.expectCardEditorIsNotVisible();
+            await boardDetailsPage.cardEditor.expectNotVisible();
         });
 
         await test.step('Verify due date is added to the card', async() => {
