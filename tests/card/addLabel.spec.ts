@@ -38,8 +38,7 @@ test.describe('Add card label tests', {tag: '@card'}, () => {
         await deleteTestBoard(boardName);
     });
 
-    //fix locator for selecting a label
-    test.skip('Add a label to a card', async( {boardDetailsPage} ) => {
+    test('Add a label to a card', async( {boardDetailsPage} ) => {
         await test.step('Click card', async() => {
             await boardDetailsPage.list.card.clickCard(cardTitle);
         });

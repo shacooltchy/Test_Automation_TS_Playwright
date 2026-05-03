@@ -19,20 +19,29 @@ export class LabelsDialog {
         await expect(this.dialog).not.toBeVisible();
     }
 
-    async clickLabel(labelColor?: string, labelTitle?: string ): Promise<void> {
-        if(!labelColor && !labelTitle) {
+    async clickLabel(labelColor?: string, labelTitle?: string): Promise<void> {
+        if (!labelColor && !labelTitle) {
             throw new Error('Either labelColor or labelTitle must be provided');
         }
 
-        if(labelColor && labelTitle) {
-            await this.dialog.getByLabel(`Color: ${labelColor}, title: ${labelTitle}`, { exact: true }).click();
-            return;
-        } else if(labelColor) {
-            await this.dialog.getByLabel(`Color: ${labelColor}, title: none`, { exact: true }).click();
-            return;
-        } else if(labelTitle) {
-             await this.dialog.getByLabel(`Color: none, title: ${labelTitle}`, { exact: true }).click();
-             return;
+        const labels = this.dialog.getByTestId('card-label');
+        const count = await labels.count();
+
+        for (let i = 0; i < count; i++) {
+            const el = labels.nth(i);
+
+            const color = await el.getAttribute('data-color'); // can be null
+            const title = (await el.innerText()).trim();       // can be ""
+
+            const colorMatches = labelColor ? color === labelColor : true;
+            const titleMatches = labelTitle ? title === labelTitle : true;
+
+            if (colorMatches && titleMatches) {
+                await el.click();
+                return;
+            }
         }
-    }
+
+        throw new Error(`Label not found for color="${labelColor}" title="${labelTitle}"`);
+    } 
 }
