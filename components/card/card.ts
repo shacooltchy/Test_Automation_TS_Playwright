@@ -35,4 +35,9 @@ export class Card {
         const list = this.page.getByTestId('list').filter({has: this.page.getByRole('heading', {name: listName, exact: true})});
         await expect(list.getByTestId('list-card').filter({hasText: cardTitle}).getByTestId('badge-due-date-not-completed')).toBeVisible();
     }
+
+    async expectCardHasDescription(cardTitle: string, listName: string) {
+        const list = this.page.getByTestId('list').filter({has: this.page.getByRole('heading', {name: listName, exact: true})});
+        await expect(list.getByTestId('list-card').filter({hasText: cardTitle}).getByTestId('DescriptionIcon')).toBeVisible();
+    }
 }

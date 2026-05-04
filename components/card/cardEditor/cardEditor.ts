@@ -5,6 +5,7 @@ import { LabelsDialog } from "./labelsDialog";
 import { DatesDialog } from "./datesDialog";
 import { AddChecklistDialog } from "./checklist/addChecklistDialog";
 import { Checklist } from "./checklist/checklist";
+import { DescriptionTextEditor } from "../../descriptionTextEditor";
 
 export class CardEditor {
     private readonly page: Page;
@@ -14,6 +15,7 @@ export class CardEditor {
     readonly datesDialog: DatesDialog;
     readonly addChecklistDialog: AddChecklistDialog;
     readonly checklist: Checklist;
+    readonly descriptionTextEditor: DescriptionTextEditor;
     
 
     constructor(page: Page) {
@@ -24,6 +26,7 @@ export class CardEditor {
         this.datesDialog = new DatesDialog(page);
         this.addChecklistDialog = new AddChecklistDialog(page);
         this.checklist = new Checklist(page);
+        this.descriptionTextEditor = new DescriptionTextEditor(page);
     }
 
     async clickAddButton(): Promise<void> {
@@ -94,5 +97,13 @@ export class CardEditor {
         } else {
             await expect(dueDateBadge.filter({hasText: "Overdue"})).not.toBeVisible();
         }
+    }
+
+    async clickDescriptionButton(): Promise<void> {
+        await this.editor.getByTestId('description-button').click();
+    }
+
+    async expectDescription(description: string): Promise<void> {
+        await expect(this.editor.getByTestId('description-content-area').getByText(description, { exact: true })).toBeVisible();
     }
 }
