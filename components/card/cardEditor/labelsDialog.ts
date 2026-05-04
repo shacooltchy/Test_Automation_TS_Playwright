@@ -11,11 +11,11 @@ export class LabelsDialog {
         await this.dialog.getByRole('button', { name: 'Close popover' }).click();
     }
 
-    async expectDialogIsVisible(): Promise<void> {
+    async expectVisible(): Promise<void> {
         await expect(this.dialog).toBeVisible();
     }
 
-    async expectDialogIsNotVisible(): Promise<void> {
+    async expectNotVisible(): Promise<void> {
         await expect(this.dialog).not.toBeVisible();
     }
 

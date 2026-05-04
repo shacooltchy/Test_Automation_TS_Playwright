@@ -36,7 +36,7 @@ test.describe('Change list position in the board tests', () => {
     test('Change list position', async({ boardDetailsPage}) => {
         await test.step('Open list actions menu', async() => {
             await boardDetailsPage.list.openListActionsMenu(listName);
-            await boardDetailsPage.list.listActionsMenu.expectListActionsMenuIsVisible();
+            await boardDetailsPage.list.listActionsMenu.expectVisible();
         });
 
         await test.step('Click Move list option', async() => {
@@ -56,7 +56,7 @@ test.describe('Change list position in the board tests', () => {
         });
 
         await test.step('Verify list is visible', async() => {
-            await boardDetailsPage.list.expectListIsVisible(listName);
+            await boardDetailsPage.list.expectVisible(listName);
         });
 
         await test.step('Verify list position', async() => {

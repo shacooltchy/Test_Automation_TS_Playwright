@@ -66,7 +66,7 @@ test.describe('Delete board tests', {tag: '@boards'}, () => {
 
         await test.step('Verify the board is no longer visible in the workspace section', async () => {
             await boardsPage.expectPageVisible();
-            await boardsPage.expectBoardIsNotVisibleInTheWorkspacesSection(boardName);
+            await boardsPage.expectBoardNotVisibleInTheWorkspacesSection(boardName);
         });
     });
 });

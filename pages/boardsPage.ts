@@ -21,7 +21,7 @@ export class BoardsPage extends BasePage {
         await this.page.getByTestId('create-board-tile').click();
     }
 
-    async expectCreateBoardModalIsVisible(): Promise<void> {
+    async expectCreateBoardModalVisible(): Promise<void> {
         await expect(this.page.getByRole('dialog').getByRole('heading', { name: 'Create board' })).toBeVisible();
     }
 
@@ -46,13 +46,13 @@ export class BoardsPage extends BasePage {
         await this.page.getByTestId('create-board-submit-button').click();
     }
 
-    async expectBoardIsVisibleInTheWorkspacesSection(boardName: string): Promise<void> {
+    async expectBoardVisibleInTheWorkspacesSection(boardName: string): Promise<void> {
         await this.waitForNetworkIdle();
         const workspaceSection = this.page.getByRole('heading', { name: 'YOUR WORKSPACES', exact: true }).locator('..');
         await expect(workspaceSection.getByRole('link', { name: boardName, exact: true })).toBeVisible();
     }
 
-    async expectBoardIsNotVisibleInTheWorkspacesSection(boardName: string): Promise<void> {
+    async expectBoardNotVisibleInTheWorkspacesSection(boardName: string): Promise<void> {
         await this.waitForNetworkIdle();
         const workspaceSection = this.page.getByRole('heading', { name: 'YOUR WORKSPACES', exact: true }).locator('..');
         await expect(workspaceSection.getByRole('link', { name: boardName, exact: true })).not.toBeVisible();

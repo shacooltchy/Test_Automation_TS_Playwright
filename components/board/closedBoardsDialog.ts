@@ -10,7 +10,7 @@ export class ClosedBoardsDialog {
         this.reopenBoardConfirmationDialog = new ConfirmationDialog(page, 'Select a Workspace', 'Reopen board');
     }
 
-    async expectDialogIsVisible(): Promise<void> {
+    async expectVisible(): Promise<void> {
         await expect(this.dialog).toBeVisible();
     }
 
@@ -18,11 +18,11 @@ export class ClosedBoardsDialog {
         await this.dialog.getByRole('listitem').filter({ hasText: boardName }).getByTestId('workspace-chooser-trigger-button').click();
     }
 
-    async expectBoardIsVisibleInClosedBoards(boardName: string): Promise<void> {
+    async expectBoardVisibleInClosedBoards(boardName: string): Promise<void> {
         await expect(this.dialog.getByRole('listitem').getByRole('link', {name: boardName})).toBeVisible();
     }
 
-    async expectBoardIsNotVisibleInClosedBoards(boardName: string): Promise<void> {
+    async expectBoardNotVisibleInClosedBoards(boardName: string): Promise<void> {
         await expect(this.dialog.getByRole('listitem').getByRole('link', {name: boardName})).not.toBeVisible();
     }
 

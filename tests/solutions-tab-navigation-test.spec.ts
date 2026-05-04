@@ -15,7 +15,7 @@ test.describe('Solutions tab navigation tests', {tag: '@smoke'}, () => {
 
         await test.step('Verify Marketing Teams page is visible', async () => {
             await marketingTeamsPage.expectPageVisible();
-            await marketingTeamsPage.header.expectHeaderTitleIsVisible('Trello For Marketing Teams');
+            await marketingTeamsPage.header.expectTitleVisible('Trello For Marketing Teams');
         });
     });
 
@@ -26,7 +26,7 @@ test.describe('Solutions tab navigation tests', {tag: '@smoke'}, () => {
 
         await test.step('Verify Product Management Teams page is visible', async () => {
             await productManagementPage.expectPageVisible();
-            await productManagementPage.header.expectHeaderTitleIsVisible('Trello For Product Management Teams');
+            await productManagementPage.header.expectTitleVisible('Trello For Product Management Teams');
         });
     });
 
@@ -37,7 +37,7 @@ test.describe('Solutions tab navigation tests', {tag: '@smoke'}, () => {
 
         await test.step('Verify Marketing Teams page is visible', async () => {
             await engineeringTeamsPage.expectPageVisible();
-            await engineeringTeamsPage.header.expectHeaderTitleIsVisible('Trello for Engineering Teams');
+            await engineeringTeamsPage.header.expectTitleVisible('Trello for Engineering Teams');
         });
     });
 
@@ -48,7 +48,7 @@ test.describe('Solutions tab navigation tests', {tag: '@smoke'}, () => {
 
         await test.step('Verify Design Teams page is visible', async () => {
             await designTeamsPage.expectPageVisible();
-            await designTeamsPage.header.expectHeaderTitleIsVisible('Trello For Design Teams');
+            await designTeamsPage.header.expectTitleVisible('Trello For Design Teams');
         });
     });
 
@@ -59,7 +59,7 @@ test.describe('Solutions tab navigation tests', {tag: '@smoke'}, () => {
 
         await test.step('Verify Startups page is visible', async () => {
             await startupsPage.expectPageVisible();
-            await startupsPage.header.expectHeaderTitleIsVisible('Trello For Startups');
+            await startupsPage.header.expectTitleVisible('Trello For Startups');
         });
     });
 
@@ -70,7 +70,7 @@ test.describe('Solutions tab navigation tests', {tag: '@smoke'}, () => {
 
         await test.step('Verify Remote Teams page is visible', async () => {
             await remoteTeamsPage.expectPageVisible();
-            await remoteTeamsPage.header.expectHeaderTitleIsVisible('Trello For Remote Teams');
+            await remoteTeamsPage.header.expectTitleVisible('Trello For Remote Teams');
         });
     });
 });

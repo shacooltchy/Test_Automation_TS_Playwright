@@ -52,7 +52,7 @@ test.describe('Add checklist to a card', {tag: '@card'}, () => {
         });
 
         await test.step('Verify Add to card dialog is visible', async() => {
-            await boardDetailsPage.cardEditor.addToCardDialog.expectDialogIsVisible();
+            await boardDetailsPage.cardEditor.addToCardDialog.expectVisible();
         });
 
         await test.step('Click the Checklist button in the Add to card dialog', async() => {

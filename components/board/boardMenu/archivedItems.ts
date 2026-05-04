@@ -12,11 +12,11 @@ export class ArchivedItems {
         this.deleteItemConfirmationDialog = new ConfirmationDialog(page, 'Delete list?', 'Delete');
     }
 
-    async expectPopoverIsVisible(): Promise<void> {
+    async expectVisible(): Promise<void> {
         await expect(this.archivedItemsPopover).toBeVisible();
     }
 
-    async expectPopoverIsNotVisible(): Promise<void> {
+    async expectNotVisible(): Promise<void> {
         await expect(this.archivedItemsPopover).not.toBeVisible();
     }
 

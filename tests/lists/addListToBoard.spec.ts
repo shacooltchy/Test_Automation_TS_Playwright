@@ -35,7 +35,7 @@ test.describe('Add a list test', () => {
         });
 
         await test.step('Verify new list form is visible', async() => {
-            await boardDetailsPage.newListForm.expectNewListFormIsVisible();
+            await boardDetailsPage.newListForm.expectVisible();
         });
 
         await test.step('Click add list cancel button', async() => {
@@ -43,7 +43,7 @@ test.describe('Add a list test', () => {
         });
 
         await test.step('Verify Add list form is not visible', async() => {
-            boardDetailsPage.newListForm.expectNewListFormIsNotVisible();
+            boardDetailsPage.newListForm.expectNotVisible();
         });
 
         await test.step('Verify Add list button is visible', async() => {
@@ -58,7 +58,7 @@ test.describe('Add a list test', () => {
         });
 
         await test.step('Verify new list form is visible', async() => {
-            await boardDetailsPage.newListForm.expectNewListFormIsVisible();
+            await boardDetailsPage.newListForm.expectVisible();
         });
 
         await test.step('Enter list name', async() => {
@@ -70,7 +70,7 @@ test.describe('Add a list test', () => {
         });
 
         await test.step('Verify new list is visible on the board', async() => {
-            await boardDetailsPage.list.expectListIsVisible(listName);
+            await boardDetailsPage.list.expectVisible(listName);
         });
     });
 });

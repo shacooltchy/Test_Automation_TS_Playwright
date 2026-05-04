@@ -7,11 +7,11 @@ export class NewListForm {
         this.newListForm = page.locator('form').filter({has: page.getByRole('button', {name: 'Add list'})});
     }
 
-    async expectNewListFormIsVisible(): Promise<void> {
+    async expectVisible(): Promise<void> {
         await expect(this.newListForm).toBeVisible();
     }
 
-    async expectNewListFormIsNotVisible(): Promise<void> {
+    async expectNotVisible(): Promise<void> {
         await expect(this.newListForm).not.toBeVisible();
     }
 

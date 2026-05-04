@@ -8,7 +8,7 @@ export class Header {
         this.page = page;
     }
 
-    async expectHeaderTitleIsVisible(headerTitle: string, alternativeHeaderTitle?: string): Promise<void> {
+    async expectTitleVisible(headerTitle: string, alternativeHeaderTitle?: string): Promise<void> {
         if(alternativeHeaderTitle) {
             await expect(this.page.getByRole('heading', { name: headerTitle, exact: true }).or(this.page.getByRole('heading', { name: alternativeHeaderTitle, exact: true }))).toBeVisible({timeout: 10_000});
         } else {

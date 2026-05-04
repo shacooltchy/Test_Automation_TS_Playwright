@@ -52,7 +52,7 @@ test.describe('Add card label tests', {tag: '@card'}, () => {
         });
 
         await test.step('Verify Add to card dialog is visible', async() => {
-            await boardDetailsPage.cardEditor.addToCardDialog.expectDialogIsVisible();
+            await boardDetailsPage.cardEditor.addToCardDialog.expectVisible();
         });
 
         await test.step('Click the Labels button in the Add to card dialog', async() => {
@@ -60,7 +60,7 @@ test.describe('Add card label tests', {tag: '@card'}, () => {
         });
 
         await test.step('Verify Labels dialog is visible', async() => {
-            await boardDetailsPage.cardEditor.labelsDialog.expectDialogIsVisible();
+            await boardDetailsPage.cardEditor.labelsDialog.expectVisible();
         });
 
         await test.step('Click a label in the Labels dialog', async() => {
@@ -72,7 +72,7 @@ test.describe('Add card label tests', {tag: '@card'}, () => {
         });
 
         await test.step('Verify Labels dialog is not visible', async() => {
-            await boardDetailsPage.cardEditor.labelsDialog.expectDialogIsNotVisible();
+            await boardDetailsPage.cardEditor.labelsDialog.expectNotVisible();
         });
 
         await test.step('Verify label is added to the card editor', async() => {
