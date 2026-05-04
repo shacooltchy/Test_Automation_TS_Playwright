@@ -8,7 +8,7 @@ export class ListActionsMenu {
         this.listActionsMenu = page.getByTestId('list-actions-popover');
     }
 
-    async expectListActionsMenuIsVisible(): Promise<void> {
+    async expectVisible(): Promise<void> {
         await expect(this.listActionsMenu).toBeVisible();
     }
 

@@ -46,7 +46,7 @@ test.describe('Unarchive a list tests', () => {
         });
     
         await test.step('Verify Archived Items popover is visible', async() => {
-            await boardDetailsPage.boardMenu.archivedItems.expectPopoverIsVisible();
+            await boardDetailsPage.boardMenu.archivedItems.expectVisible();
         });
     
         await test.step('Show archived lists', async() => {
@@ -70,11 +70,11 @@ test.describe('Unarchive a list tests', () => {
         });
 
         await test.step('Verify Archived items list is not visible', async() => {
-            await boardDetailsPage.boardMenu.archivedItems.expectPopoverIsNotVisible();
+            await boardDetailsPage.boardMenu.archivedItems.expectNotVisible();
         });
 
         await test.step('Verify list is visible on the board', async() => {
-            await boardDetailsPage.list.expectListIsVisible(listName);
+            await boardDetailsPage.list.expectVisible(listName);
         });
     });
 })

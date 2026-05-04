@@ -7,11 +7,11 @@ export class AddToCardDialog {
         this.dialog = page.getByRole('dialog').filter({ has: page.getByRole('heading', { name: 'Add to card', exact: true }) });
     }
 
-    async expectDialogIsVisible(): Promise<void> {
+    async expectVisible(): Promise<void> {
         await expect(this.dialog).toBeVisible();
     }
 
-    async expectDialogIsNotVisible(): Promise<void> {
+    async expectNotVisible(): Promise<void> {
         await expect(this.dialog).not.toBeVisible();
     }
 

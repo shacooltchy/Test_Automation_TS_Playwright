@@ -22,20 +22,20 @@ test.describe.skip('Features tab navigation tests - inbox, planner', {tag: '@smo
         const inboxPage = new InboxPage(page);
     
         await homePage.headerMenu.clickFeatures();
-        await homePage.featuresHeaderMenu.expectFeaturesMenuTabIsVisible();
+        await homePage.featuresHeaderMenu.expectVisible();
         await homePage.featuresHeaderMenu.clickInboxLinkButton();
 
-        await inboxPage.header.expectHeaderTitleIsVisible('Trello Inbox');
+        await inboxPage.header.expectTitleVisible('Trello Inbox');
     });
 
     test('Navigate to Planner page', async ({ page }) => {
         const plannerPage = new PlannerPage(page);
 
         await homePage.headerMenu.clickFeatures();
-        await homePage.featuresHeaderMenu.expectFeaturesMenuTabIsVisible();
+        await homePage.featuresHeaderMenu.expectVisible();
         await homePage.featuresHeaderMenu.clickPlannerLinkButton();
 
-        await plannerPage.header.expectHeaderTitleIsVisible('Trello Planner');
+        await plannerPage.header.expectTitleVisible('Trello Planner');
     });
 });
 
@@ -43,10 +43,10 @@ test('Navigate to Automation page', {tag: '@smoke'}, async ({ homePage, automati
     await homePage.navigate();
     await homePage.expectPageVisible();
     await homePage.headerMenu.clickFeatures();
-    await homePage.featuresHeaderMenu.expectFeaturesMenuTabIsVisible();
+    await homePage.featuresHeaderMenu.expectVisible();
     await homePage.featuresHeaderMenu.clickAutomationLinkButton();
 
-    await automationPage.header.expectHeaderTitleIsVisible('Automate your workflow with Trello');
+    await automationPage.header.expectTitleVisible('Automate your workflow with Trello');
 });
 
 test('Navigate to Power-Ups page', {tag: '@smoke'}, async ({ page }) => {
@@ -56,10 +56,10 @@ test('Navigate to Power-Ups page', {tag: '@smoke'}, async ({ page }) => {
     await homePage.navigate();
     await homePage.expectPageVisible();
     await homePage.headerMenu.clickFeatures();
-    await homePage.featuresHeaderMenu.expectFeaturesMenuTabIsVisible();
+    await homePage.featuresHeaderMenu.expectVisible();
     await homePage.featuresHeaderMenu.clickPowerUpsLinkButton();
 
-    await powerUpsPage.header.expectHeaderTitleIsVisible('Power-Ups for Trello');
+    await powerUpsPage.header.expectTitleVisible('Power-Ups for Trello');
 });
 
 test('Navigate to Templates page', {tag: '@smoke'}, async ({ page }) => {
@@ -69,10 +69,10 @@ test('Navigate to Templates page', {tag: '@smoke'}, async ({ page }) => {
     await homePage.navigate();
     await homePage.expectPageVisible();
     await homePage.headerMenu.clickFeatures();
-    await homePage.featuresHeaderMenu.expectFeaturesMenuTabIsVisible();
+    await homePage.featuresHeaderMenu.expectVisible();
     await homePage.featuresHeaderMenu.clickTemplatesLinkButton();
 
-    await templatesPage.header.expectHeaderTitleIsVisible('Templates for Trello');
+    await templatesPage.header.expectTitleVisible('Templates for Trello');
 });
 
 test('Navigate to Integrations page', {tag: '@smoke'}, async ({ page }) => {
@@ -82,9 +82,9 @@ test('Navigate to Integrations page', {tag: '@smoke'}, async ({ page }) => {
     await homePage.navigate();
     await homePage.expectPageVisible();
     await homePage.headerMenu.clickFeatures();
-    await homePage.featuresHeaderMenu.expectFeaturesMenuTabIsVisible();
+    await homePage.featuresHeaderMenu.expectVisible();
     await homePage.featuresHeaderMenu.clickIntegrationsLinkButton();
 
-    await integrationsPage.header.expectHeaderTitleIsVisible('Connect Trello to everything');
+    await integrationsPage.header.expectTitleVisible('Connect Trello to everything');
 });
 

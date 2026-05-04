@@ -52,7 +52,7 @@ test.describe('Unarchive a card tests', {tag: '@card'}, () => {
         });
     
         await test.step('Verify Archived Items popover is visible', async() => {
-            await boardDetailsPage.boardMenu.archivedItems.expectPopoverIsVisible();
+            await boardDetailsPage.boardMenu.archivedItems.expectVisible();
         });
     
         await test.step('Show archived cards', async() => {
@@ -76,7 +76,7 @@ test.describe('Unarchive a card tests', {tag: '@card'}, () => {
         });
 
         await test.step('Verify Archived items list is not visible', async() => {
-            await boardDetailsPage.boardMenu.archivedItems.expectPopoverIsNotVisible();
+            await boardDetailsPage.boardMenu.archivedItems.expectNotVisible();
         });
 
         await test.step('Verify card is visible on the board', async() => {
@@ -95,7 +95,7 @@ test.describe('Unarchive a card tests', {tag: '@card'}, () => {
         });
     
         await test.step('Verify Archived Items popover is visible', async() => {
-            await boardDetailsPage.boardMenu.archivedItems.expectPopoverIsVisible();
+            await boardDetailsPage.boardMenu.archivedItems.expectVisible();
         });
     
         await test.step('Show archived cards', async() => {

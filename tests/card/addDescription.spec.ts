@@ -5,7 +5,7 @@ import { deleteTestBoard } from "../../helpers/testDataHelpers/deleteTestBoard";
 import { createCard } from "../../helpers/api/cards/createCard";
 import { randomName } from "../../utils/stringUtils";
 
-test.describe('Add date to a card', {tag: '@card'}, () => {
+test.describe('Add card description', {tag: '@card'}, () => {
     let boardName: string;
     let listName: string;
     let cardTitle: string;

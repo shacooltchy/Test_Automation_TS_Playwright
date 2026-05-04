@@ -28,7 +28,7 @@ test.describe('Create board tests', {tag: '@boards'}, () => {
         });
 
         await test.step('Verify the Create board modal is visible', async () => {
-            await boardsPage.expectCreateBoardModalIsVisible();
+            await boardsPage.expectCreateBoardModalVisible();
         });
 
         await test.step('Select board background', async () => {
@@ -57,7 +57,7 @@ test.describe('Create board tests', {tag: '@boards'}, () => {
         });
 
         await test.step('Verify the new board is visible on the boards page', async () => {
-            await boardsPage.expectBoardIsVisibleInTheWorkspacesSection(boardName);
+            await boardsPage.expectBoardVisibleInTheWorkspacesSection(boardName);
         });
     });
 });

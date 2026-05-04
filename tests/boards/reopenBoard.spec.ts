@@ -33,7 +33,7 @@ test.describe('Reopen board tests', {tag: '@boards'}, () => {
         });
 
         await test.step('Verify the closed boards dialog is visible', async () => {
-            await boardsPage.closedBoardsDialog.expectDialogIsVisible();
+            await boardsPage.closedBoardsDialog.expectVisible();
         });
 
         await test.step('Click the reopen board button in the closed boards dialog', async () => {
@@ -49,7 +49,7 @@ test.describe('Reopen board tests', {tag: '@boards'}, () => {
         });
 
         await test.step('Verify the board is no longer visible in the closed boards dialog', async () => {
-            await boardsPage.closedBoardsDialog.expectBoardIsNotVisibleInClosedBoards(boardName);
+            await boardsPage.closedBoardsDialog.expectBoardNotVisibleInClosedBoards(boardName);
         });
 
         await test.step('Close the closed boards dialog', async () => {
@@ -57,7 +57,7 @@ test.describe('Reopen board tests', {tag: '@boards'}, () => {
         });
 
         await test.step('Verify the reopened board is visible in the workspaces section', async () => {
-            await boardsPage.expectBoardIsVisibleInTheWorkspacesSection(boardName);
+            await boardsPage.expectBoardVisibleInTheWorkspacesSection(boardName);
         });
     });
 
@@ -99,7 +99,7 @@ test.describe('Reopen board tests', {tag: '@boards'}, () => {
         });
 
         await test.step('Verify the reopened board is visible in the workspaces section', async () => {
-            await boardsPage.expectBoardIsVisibleInTheWorkspacesSection(boardName);
+            await boardsPage.expectBoardVisibleInTheWorkspacesSection(boardName);
         });
     });
 });

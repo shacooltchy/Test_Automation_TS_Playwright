@@ -40,7 +40,7 @@ test.describe('Move list to another board tests', () => {
     test('Move a list to another board', async({ boardDetailsPage, boardsPage }) => {
         await test.step('Open list actions menu', async() => {
             await boardDetailsPage.list.openListActionsMenu(listName);
-            await boardDetailsPage.list.listActionsMenu.expectListActionsMenuIsVisible();
+            await boardDetailsPage.list.listActionsMenu.expectVisible();
         });
 
         await test.step('Click Move list option', async() => {
@@ -64,11 +64,11 @@ test.describe('Move list to another board tests', () => {
         });
 
         await test.step('Verify Moved list alert is visible', async() => {
-            await boardDetailsPage.movedListAlert.expectAlertIsVisible();
+            await boardDetailsPage.movedListAlert.expectVisible();
         });
 
         await test.step('Verify list is not visible on the source board', async() => {
-            await boardDetailsPage.list.expectListIsNotVisible(listName);
+            await boardDetailsPage.list.expectNotVisible(listName);
         });
 
         await test.step('Navigate to the destination board', async() => {
@@ -79,7 +79,7 @@ test.describe('Move list to another board tests', () => {
         });
 
         await test.step('Verify list is visible on the destination board', async() => {
-            await boardDetailsPage.list.expectListIsVisible(listName);
+            await boardDetailsPage.list.expectVisible(listName);
         });
 
         await test.step('Verify list position on the destination board', async() => {

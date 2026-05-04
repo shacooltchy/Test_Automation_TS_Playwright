@@ -19,7 +19,7 @@ export class FeaturesHeaderMenu {
         this.integrationsLinkButton = page.getByRole('link', { name: 'Integrations Find the apps your team is already using or discover new ways to get work done in Trello.' });
     }
 
-    async expectFeaturesMenuTabIsVisible() {
+    async expectVisible() {
         await expect(this.page.getByRole('heading', { name: 'Explore the features that help your team succeed' })).toBeVisible();
     }
 

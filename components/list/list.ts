@@ -21,11 +21,11 @@ export class List {
         this.card = new Card(page);
     }
 
-    async expectListIsVisible(listName: string): Promise<void> {
+    async expectVisible(listName: string): Promise<void> {
         await expect(this.list.filter({has: this.page.getByRole('heading', {name: listName, exact: true})})).toBeVisible();
     }
 
-    async expectListIsNotVisible(listName: string): Promise<void> {
+    async expectNotVisible(listName: string): Promise<void> {
         await expect(this.list.filter({hasText: listName})).not.toBeVisible();
     }
 

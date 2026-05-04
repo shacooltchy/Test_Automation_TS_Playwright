@@ -56,7 +56,7 @@ test.describe('Close board tests', {tag: '@boards'}, () => {
         });
 
         await test.step('Verify the closed board is not visible in the workspaces section', async () => {
-            await boardsPage.expectBoardIsNotVisibleInTheWorkspacesSection(boardName);
+            await boardsPage.expectBoardNotVisibleInTheWorkspacesSection(boardName);
         });
 
         await test.step('Click View all closed boards button', async () => {
@@ -64,7 +64,7 @@ test.describe('Close board tests', {tag: '@boards'}, () => {
         });
 
         await test.step('Verify the closed board is visible in the closed boards dialog', async () => {
-            await boardsPage.closedBoardsDialog.expectBoardIsVisibleInClosedBoards(boardName);
+            await boardsPage.closedBoardsDialog.expectBoardVisibleInClosedBoards(boardName);
         });
     });
 });

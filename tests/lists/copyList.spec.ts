@@ -40,7 +40,7 @@ test.describe('Copy list tests', () => {
     test('Copy a list', async({ boardDetailsPage }) => {
         await test.step('Open list actions', async() => {
             await boardDetailsPage.list.openListActionsMenu(listName);
-            await boardDetailsPage.list.listActionsMenu.expectListActionsMenuIsVisible();
+            await boardDetailsPage.list.listActionsMenu.expectVisible();
         });
 
         await test.step('Click Copy list option', async() => {
@@ -66,7 +66,7 @@ test.describe('Copy list tests', () => {
         });
 
         await test.step('Verify the list is copied with the correct name', async() => {
-            await boardDetailsPage.list.expectListIsVisible(copiedListName);
+            await boardDetailsPage.list.expectVisible(copiedListName);
         });
 
         await test.step('Verify the card from the original list is copied to the new list', async() => {
@@ -74,7 +74,7 @@ test.describe('Copy list tests', () => {
         });
 
         await test.step('Verify the original list is still visible', async() => {
-            await boardDetailsPage.list.expectListIsVisible(listName);
+            await boardDetailsPage.list.expectVisible(listName);
             await boardDetailsPage.list.card.expectCardVisible(cardTitle, listName);
         });
     });

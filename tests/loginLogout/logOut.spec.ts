@@ -14,7 +14,7 @@ test.describe('Log out tests', {tag: '@log_out'}, () => {
     test('Log out of Trello', async ({ page, boardsPage, logOutConfirmationPage }) => {
         await test.step('Click the member button in the header', async () => {
             await boardsPage.authenticatedHeader.clickMemberButton();
-            await boardsPage.authenticatedHeader.accountMenu.expectAccountMenuIsVisible();
+            await boardsPage.authenticatedHeader.accountMenu.expectVisible();
         });
 
         await test.step('Click the Log out button in the account menu', async () => {

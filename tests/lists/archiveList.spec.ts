@@ -37,7 +37,7 @@ test.describe('Archive a list tests', () => {
     test('Archive a list', async({ boardDetailsPage } ) => {
         await test.step('Open Actions List', async() => {
             await boardDetailsPage.list.openListActionsMenu(listName);
-            await boardDetailsPage.list.listActionsMenu.expectListActionsMenuIsVisible();
+            await boardDetailsPage.list.listActionsMenu.expectVisible();
         });
 
         await test.step('Click Archive this list option', async() => {
@@ -45,11 +45,11 @@ test.describe('Archive a list tests', () => {
         });
 
         await test.step('Verify list alert is visible', async() => {
-            await boardDetailsPage.listArchivedAlert.expectAlertIsVisible();
+            await boardDetailsPage.listArchivedAlert.expectVisible();
         });
 
         await test.step('Verify list is not visible on the board', async() => {
-            await boardDetailsPage.list.expectListIsNotVisible(listName);
+            await boardDetailsPage.list.expectNotVisible(listName);
         });
 
         await test.step('Open board menu', async() => {
@@ -62,7 +62,7 @@ test.describe('Archive a list tests', () => {
         });
 
         await test.step('Verify Archived Items popover is visible', async() => {
-            await boardDetailsPage.boardMenu.archivedItems.expectPopoverIsVisible();
+            await boardDetailsPage.boardMenu.archivedItems.expectVisible();
         });
 
         await test.step('Show archived lists', async() => {
@@ -77,7 +77,7 @@ test.describe('Archive a list tests', () => {
     test('Undo archiving a list in the alert modal', async({ boardDetailsPage }) => {
         await test.step('Open Actions List', async() => {
             await boardDetailsPage.list.openListActionsMenu(listName);
-            await boardDetailsPage.list.listActionsMenu.expectListActionsMenuIsVisible();
+            await boardDetailsPage.list.listActionsMenu.expectVisible();
         });
 
         await test.step('Click Archive this list option', async() => {
@@ -85,7 +85,7 @@ test.describe('Archive a list tests', () => {
         });
 
         await test.step('Verify list is not visible on the board', async() => {
-            await boardDetailsPage.list.expectListIsNotVisible(listName);
+            await boardDetailsPage.list.expectNotVisible(listName);
         });
 
         await test.step('Click undo button in the List archived alert modal', async() => {
@@ -93,11 +93,11 @@ test.describe('Archive a list tests', () => {
         });
 
         await test.step('Verify Unarchived list alert is visible', async() => {
-            await boardDetailsPage.unarchivedListAlert.expectAlertIsVisible();
+            await boardDetailsPage.unarchivedListAlert.expectVisible();
         });
 
         await test.step('Verify list is visible on the board', async() => {
-            await boardDetailsPage.list.expectListIsVisible(listName);
+            await boardDetailsPage.list.expectVisible(listName);
         })
     });
 });

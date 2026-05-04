@@ -22,6 +22,6 @@ export class HomePage extends BasePage{
     }
 
     async expectPageVisible(): Promise<void> {
-        await this.header.expectHeaderTitleIsVisible('Capture, organize, and tackle your to-dos from anywhere.', 'Trello brings all your tasks, teammates, and tools together');
+        await this.header.expectTitleVisible('Capture, organize, and tackle your to-dos from anywhere.', 'Trello brings all your tasks, teammates, and tools together');
     }
 }

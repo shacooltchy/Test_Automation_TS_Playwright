@@ -18,11 +18,11 @@ export class Calendar {
         this.monthYearHeader = this.calendar.getByRole('heading', { name: /\w+ \d{4}/ }); // Matches headers like "January 2024", "February 2024", etc.
     }
 
-    async expectCalendarIsVisible(): Promise<void> {
+    async expectVisible(): Promise<void> {
         await expect(this.calendar).toBeVisible();
     }
 
-    async expectCalendarIsNotVisible(): Promise<void> {
+    async expectNotVisible(): Promise<void> {
         await expect(this.calendar).not.toBeVisible();
     }
 

@@ -9,7 +9,7 @@ export class AccountMenu {
         this.logOutButton = this.accountMenuRoot.getByTestId('account-menu-logout-section').getByTestId('account-menu-logout');
     }
 
-    async expectAccountMenuIsVisible() {
+    async expectVisible() {
         await expect(this.accountMenuRoot).toBeVisible();
     }
 

@@ -7,7 +7,7 @@ export class Alert {
         this.alert = page.getByRole('alert').filter({has: page.getByRole('heading', { name: alertTitle })});
     }
 
-    async expectAlertIsVisible() {
+    async expectVisible() {
         await expect(this.alert).toBeVisible();
     }
 

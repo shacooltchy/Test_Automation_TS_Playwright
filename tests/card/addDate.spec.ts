@@ -52,7 +52,7 @@ test.describe('Add date to a card', {tag: '@card'}, () => {
         });
 
         await test.step('Verify Add to card dialog is visible', async() => {
-            await boardDetailsPage.cardEditor.addToCardDialog.expectDialogIsVisible();
+            await boardDetailsPage.cardEditor.addToCardDialog.expectVisible();
         });
 
         await test.step('Click the Dates button in the Add to card dialog', async() => {
@@ -60,7 +60,7 @@ test.describe('Add date to a card', {tag: '@card'}, () => {
         });
 
         await test.step('Verify Dates dialog is visible', async() => {
-            await boardDetailsPage.cardEditor.datesDialog.expectDialogIsVisible();
+            await boardDetailsPage.cardEditor.datesDialog.expectVisible();
         });
 
         await test.step('Select date in calendar', async() => {

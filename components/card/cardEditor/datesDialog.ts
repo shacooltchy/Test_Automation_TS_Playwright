@@ -23,11 +23,11 @@ export class DatesDialog {
         this.dueDateReminderDropdown = new Dropdown(page, this.dialog.getByTestId('due-date-reminder-select'));
     }
 
-    async expectDialogIsVisible(): Promise<void> {
+    async expectVisible(): Promise<void> {
         await expect(this.dialog).toBeVisible();
     }
 
-    async expectDialogIsNotVisible(): Promise<void> {
+    async expectNotVisible(): Promise<void> {
         await expect(this.dialog).not.toBeVisible();
     }
 
