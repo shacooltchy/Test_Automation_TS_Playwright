@@ -4,15 +4,12 @@ import { deleteTestBoard } from "../../helpers/testDataHelpers/deleteTestBoard";
 import { randomName } from "../../utils/stringUtils";
 
 test.describe('Create board tests', {tag: '@boards'}, () => {
+    test.use({ storageState: 'playwright/.auth/user.json'});
     let boardName: string;
 
-    test.beforeEach(async ({homePage, loginPage, boardsPage }) => {
-        await homePage.navigate();
-        await homePage.expectPageVisible();
-        await homePage.headerMenu.clickLogIn();
-        await loginPage.logIn();
-        await boardsPage.expectPageVisible();
-        await boardsPage.newFeaturesBanner.closeIfVisible();
+    test.beforeEach(async ({ boardsPage }) => {
+        // Navigate to boards via UI
+        await boardsPage.navigate();
     });
 
     test.afterEach(async () => {
