@@ -7,11 +7,12 @@ import { randomName } from "../../utils/stringUtils";
 import { QuickCardEditorOption } from "../../enums/quickCardEditorOption";
 
 test.describe('Change card position on list tests', {tag: '@card'}, () => {
+    test.use({ storageState: 'playwright/.auth/user.json'});
     let boardName: string;
     let listName: string;
     let cardTitle: string;
             
-    test.beforeEach(async({ homePage, loginPage, boardsPage, boardDetailsPage }) => {
+    test.beforeEach(async({ page, boardDetailsPage }) => {
         // Create a board and, a list and a card via API
         boardName = randomName('Board');
         listName = randomName('List');
@@ -22,14 +23,8 @@ test.describe('Change card position on list tests', {tag: '@card'}, () => {
         await createCard(cardTitle, list.id);
         await createCard(randomName('Card'), list.id); // Create a second card to be able to change position of the first card
 
-        // Log in via UI
-        await homePage.navigate();
-        await homePage.expectPageVisible();
-        await homePage.headerMenu.clickLogIn();
-        await loginPage.logIn();
-        await boardsPage.expectPageVisible();
-        await boardsPage.newFeaturesBanner.closeIfVisible();
-        await boardsPage.navigateToBoardFromWorkspacesSection(boardName);
+        // Navigate to board via UI
+        await page.goto(board.url);
         await boardDetailsPage.expectPageVisible(boardName);
         await boardDetailsPage.adBanner.minimizeIfVisible();
     });

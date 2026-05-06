@@ -7,6 +7,7 @@ import { randomName } from "../../utils/stringUtils";
 import { QuickCardEditorOption } from "../../enums/quickCardEditorOption";
 
 test.describe('Move card to another board', {tag: '@card'}, () => {
+    test.use({ storageState: 'playwright/.auth/user.json'});
     let boardName: string;
     let listName: string;
     let cardTitle: string;
@@ -14,7 +15,7 @@ test.describe('Move card to another board', {tag: '@card'}, () => {
     let listName2: string;
     let cardTitle2: string;
             
-    test.beforeEach(async({ homePage, loginPage, boardsPage, boardDetailsPage }) => {
+    test.beforeEach(async({ page, boardDetailsPage }) => {
         // Create boards, lists and cards via API
         boardName = randomName('Board');
         listName = randomName('List');
@@ -30,14 +31,8 @@ test.describe('Move card to another board', {tag: '@card'}, () => {
         const list2 = await createList(listName2, board2.id);
         await createCard(cardTitle2, list2.id); // Create a card in the second list to be able to move the first card before it and verify the position
 
-        // Log in via UI and navigate to the first board
-        await homePage.navigate();
-        await homePage.expectPageVisible();
-        await homePage.headerMenu.clickLogIn();
-        await loginPage.logIn();
-        await boardsPage.expectPageVisible();
-        await boardsPage.newFeaturesBanner.closeIfVisible();
-        await boardsPage.navigateToBoardFromWorkspacesSection(boardName);
+        // Navigate to board via UI
+        await page.goto(board.url);
         await boardDetailsPage.expectPageVisible(boardName);
         await boardDetailsPage.adBanner.minimizeIfVisible();
     });
