@@ -7,13 +7,14 @@ import { createCard } from "../../helpers/api/cards/createCard";
 import { createChecklist } from "../../helpers/api/checklists/createChecklist";
 
 
-test.describe('Delete checklist tests', () => {
+test.describe('Delete checklist tests', {tag: '@checklist'}, () => {
+    test.use({ storageState: 'playwright/.auth/user.json'});
     let boardName: string;
     let listName: string;
     let cardTitle: string;
     let checklistTitle: string;
             
-    test.beforeEach(async({ homePage, loginPage, boardsPage, boardDetailsPage }) => {
+    test.beforeEach(async({ page, boardDetailsPage }) => {
         // Create a board and, a list and a card via API
         boardName = randomName('Board');
         listName = randomName('List');
@@ -26,14 +27,8 @@ test.describe('Delete checklist tests', () => {
         const card = await createCard(cardTitle, list.id);
         await createChecklist(checklistTitle, card.id);
 
-        // Log in via UI and navigate to a board
-        await homePage.navigate();
-        await homePage.expectPageVisible();
-        await homePage.headerMenu.clickLogIn();
-        await loginPage.logIn();
-        await boardsPage.expectPageVisible();
-        await boardsPage.newFeaturesBanner.closeIfVisible();
-        await boardsPage.navigateToBoardFromWorkspacesSection(boardName);
+        // Navigate to board via UI
+        await page.goto(board.url);
         await boardDetailsPage.expectPageVisible(boardName);
         await boardDetailsPage.adBanner.minimizeIfVisible();
     });

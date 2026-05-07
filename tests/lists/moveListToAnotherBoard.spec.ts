@@ -5,12 +5,13 @@ import { createList } from "../../helpers/api/lists/createList";
 import { deleteTestBoard } from "../../helpers/testDataHelpers/deleteTestBoard";
 import { randomName } from "../../utils/stringUtils";
 
-test.describe('Move list to another board tests', () => {
+test.describe('Move list to another board tests', {tag: '@list'}, () => {
+    test.use({ storageState: 'playwright/.auth/user.json'});
     let boardName: string;
     let boardName2: string;
     let listName: string;
 
-    test.beforeEach(async({ homePage, loginPage, boardsPage, boardDetailsPage }) => {
+    test.beforeEach(async({ page, boardDetailsPage }) => {
         // Create 2 boards and a list via API
         boardName = randomName('Board');
         boardName2 = randomName('Board_2');
@@ -19,14 +20,8 @@ test.describe('Move list to another board tests', () => {
         await createBoard(boardName2);
         await createList(listName, board.id);
                             
-        // Log in via UI
-        await homePage.navigate();
-        await homePage.expectPageVisible();
-        await homePage.headerMenu.clickLogIn();
-        await loginPage.logIn();
-        await boardsPage.expectPageVisible();
-        await boardsPage.newFeaturesBanner.closeIfVisible();
-        await boardsPage.navigateToBoardFromWorkspacesSection(boardName);
+        // Navigate to board via UI
+        await page.goto(board.url);
         await boardDetailsPage.expectPageVisible(boardName);
         await boardDetailsPage.adBanner.minimizeIfVisible();
     });
