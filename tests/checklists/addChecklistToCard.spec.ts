@@ -6,12 +6,13 @@ import { createCard } from "../../helpers/api/cards/createCard";
 import { randomName } from "../../utils/stringUtils";
 import { AddToCardAction } from "../../components/card/cardEditor/addToCardDialog";
 
-test.describe('Add checklist to a card', {tag: '@card'}, () => {
+test.describe('Add checklist to a card', {tag: '@checklist'}, () => {
+    test.use({ storageState: 'playwright/.auth/user.json'});
     let boardName: string;
     let listName: string;
     let cardTitle: string;
             
-    test.beforeEach(async({ homePage, loginPage, boardsPage, boardDetailsPage }) => {
+    test.beforeEach(async({ page, boardDetailsPage }) => {
         // Create a board and, a list and a card via API
         boardName = randomName('Board');
         listName = randomName('List');
@@ -21,14 +22,8 @@ test.describe('Add checklist to a card', {tag: '@card'}, () => {
         const list = await createList(listName, board.id);
         await createCard(cardTitle, list.id);
 
-        // Log in via UI and navigate to a board
-        await homePage.navigate();
-        await homePage.expectPageVisible();
-        await homePage.headerMenu.clickLogIn();
-        await loginPage.logIn();
-        await boardsPage.expectPageVisible();
-        await boardsPage.newFeaturesBanner.closeIfVisible();
-        await boardsPage.navigateToBoardFromWorkspacesSection(boardName);
+        // Navigate to board via UI
+        await page.goto(board.url);
         await boardDetailsPage.expectPageVisible(boardName);
         await boardDetailsPage.adBanner.minimizeIfVisible();
     });

@@ -4,22 +4,17 @@ import { createBoard } from "../../helpers/api/boards/createBoard";
 import { deleteTestBoard } from "../../helpers/testDataHelpers/deleteTestBoard";
 import { randomName } from "../../utils/stringUtils";
 
-test.describe('Add a list test', () => {
+test.describe('Add a list test', {tag: '@list'}, () => {
+    test.use({ storageState: 'playwright/.auth/user.json'});
     let boardName: string;
     
-    test.beforeEach(async({ homePage, loginPage, boardsPage, boardDetailsPage }) => {
+    test.beforeEach(async({ page, boardDetailsPage }) => {
         // Create a board via API
         boardName = randomName('Board');
-        await createBoard(boardName);
+        const board = await createBoard(boardName);
         
-        // Log in via UI
-        await homePage.navigate();
-        await homePage.expectPageVisible();
-        await homePage.headerMenu.clickLogIn();
-        await loginPage.logIn();
-        await boardsPage.expectPageVisible();
-        await boardsPage.newFeaturesBanner.closeIfVisible();
-        await boardsPage.navigateToBoardFromWorkspacesSection(boardName);
+        // Navigate to board via UI
+        await page.goto(board.url);
         await boardDetailsPage.expectPageVisible(boardName);
         await boardDetailsPage.adBanner.minimizeIfVisible();
     });
