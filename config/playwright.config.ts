@@ -36,7 +36,7 @@ export default defineConfig({
     baseURL: ENV.baseUrl,
 
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
-    trace: 'on-first-retry',
+    trace: 'on-all-retries',
   },
 
   /* Changes default timeout for expect assertions from 5000 to 15_000ms */

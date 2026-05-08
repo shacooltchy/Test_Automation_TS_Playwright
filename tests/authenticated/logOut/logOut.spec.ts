@@ -1,0 +1,37 @@
+import { expect } from "@playwright/test";
+import { test } from "../../../fixtures/pages";
+import { ENV } from "../../../config/env";
+
+test.describe('Log out tests', {tag: '@log_out'}, () => {
+    test.use({ storageState: 'playwright/.auth/user.json'});
+
+    test.beforeEach(async({ boardsPage }) => {
+        await boardsPage.navigate();
+        await boardsPage.expectPageVisible();
+        await boardsPage.newFeaturesBanner.closeIfVisible();
+    });
+
+    test('Log out of Trello', async ({ page, boardsPage, logOutConfirmationPage }) => {
+        await test.step('Click the member button in the header', async () => {
+            await boardsPage.authenticatedHeader.clickMemberButton();
+            await boardsPage.authenticatedHeader.accountMenu.expectVisible();
+        });
+
+        await test.step('Click the Log out button in the account menu', async () => {
+            await boardsPage.authenticatedHeader.accountMenu.clickLogOut();
+        });
+
+        await test.step('Verify the log out page is visible', async () => {
+            await logOutConfirmationPage.expectPageVisible();
+        });
+
+        await test.step('Click the Log out button in the log out confirmation page', async () => {
+            await logOutConfirmationPage.clickLogOutButton();
+        });
+
+        await test.step('Verify the user is logged out and redirected to home page', async () => {
+            await expect(page).toHaveURL(ENV.baseUrl);
+            await expect(page.getByText('FeaturesSolutionsPlansPricingResourcesLog in').getByRole('link', { name: 'Log in' })).toBeVisible();
+        });
+    });
+});
