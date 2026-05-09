@@ -4,14 +4,13 @@ import { BasePage } from "./basePage";
 import { FeaturesHeaderMenu } from "../components/headerMenu/featuresHeaderMenu";
 import { SolutionsHeaderMenu } from "../components/headerMenu/solutionsHeaderMenu";
 
-//na page'ach metody biznesowe, komponenty i lokatory specyficzne dla strony
 export class HomePage extends BasePage{
     readonly header: Header;
     readonly featuresHeaderMenu: FeaturesHeaderMenu;
     readonly solutionsHeaderMenu: SolutionsHeaderMenu;
 
     constructor(page: Page) {
-        super(page); // <-- kluczowe przy rozszerzaniu BasePage!
+        super(page);
         this.header = new Header(page);
         this.featuresHeaderMenu = new FeaturesHeaderMenu(page);
         this.solutionsHeaderMenu = new SolutionsHeaderMenu(page);
