@@ -25,23 +25,23 @@ test.describe('Create board tests', {tag: '@boards'}, () => {
         });
 
         await test.step('Verify the Create board modal is visible', async () => {
-            await boardsPage.expectCreateBoardModalVisible();
+            await boardsPage.createBoardDialog.expectVisible();
         });
 
         await test.step('Select board background', async () => {
-            await boardsPage.selectBoardBackground();
+            await boardsPage.createBoardDialog.selectBackground();
         });
 
         await test.step('Enter board title', async () => {
-            await boardsPage.enterBoardTitle(boardName);
+            await boardsPage.createBoardDialog.enterTitle(boardName);
         });
 
         await test.step('Select board visibility', async () => {
-            await boardsPage.visibilityDropdown.selectOption(BoardVisibility.Workspace);
+            await boardsPage.createBoardDialog.visibilityDropdown.selectOption(BoardVisibility.Workspace);
         });
 
         await test.step('Click the Create board submit button', async () => {
-            await boardsPage.clickCreateBoardSubmitButton();
+            await boardsPage.createBoardDialog.clickCreateButton();
         });
 
         await test.step('Verify the new board details page is visible', async () => {

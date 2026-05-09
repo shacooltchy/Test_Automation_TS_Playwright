@@ -1,15 +1,15 @@
 import { expect, Page } from "@playwright/test";
 import { BasePage } from "./basePage";
 import { ClosedBoardsDialog } from "../components/board/closedBoardsDialog";
-import { Dropdown } from "../components/dropdown";
+import { CreateBoardDialog } from "../components/board/createBoardDialog";
 
 export class BoardsPage extends BasePage {
-    readonly visibilityDropdown: Dropdown;
+    readonly createBoardDialog: CreateBoardDialog;
     readonly closedBoardsDialog: ClosedBoardsDialog;
 
     constructor(page: Page) {
         super(page);
-        this.visibilityDropdown = new Dropdown(page, this.page.getByTestId('create-board-select-visibility'));
+        this.createBoardDialog = new CreateBoardDialog(page);
         this.closedBoardsDialog = new ClosedBoardsDialog(page);
     }
 
@@ -23,31 +23,6 @@ export class BoardsPage extends BasePage {
 
     async clickCreateNewBoardTile(): Promise<void> {
         await this.page.getByTestId('create-board-tile').click();
-    }
-
-    async expectCreateBoardModalVisible(): Promise<void> {
-        await expect(this.page.getByRole('dialog').getByRole('heading', { name: 'Create board' })).toBeVisible();
-    }
-
-    async selectBoardBackground(backgroundName: string = 'A lone figure stands on rolling sand dunes at sunset.'): Promise<void> {
-        await this.page.getByRole('radio', { name: backgroundName }).click();
-    }
-
-    async enterBoardTitle(title: string): Promise<void> {
-        await this.page.getByTestId('create-board-title-input').fill(title);
-    }
-
-    /*async selectBoardVisibility(visibility: 'Private Only board members' | 'Workspace All members' | 'Public Anyone' = 'Workspace All members'): Promise<void> {
-        await this.page.getByTestId('create-board-select-visibility').click();
-        await this.page.getByRole('option', { name: visibility }).click();
-    }
-
-    async selectBoardVisibilityUsingHelper(visibility: 'Private Only board members' | 'Workspace All members' | 'Public Anyone' = 'Workspace All members'): Promise<void> {
-        await selectFromDropdown(this.page.getByTestId('create-board-select-visibility'), visibility);
-    }*/
-
-    async clickCreateBoardSubmitButton(): Promise<void> {
-        await this.page.getByTestId('create-board-submit-button').click();
     }
 
     async expectBoardVisibleInTheWorkspacesSection(boardName: string): Promise<void> {
