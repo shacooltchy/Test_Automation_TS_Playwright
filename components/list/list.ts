@@ -3,6 +3,8 @@ import { ListActionsMenu } from "./listActionsMenu";
 import { Card } from "../card/card";
 import { ConfirmationDialog } from "../confirmationDialog";
 import { MoveListActionDialog } from "./moveListActionDialog";
+import { CardTemplatesDialog } from "../card/cardTemplatesDialog";
+import { CardTemplate } from "../card/cardTemplate";
 
 export class List {
     private readonly page: Page;
@@ -11,6 +13,8 @@ export class List {
     readonly copyListConfirmationDialog: ConfirmationDialog;
     readonly moveListActionDialog: MoveListActionDialog;
     readonly card: Card;
+    readonly cardTemplatesDialog: CardTemplatesDialog;
+    readonly cardTemplate: CardTemplate;
 
     constructor(page: Page) {
         this.page = page;
@@ -19,6 +23,8 @@ export class List {
         this.copyListConfirmationDialog = new ConfirmationDialog(page, 'Copy list', 'Create list', true);
         this.moveListActionDialog = new MoveListActionDialog(page);
         this.card = new Card(page);
+        this.cardTemplatesDialog = new CardTemplatesDialog(page);
+        this.cardTemplate = new CardTemplate(page);
     }
 
     async expectVisible(listName: string): Promise<void> {
@@ -35,6 +41,10 @@ export class List {
 
     async clickAddACardButton(listName: string): Promise<void> {
         await this.list.filter({hasText: listName}).getByTestId('list-add-card-button').click();
+    }
+
+    async clickCreateCardFromTemplateButton(listName: string): Promise<void> {
+        await this.list.filter({hasText: listName}).getByTestId('card-template-list-button').click();
     }
 
     async enterATitle(title: string): Promise<void> {
