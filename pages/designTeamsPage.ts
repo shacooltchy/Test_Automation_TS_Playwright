@@ -11,6 +11,6 @@ export class DesignTeamsPage extends BasePage {
     }
 
     async expectPageVisible(): Promise<void> {
-        await super.expectPageVisible(/teams\/design/, 'Trello for Design Teams | Trello');
+        await super.expectPageVisible(/teams\/design/, 'Trello for Design Teams');
     }
 }

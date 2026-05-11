@@ -11,6 +11,6 @@ export class ProductManagementPage extends BasePage{
     }
 
     async expectPageVisible(): Promise<void> {
-        await super.expectPageVisible(/teams\/product/, 'Trello For Product Management Teams | Trello');
+        await super.expectPageVisible(/teams\/product/, 'Trello For Product Management Teams');
     }
 }

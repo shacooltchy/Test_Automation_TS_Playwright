@@ -11,6 +11,6 @@ export class MarketingTeamsPage extends BasePage{
     }
 
     async expectPageVisible(): Promise<void> {
-        await super.expectPageVisible(/marketing/, 'Trello for Marketing Teams | Trello');
+        await super.expectPageVisible(/marketing/, 'Trello for Marketing Teams');
     }
 }
