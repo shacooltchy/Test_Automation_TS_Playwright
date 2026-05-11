@@ -1,4 +1,4 @@
-import dotenv from 'dotenv'; // add it to get variables from .env file
+import dotenv from 'dotenv';
 dotenv.config();
 
 function requireEnv(name: string): string {
