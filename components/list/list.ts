@@ -5,6 +5,7 @@ import { ConfirmationDialog } from "../confirmationDialog";
 import { MoveListActionDialog } from "./moveListActionDialog";
 import { CardTemplatesDialog } from "../card/cardTemplatesDialog";
 import { CardTemplate } from "../card/cardTemplate";
+import { CreateCardDialog } from "../card/createCardDialog";
 
 export class List {
     private readonly page: Page;
@@ -15,6 +16,7 @@ export class List {
     readonly card: Card;
     readonly cardTemplatesDialog: CardTemplatesDialog;
     readonly cardTemplate: CardTemplate;
+    readonly createCardDialog: CreateCardDialog;
 
     constructor(page: Page) {
         this.page = page;
@@ -25,6 +27,7 @@ export class List {
         this.card = new Card(page);
         this.cardTemplatesDialog = new CardTemplatesDialog(page);
         this.cardTemplate = new CardTemplate(page);
+        this.createCardDialog = new CreateCardDialog(page);
     }
 
     async expectVisible(listName: string): Promise<void> {

@@ -50,4 +50,8 @@ export class CardTemplatesDialog {
     async clickCreateANewTemplateButtonFromCardComposer(): Promise<void> {
         await this.dialog.getByTestId('create-template-button-from-card-composer').click();
     }
+
+    async clickCardTemplate(title: string) {
+        await this.dialog.getByRole('button', {name: title}).click();
+    }
 }
