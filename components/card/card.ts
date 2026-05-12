@@ -18,7 +18,7 @@ export class Card {
 
     async expectCardVisible(cardTitle: string, listName: string): Promise<void> {
         const list = this.page.getByTestId('list').filter({has: this.page.getByRole('heading', {name: listName, exact: true})});
-        await expect(list.getByTestId('list-card').filter({hasText: cardTitle})).toBeVisible();
+        await expect(list.getByTestId('list-card').filter({hasText: cardTitle, hasNot: this.page.getByTestId('badge-card-template')})).toBeVisible();
     }
 
     async expectCardNotVisible(cardTitle: string, listName: string): Promise<void> {
