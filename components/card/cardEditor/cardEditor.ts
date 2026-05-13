@@ -49,6 +49,11 @@ export class CardEditor {
         await this.editor.getByRole('button').filter({has: this.page.getByTestId('CloseIcon')}).click();
     }
 
+    async close() {
+        await this.clickCloseButton();
+        await this.expectNotVisible();
+    }
+
     async clickAction(action: CardEditorAction) {
         await this.page.getByRole('button', {name: action}).click();
     }
