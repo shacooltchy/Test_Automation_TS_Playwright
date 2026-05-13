@@ -16,13 +16,18 @@ export class Card {
         await this.card.filter({hasText: cardTitle}).click();
     }
 
-    async expectCardVisible(cardTitle: string, listName: string): Promise<void> {
+    private getList(listName: string): Locator {
         const list = this.page.getByTestId('list').filter({has: this.page.getByRole('heading', {name: listName, exact: true})});
+        return list;
+    }
+
+    async expectCardVisible(cardTitle: string, listName: string): Promise<void> {
+        const list = this.getList(listName);
         await expect(list.getByTestId('list-card').filter({hasText: cardTitle, hasNot: this.page.getByTestId('badge-card-template')})).toBeVisible();
     }
 
     async expectCardNotVisible(cardTitle: string, listName: string): Promise<void> {
-        const list = this.page.getByTestId('list').filter({has: this.page.getByRole('heading', {name: listName, exact: true})});
+        const list = this.getList(listName);
         await expect(list.getByTestId('list-card').filter({hasText: cardTitle})).not.toBeVisible();
     }
 
@@ -32,12 +37,32 @@ export class Card {
     }
 
     async expectCardHasDueDate(cardTitle: string, listName: string) {
-        const list = this.page.getByTestId('list').filter({has: this.page.getByRole('heading', {name: listName, exact: true})});
+        const list = this.getList(listName);
         await expect(list.getByTestId('list-card').filter({hasText: cardTitle}).getByTestId('badge-due-date-not-completed')).toBeVisible();
     }
 
     async expectCardHasDescription(cardTitle: string, listName: string) {
-        const list = this.page.getByTestId('list').filter({has: this.page.getByRole('heading', {name: listName, exact: true})});
+        const list = this.getList(listName);
         await expect(list.getByTestId('list-card').filter({hasText: cardTitle}).getByTestId('DescriptionIcon')).toBeVisible();
+    }
+
+    async expectCardHasChecklist(cardTitle: string, listName: string) {
+        const list = this.getList(listName);
+        await expect(list.getByTestId('list-card').filter({hasText: cardTitle}).getByTestId('checklist-badge')).toBeVisible();
+    }
+
+    async clickChecklistBadge(cardTitle: string, listName: string) {
+        const list = this.getList(listName);
+        await list.getByTestId('list-card').filter({hasText: cardTitle}).getByTestId('checklist-badge').click();
+    }
+
+    async expectChecklistSectionVisible(cardTitle: string, listName: string) {
+        const list = this.getList(listName);
+        await expect(list.getByTestId('list-card').filter({hasText: cardTitle}).getByRole('region', { name: 'Checklists' })).toBeVisible();
+    }
+
+    async expectChecklistItemVisible(cardTitle: string, listName: string, itemTitle: string) {
+        const list = this.getList(listName);
+        await expect(list.getByTestId('list-card').filter({hasText: cardTitle}).getByRole('region', { name: 'Checklists' }).getByRole('listitem').filter({hasText: itemTitle})).toBeVisible();
     }
 }
