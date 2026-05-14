@@ -4,11 +4,13 @@ import { ConfirmationDialog } from "../../confirmationDialog";
 export class ArchivedItems {
     private readonly page: Page;
     private readonly archivedItemsPopover: Locator;
+    readonly closeButton: Locator;
     readonly deleteItemConfirmationDialog: ConfirmationDialog;
 
     constructor(page: Page) {
         this.page = page;
         this.archivedItemsPopover = page.getByTestId('board-menu-popover').filter({has: page.getByRole('heading', {name: 'Archived items', exact: true})});
+        this.closeButton = this.archivedItemsPopover.getByRole('button', { name: 'Close popover' });
         this.deleteItemConfirmationDialog = new ConfirmationDialog(page, 'Delete list?', 'Delete');
     }
 
@@ -47,9 +49,5 @@ export class ArchivedItems {
 
     async openCardEditor(cardTitle: string) {
         await this.archivedItemsPopover.getByTestId('trello-card').filter({has: this.page.getByText(cardTitle, {exact: true})}).click();
-    }
-
-    async close(): Promise<void> {
-        await this.archivedItemsPopover.getByRole('button', { name: 'Close popover' }).click();
     }
 }

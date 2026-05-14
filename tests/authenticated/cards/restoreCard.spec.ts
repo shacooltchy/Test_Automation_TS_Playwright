@@ -66,8 +66,8 @@ test.describe('Unarchive a card tests', {tag: '@card'}, () => {
             await boardDetailsPage.boardMenu.archivedItems.expectItemIsNotArchived(cardTitle);
         });
 
-        await test.step('Close archived items list', async() => {
-            await boardDetailsPage.boardMenu.archivedItems.close();
+        await test.step('Click close button on archived items list', async() => {
+            await boardDetailsPage.boardMenu.archivedItems.closeButton.click();
         });
 
         await test.step('Verify Archived items list is not visible', async() => {
