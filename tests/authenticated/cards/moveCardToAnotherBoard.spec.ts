@@ -49,7 +49,7 @@ test.describe('Move card to another board', {tag: '@card'}, () => {
         });
 
         await test.step('Verify quick card editor is visible', async() => {
-            await boardDetailsPage.list.card.quickCardEditor.expectQuickCardEditorVisible();
+            await boardDetailsPage.list.card.quickCardEditor.expectVisible();
         });
 
         await test.step('Click Move button in the quick card editor', async() => {
@@ -81,7 +81,7 @@ test.describe('Move card to another board', {tag: '@card'}, () => {
         });
 
         await test.step('Verify quick card editor is not visible', async() => {
-            await boardDetailsPage.list.card.quickCardEditor.expectQuickCardEditorNotVisible();
+            await boardDetailsPage.list.card.quickCardEditor.expectNotVisible();
         });
 
         await test.step('Verify card is not visible in the old list', async() => {

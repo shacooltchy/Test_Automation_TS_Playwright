@@ -71,8 +71,8 @@ test.describe('Delete a list tests', {tag: '@list'}, () => {
             await boardDetailsPage.boardMenu.archivedItems.expectItemIsNotArchived(listName);
         });
     
-        await test.step('Close archived items list', async() => {
-            await boardDetailsPage.boardMenu.archivedItems.close();
+        await test.step('Click close button on archived items list', async() => {
+            await boardDetailsPage.boardMenu.archivedItems.closeButton.click();
         });
     
         await test.step('Verify Archived items list is not visible', async() => {

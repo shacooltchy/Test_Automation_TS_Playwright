@@ -49,7 +49,7 @@ test.describe('Reopen board tests', {tag: '@boards'}, () => {
         });
 
         await test.step('Close the closed boards dialog', async () => {
-            await boardsPage.closedBoardsDialog.closeClosedBoardsDialog();
+            await boardsPage.closedBoardsDialog.close();
         });
 
         await test.step('Verify the reopened board is visible in the workspaces section', async () => {

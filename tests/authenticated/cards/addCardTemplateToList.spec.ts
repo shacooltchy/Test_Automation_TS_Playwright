@@ -1,3 +1,4 @@
+import { expect } from "@playwright/test";
 import { test } from "../../../fixtures/pages";
 import { createBoard } from "../../../helpers/api/boards/createBoard";
 import { createList } from "../../../helpers/api/lists/createList";
@@ -44,31 +45,31 @@ test.describe('Add a card template to a list tests', {tag: '@card'}, () => {
         });
 
         await test.step('Click Create a new template button', async() => {
-            await boardDetailsPage.list.cardTemplatesDialog.clickCreateANewTemplateButton();
+            await boardDetailsPage.list.cardTemplatesDialog.createANewTemplateButton.click();
         });
 
         await test.step('Verify Template title textbox is visible', async() => {
-            await boardDetailsPage.list.cardTemplatesDialog.expectTemplateTitleTextboxVisible();
+            await expect(boardDetailsPage.list.cardTemplatesDialog.templateTitleTextbox).toBeVisible();
         });
 
         await test.step('Click cancel button', async() => {
-            await boardDetailsPage.list.cardTemplatesDialog.clickCancelAddingNewCardButton();
+            await boardDetailsPage.list.cardTemplatesDialog.cancelAddingNewCardButton.click();
         });
 
         await test.step('Verify Template title textbox is not visible', async() => {
-            await boardDetailsPage.list.cardTemplatesDialog.expectTemplateTitleTextboxNotVisible();
+            await expect(boardDetailsPage.list.cardTemplatesDialog.templateTitleTextbox).not.toBeVisible();
         });
 
         await test.step('Click Create a new template button', async() => {
-            await boardDetailsPage.list.cardTemplatesDialog.clickCreateANewTemplateButton();
+            await boardDetailsPage.list.cardTemplatesDialog.createANewTemplateButton.click();
         });
 
         await test.step('Enter a card template title', async() => {
-            await boardDetailsPage.list.cardTemplatesDialog.enterTitle(cardTemplateTitle);
+            await boardDetailsPage.list.cardTemplatesDialog.templateTitleTextbox.fill(cardTemplateTitle);
         });
 
         await test.step('Click Add button', async() => {
-            await boardDetailsPage.list.cardTemplatesDialog.clickAddButton();
+            await boardDetailsPage.list.cardTemplatesDialog.addButton.click();
         });
 
         await test.step('Verify Card Templates modal is not visible', async() => {
@@ -79,8 +80,8 @@ test.describe('Add a card template to a list tests', {tag: '@card'}, () => {
             await boardDetailsPage.cardTemplateEditor.expectVisible();
         });
 
-        await test.step('Close card template editor', async() => {
-            await boardDetailsPage.cardTemplateEditor.clickCloseButton();
+        await test.step('Click close card template editor', async() => {
+            await boardDetailsPage.cardTemplateEditor.closeButton.click();
         });
 
         await test.step('Verify card template editor is not displayed', async() => {
@@ -100,16 +101,16 @@ test.describe('Add a card template to a list tests', {tag: '@card'}, () => {
             await boardDetailsPage.list.cardTemplatesDialog.expectCardTemplate(cardTemplateTitle);
         });
 
-        await test.step('Click Create a new template button', async() => {
-            await boardDetailsPage.list.cardTemplatesDialog.clickCreateANewTemplateButtonFromCardComposer();
+        await test.step('Click Create a new template button in the Card templates dialog which has already existing templates', async() => {
+            await boardDetailsPage.list.cardTemplatesDialog.cardComposerCreateANewTemplateButton.click();
         });
 
         await test.step('Enter a card template title', async() => {
-            await boardDetailsPage.list.cardTemplatesDialog.enterTitle(cardTemplateTitle2);
+            await boardDetailsPage.list.cardTemplatesDialog.templateTitleTextbox.fill(cardTemplateTitle2);
         });
 
         await test.step('Click Add button', async() => {
-            await boardDetailsPage.list.cardTemplatesDialog.clickAddButton();
+            await boardDetailsPage.list.cardTemplatesDialog.addButton.click();
         });
 
         await test.step('Verify Card Templates modal is not visible', async() => {
@@ -121,11 +122,7 @@ test.describe('Add a card template to a list tests', {tag: '@card'}, () => {
         });
 
         await test.step('Close card template editor', async() => {
-            await boardDetailsPage.cardTemplateEditor.clickCloseButton();
-        });
-
-        await test.step('Verify card template editor is not displayed', async() => {
-            await boardDetailsPage.cardTemplateEditor.expectNotVisible();
+            await boardDetailsPage.cardTemplateEditor.close();
         });
 
         await test.step('Verify card template is added to list', async() => {

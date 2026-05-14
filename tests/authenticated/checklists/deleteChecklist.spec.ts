@@ -64,8 +64,7 @@ test.describe('Delete checklist tests', {tag: '@checklist'}, () => {
         });
 
         await test.step('Reopen card editor and verify checklist is deleted', async() => {
-            await boardDetailsPage.cardEditor.clickCloseButton();
-            await boardDetailsPage.cardEditor.expectNotVisible();
+            await boardDetailsPage.cardEditor.close();
             await boardDetailsPage.list.card.clickCard(cardTitle);
             await boardDetailsPage.cardEditor.expectVisible();
             await boardDetailsPage.cardEditor.checklist.expectNotVisible(checklistTitle);

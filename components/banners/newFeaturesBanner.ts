@@ -9,7 +9,7 @@ export class newFeaturesBanner {
 
     async closeIfVisible(): Promise<void> {
         try {
-            await this.newFeaturesBanner.getByRole('button', { name: 'Dismiss' }).click();
+            await this.newFeaturesBanner.getByRole('button', { name: 'Dismiss' }).click({timeout: 10_000});
         } catch {
 
         }

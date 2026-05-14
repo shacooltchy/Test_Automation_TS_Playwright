@@ -31,7 +31,7 @@ export class ClosedBoardsDialog {
         await this.dialog.getByRole('listitem').getByRole('link', {name: boardName}).click();
     }
 
-    async closeClosedBoardsDialog(): Promise<void> {
+    async close(): Promise<void> {
         await this.dialog.getByTestId('CloseIcon').click();
         await expect(this.dialog).not.toBeVisible();
     }

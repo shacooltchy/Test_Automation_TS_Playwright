@@ -42,7 +42,7 @@ test.describe('Add card description', {tag: '@card'}, () => {
         });
 
         await test.step('Click description button in the card editor', async() => {
-            await boardDetailsPage.cardEditor.clickDescriptionButton();
+            await boardDetailsPage.cardEditor.descriptionButton.click();
         });
 
         await test.step('Verify description text editor is visible', async() => {
@@ -54,7 +54,7 @@ test.describe('Add card description', {tag: '@card'}, () => {
         });
 
         await test.step('Click save button', async() => {
-            await boardDetailsPage.cardEditor.descriptionTextEditor.clickSaveButton();
+            await boardDetailsPage.cardEditor.descriptionTextEditor.saveButton.click();
         });
 
         await test.step('Verify description text editor is not visible', async() => {
@@ -66,8 +66,7 @@ test.describe('Add card description', {tag: '@card'}, () => {
         });
 
         await test.step('Close card editor', async() => {
-            await boardDetailsPage.cardEditor.clickCloseButton();
-            await boardDetailsPage.cardEditor.expectNotVisible();
+            await boardDetailsPage.cardEditor.close();
         });
 
         await test.step('Verify card is marked that it has description', async() => {

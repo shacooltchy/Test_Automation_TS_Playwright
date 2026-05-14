@@ -6,7 +6,7 @@ const authFile = path.join(__dirname, '../playwright/.auth/user.json');
 setup('authenticate', async({ page, homePage, loginPage, boardsPage }) => {
     await homePage.navigate();
     await homePage.expectPageVisible();
-    await homePage.headerMenu.clickLogIn();
+    await homePage.headerMenu.loginButton.click();
     await loginPage.logIn();
     await boardsPage.expectPageVisible();
     await boardsPage.newFeaturesBanner.closeIfVisible();

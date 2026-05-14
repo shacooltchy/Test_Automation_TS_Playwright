@@ -7,7 +7,7 @@ test.describe('Log in tests', () => {
 
     test('Log in to Trello', {tag: '@log_in'}, async ({ homePage, loginPage, boardsPage }) => {
         await test.step('Click the Log in button in the header menu', async() => {
-            await homePage.headerMenu.clickLogIn();
+            await homePage.headerMenu.loginButton.click();
         });
 
         await test.step('Enter user email', async() => {
@@ -33,7 +33,7 @@ test.describe('Log in tests', () => {
 
     test('User should be redirected to sign up page if entered email is not registered', {tag: '@smoke'}, async ({ homePage, loginPage, signUpPage }) => {
         await test.step('Click the Log in button in the header menu', async() => {
-            await homePage.headerMenu.clickLogIn();
+            await homePage.headerMenu.loginButton.click();
         });
 
         await test.step('Enter not existing user email', async() => {

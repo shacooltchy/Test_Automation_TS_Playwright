@@ -43,7 +43,7 @@ test.describe('Add card label tests', {tag: '@card'}, () => {
         });
 
         await test.step('Click Add button in the card editor', async() => {
-            await boardDetailsPage.cardEditor.clickAddButton();
+            await boardDetailsPage.cardEditor.addButton.click();
         });
 
         await test.step('Verify Add to card dialog is visible', async() => {
@@ -62,8 +62,8 @@ test.describe('Add card label tests', {tag: '@card'}, () => {
             await boardDetailsPage.cardEditor.labelsDialog.clickLabel('yellow');
         });
 
-        await test.step('Close the Labels dialog', async() => {
-            await boardDetailsPage.cardEditor.labelsDialog.closeDialog();
+        await test.step('Click close button in the Labels dialog', async() => {
+            await boardDetailsPage.cardEditor.labelsDialog.closeButton.click();
         });
 
         await test.step('Verify Labels dialog is not visible', async() => {

@@ -34,7 +34,7 @@ test.describe('Add a list test', {tag: '@list'}, () => {
         });
 
         await test.step('Click add list cancel button', async() => {
-            boardDetailsPage.newListForm.clickCancelAddListButton();
+            await boardDetailsPage.newListForm.cancelAddListButton.click();
         });
 
         await test.step('Verify Add list form is not visible', async() => {
@@ -57,11 +57,11 @@ test.describe('Add a list test', {tag: '@list'}, () => {
         });
 
         await test.step('Enter list name', async() => {
-            await boardDetailsPage.newListForm.enterNewListName(listName);
+            await boardDetailsPage.newListForm.listNameTextArea.fill(listName);
         });
 
         await test.step('Click add list button', async() => {
-            await boardDetailsPage.newListForm.clickAddListButton();
+            await boardDetailsPage.newListForm.addListButton.click();
         });
 
         await test.step('Verify new list is visible on the board', async() => {

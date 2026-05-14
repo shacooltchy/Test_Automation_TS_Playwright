@@ -66,8 +66,8 @@ test.describe('Unarchive a card tests', {tag: '@card'}, () => {
             await boardDetailsPage.boardMenu.archivedItems.expectItemIsNotArchived(cardTitle);
         });
 
-        await test.step('Close archived items list', async() => {
-            await boardDetailsPage.boardMenu.archivedItems.close();
+        await test.step('Click close button on archived items list', async() => {
+            await boardDetailsPage.boardMenu.archivedItems.closeButton.click();
         });
 
         await test.step('Verify Archived items list is not visible', async() => {
@@ -110,7 +110,7 @@ test.describe('Unarchive a card tests', {tag: '@card'}, () => {
         });
 
         await test.step('Click the Actions button in the card editor', async() => {
-            await boardDetailsPage.cardEditor.clickActionsButton();
+            await boardDetailsPage.cardEditor.actionsButton.click();
         });
 
         await test.step('Click the Restore option in the card editor', async() => {
@@ -122,11 +122,7 @@ test.describe('Unarchive a card tests', {tag: '@card'}, () => {
         });
 
         await test.step('Close the card editor', async() => {
-            await boardDetailsPage.cardEditor.clickCloseButton();
-        });
-
-        await test.step('Verify card editor is not visible', async() => {
-            await boardDetailsPage.cardEditor.expectNotVisible();
+            await boardDetailsPage.cardEditor.close();
         });
 
         await test.step('Verify card is visible on the board', async() => {

@@ -43,7 +43,7 @@ test.describe('Add checklist to a card', {tag: '@checklist'}, () => {
         });
 
         await test.step('Click Add button in the card editor', async() => {
-            await boardDetailsPage.cardEditor.clickAddButton();
+            await boardDetailsPage.cardEditor.addButton.click();
         });
 
         await test.step('Verify Add to card dialog is visible', async() => {
@@ -58,10 +58,9 @@ test.describe('Add checklist to a card', {tag: '@checklist'}, () => {
             await boardDetailsPage.cardEditor.addChecklistDialog.expectDialogVisible();
         });
 
-        let checklistTitle = randomName('Checklist');
+        const checklistTitle = randomName('Checklist');
         await test.step('Enter checklist title', async() => {
-            
-            await boardDetailsPage.cardEditor.addChecklistDialog.enterTitle(checklistTitle);
+            await boardDetailsPage.cardEditor.addChecklistDialog.titleTextbox.fill(checklistTitle);
         });
 
         await test.step('Click the Add button', async() => {

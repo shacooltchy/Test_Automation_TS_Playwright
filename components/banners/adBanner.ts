@@ -9,7 +9,7 @@ export class adBanner {
 
     async minimizeIfVisible(): Promise<void> {
         try{
-            await this.adBanner.getByRole('button', { name: 'Minimize' }).click();
+            await this.adBanner.getByRole('button', { name: 'Minimize' }).click({timeout: 10_000});
         } catch {
             
         }

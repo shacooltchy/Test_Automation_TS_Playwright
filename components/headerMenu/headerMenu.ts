@@ -1,47 +1,21 @@
 import { Locator, Page } from "@playwright/test";
 
 export class HeaderMenu {
-    private readonly page: Page;
-    private readonly componentRoot: Locator;
-    private readonly featuresButton: Locator;
-    private readonly solutionsButton: Locator;
-    private readonly plansButton: Locator;
-    private readonly pricingButton: Locator;
-    private readonly resourcesButton: Locator;
-    private readonly loginButton: Locator;
+    private readonly headerMenu: Locator;
+    readonly featuresButton: Locator;
+    readonly solutionsButton: Locator;
+    readonly plansButton: Locator;
+    readonly pricingButton: Locator;
+    readonly resourcesButton: Locator;
+    readonly loginButton: Locator;
 
     constructor(page: Page) {
-        this.page = page;
-        this.componentRoot = page.getByText('FeaturesSolutionsPlansPricingResourcesLog in');
-        this.featuresButton = page.getByRole('button', { name: 'Features' });
-        this.solutionsButton = this.componentRoot.getByRole('button', { name: 'Solutions' });
-        this.plansButton = page.getByRole('button', { name: 'Plans' });
-        this.pricingButton = page.getByRole('button', { name: 'Pricing' });
-        this.resourcesButton = page.getByRole('button', { name: 'Resources' });
-        this.loginButton = this.componentRoot.getByRole('link', { name: 'Log in' });
-    }
-
-    async clickFeatures() {
-        await this.featuresButton.click();
-    }
-
-    async clickSolutions() {
-        await this.solutionsButton.click();
-    }
-
-    async clickPlans() {
-        await this.plansButton.click();
-    }
-
-    async clickPricing() {
-        await this.pricingButton.click();
-    }
-
-    async clickResources() {
-        await this.resourcesButton.click();
-    }
-
-    async clickLogIn() {
-        await this.loginButton.click();
+        this.headerMenu = page.getByText('FeaturesSolutionsPlansPricingResourcesLog in');
+        this.featuresButton = this.headerMenu.getByRole('button', { name: 'Features' });
+        this.solutionsButton = this.headerMenu.getByRole('button', { name: 'Solutions' });
+        this.plansButton = this.headerMenu.getByRole('button', { name: 'Plans' });
+        this.pricingButton = this.headerMenu.getByRole('button', { name: 'Pricing' });
+        this.resourcesButton = this.headerMenu.getByRole('button', { name: 'Resources' });
+        this.loginButton = this.headerMenu.getByRole('link', { name: 'Log in' });
     }
 }

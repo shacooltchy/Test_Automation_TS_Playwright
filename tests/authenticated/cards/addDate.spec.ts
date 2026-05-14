@@ -43,7 +43,7 @@ test.describe('Add date to a card', {tag: '@card'}, () => {
         });
 
         await test.step('Click Add button in the card editor', async() => {
-            await boardDetailsPage.cardEditor.clickAddButton();
+            await boardDetailsPage.cardEditor.addButton.click();
         });
 
         await test.step('Verify Add to card dialog is visible', async() => {
@@ -63,7 +63,7 @@ test.describe('Add date to a card', {tag: '@card'}, () => {
         });
 
         await test.step('Click Save button in the Dates dialog', async() => {
-            await boardDetailsPage.cardEditor.datesDialog.clickSaveButton();
+            await boardDetailsPage.cardEditor.datesDialog.saveButton.click();
         });
 
         await test.step('Verify due date is added to the card editor', async() => {
@@ -71,8 +71,7 @@ test.describe('Add date to a card', {tag: '@card'}, () => {
         });
 
         await test.step('Close card editor', async() => {
-            await boardDetailsPage.cardEditor.clickCloseButton();
-            await boardDetailsPage.cardEditor.expectNotVisible();
+            await boardDetailsPage.cardEditor.close();
         });
 
         await test.step('Verify due date is added to the card', async() => {
