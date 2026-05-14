@@ -1,11 +1,14 @@
 import { expect, Locator, Page } from "@playwright/test";
 
 export class DescriptionTextEditor {
-    private readonly page: Page;
     private readonly textToolbar: Locator;
+    readonly cancelButton: Locator;
+    readonly saveButton: Locator
+
     constructor(page: Page) {
-        this.page = page;
         this.textToolbar = page.locator('.akEditor');
+        this.cancelButton = page.getByTestId('description-cancel-button');
+        this.saveButton = page.getByTestId('description-save-button');
     }
 
     async expectVisible(): Promise<void> {
@@ -18,13 +21,5 @@ export class DescriptionTextEditor {
 
     async enterDescription(description: string): Promise<void> {
         await this.textToolbar.getByRole('textbox', { name: 'Description' }).fill(description);
-    }
-
-    async clickCancelButton(): Promise<void> {
-        await this.page.getByTestId('description-cancel-button').click();
-    }
-
-    async clickSaveButton(): Promise<void> {
-        await this.page.getByTestId('description-save-button').click();
     }
 }

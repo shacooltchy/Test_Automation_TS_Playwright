@@ -25,11 +25,10 @@ test.describe('Add a card to the list using a template tests', {tag: '@card'}, (
         await boardDetailsPage.adBanner.minimizeIfVisible();
 
         await boardDetailsPage.list.clickCreateCardFromTemplateButton(listName);
-        await boardDetailsPage.list.cardTemplatesDialog.clickCreateANewTemplateButton();
-        await boardDetailsPage.list.cardTemplatesDialog.enterTitle(cardTemplateTitle);
-        await boardDetailsPage.list.cardTemplatesDialog.clickAddButton();
-        await boardDetailsPage.cardTemplateEditor.clickCloseButton();
-
+        await boardDetailsPage.list.cardTemplatesDialog.createANewTemplateButton.click();
+        await boardDetailsPage.list.cardTemplatesDialog.templateTitleTextbox.fill(cardTemplateTitle);
+        await boardDetailsPage.list.cardTemplatesDialog.addButton.click();
+        await boardDetailsPage.cardTemplateEditor.close();
     });
                 
     test.afterEach(async () => {

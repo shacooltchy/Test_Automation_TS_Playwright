@@ -17,6 +17,9 @@ export class List {
     readonly cardTemplatesDialog: CardTemplatesDialog;
     readonly cardTemplate: CardTemplate;
     readonly createCardDialog: CreateCardDialog;
+    readonly cardComposerForm: Locator;
+    readonly cardComposerCreateANewCardButton: Locator;
+    readonly cardComposerCloseButton: Locator;
 
     constructor(page: Page) {
         this.page = page;
@@ -28,6 +31,9 @@ export class List {
         this.cardTemplatesDialog = new CardTemplatesDialog(page);
         this.cardTemplate = new CardTemplate(page);
         this.createCardDialog = new CreateCardDialog(page);
+        this.cardComposerForm = this.list.getByPlaceholder('Enter a title or paste a link');
+        this.cardComposerCreateANewCardButton = this.list.getByTestId('list-card-composer-add-card-button');
+        this.cardComposerCloseButton = this.list.getByTestId('CloseIcon');
     }
 
     async expectVisible(listName: string): Promise<void> {
@@ -52,18 +58,6 @@ export class List {
 
     async enterATitle(title: string): Promise<void> {
         await this.list.getByTestId('list-card-composer-textarea').fill(title);
-    }
-
-    async clickAddCardButton(): Promise<void> {
-        await this.list.getByTestId('list-card-composer-add-card-button').click();
-    }
-
-    async clickCloseAddCardFormButton(): Promise<void> {
-        await this.list.getByTestId('CloseIcon').click();
-    }
-
-    async expectAddCardFormIsNotVisible(): Promise<void> {
-        await expect(this.list.getByRole('form')).not.toBeVisible();
     }
 
     async expectCardPositionInList(cardTitle: string, listName: string, position: number): Promise<void> {

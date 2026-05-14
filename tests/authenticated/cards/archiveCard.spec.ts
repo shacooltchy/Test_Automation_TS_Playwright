@@ -41,7 +41,7 @@ test.describe('Archive a card tests', {tag: '@card'}, () => {
         });
 
         await test.step('Verify quick card editor is visible', async() => {
-            await boardDetailsPage.list.card.quickCardEditor.expectQuickCardEditorVisible();
+            await boardDetailsPage.list.card.quickCardEditor.expectVisible();
         });
 
         await test.step('Click archive button in the quick card editor', async() => {
@@ -83,7 +83,7 @@ test.describe('Archive a card tests', {tag: '@card'}, () => {
         });
 
         await test.step('Click the Actions button in the card editor', async() => {
-            await boardDetailsPage.cardEditor.clickActionsButton();
+            await boardDetailsPage.cardEditor.actionsButton.click();
         });
 
         await test.step('Click the Archive option', async() => {
@@ -94,8 +94,8 @@ test.describe('Archive a card tests', {tag: '@card'}, () => {
             await boardDetailsPage.cardEditor.expectCardArchived();
         });
 
-        await test.step('Close the card editor', async() => {
-            await boardDetailsPage.cardEditor.clickCloseButton();
+        await test.step('Click close the card editor', async() => {
+            await boardDetailsPage.cardEditor.closeButton.click();
         });
 
         await test.step('Verify card editor is not visible', async() => {

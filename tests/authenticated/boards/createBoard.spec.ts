@@ -33,7 +33,7 @@ test.describe('Create board tests', {tag: '@boards'}, () => {
         });
 
         await test.step('Enter board title', async () => {
-            await boardsPage.createBoardDialog.enterTitle(boardName);
+            await boardsPage.createBoardDialog.boardTitleTextbox.fill(boardName);
         });
 
         await test.step('Select board visibility', async () => {
@@ -41,7 +41,7 @@ test.describe('Create board tests', {tag: '@boards'}, () => {
         });
 
         await test.step('Click the Create board submit button', async () => {
-            await boardsPage.createBoardDialog.clickCreateButton();
+            await boardsPage.createBoardDialog.createButton.click();
         });
 
         await test.step('Verify the new board details page is visible', async () => {

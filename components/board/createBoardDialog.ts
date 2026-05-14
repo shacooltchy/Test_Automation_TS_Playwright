@@ -3,11 +3,15 @@ import { Dropdown } from "../dropdown";
 
 export class CreateBoardDialog {
     private readonly dialog: Locator;
+    readonly boardTitleTextbox: Locator;
     readonly visibilityDropdown: Dropdown;
+    readonly createButton: Locator;
 
     constructor(page: Page) {
         this.dialog = page.getByRole('dialog').filter({has: page.getByRole('heading', {name: 'Create board', exact: true})});
+        this.boardTitleTextbox = this.dialog.getByLabel('Board title');
         this.visibilityDropdown = new Dropdown(page, this.dialog.getByTestId('create-board-select-visibility'));
+        this.createButton = this.dialog.getByRole('button', {name: 'Create', exact: true});
     }
 
     async expectVisible(): Promise<void> {
@@ -20,13 +24,5 @@ export class CreateBoardDialog {
 
     async selectBackground(backgroundName: string = 'A lone figure stands on rolling sand dunes at sunset.'): Promise<void> {
         await this.dialog.getByRole('radio', { name: backgroundName }).click();
-    }
-
-    async enterTitle(title: string): Promise<void> {
-        await this.dialog.getByTestId('create-board-title-input').fill(title);
-    }
-
-    async clickCreateButton(): Promise<void> {
-        await this.dialog.getByTestId('create-board-submit-button').click();
     }
 }

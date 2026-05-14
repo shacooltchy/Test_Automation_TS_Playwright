@@ -10,27 +10,30 @@ import { DescriptionTextEditor } from "../../descriptionTextEditor";
 export class CardEditor {
     private readonly page: Page;
     private readonly editor: Locator;
+    readonly addButton: Locator;
+    readonly descriptionButton: Locator;
+    readonly actionsButton: Locator;
+    readonly closeButton: Locator;
     readonly addToCardDialog: AddToCardDialog;
     readonly labelsDialog: LabelsDialog;
     readonly datesDialog: DatesDialog;
     readonly addChecklistDialog: AddChecklistDialog;
     readonly checklist: Checklist;
     readonly descriptionTextEditor: DescriptionTextEditor;
-    
 
     constructor(page: Page) {
         this.page = page;
         this.editor = page.getByTestId('card-back-name');
+        this.addButton = this.editor.getByRole('button', { name: 'Add to card' });
+        this.closeButton = this.editor.getByRole('button', {name: 'Close'});
+        this.actionsButton = this.editor.getByRole('button', {name: 'Actions'});
+        this.descriptionButton = this.editor.getByRole('button', {name: 'Add a more detailed description…'});
         this.addToCardDialog = new AddToCardDialog(page);
         this.labelsDialog = new LabelsDialog(page);
         this.datesDialog = new DatesDialog(page);
         this.addChecklistDialog = new AddChecklistDialog(page);
         this.checklist = new Checklist(page);
         this.descriptionTextEditor = new DescriptionTextEditor(page);
-    }
-
-    async clickAddButton(): Promise<void> {
-        await this.editor.getByRole('button', { name: 'Add to card' }).click();
     }
 
     async expectVisible(): Promise<void> {
@@ -41,16 +44,8 @@ export class CardEditor {
         await expect(this.editor).not.toBeVisible();
     }
 
-    async clickActionsButton() {
-        await this.editor.getByTestId('card-back-actions-button').click();
-    }
-
-    async clickCloseButton() {
-        await this.editor.getByRole('button').filter({has: this.page.getByTestId('CloseIcon')}).click();
-    }
-
     async close() {
-        await this.clickCloseButton();
+        await this.closeButton.click();
         await this.expectNotVisible();
     }
 
@@ -102,10 +97,6 @@ export class CardEditor {
         } else {
             await expect(dueDateBadge.filter({hasText: "Overdue"})).not.toBeVisible();
         }
-    }
-
-    async clickDescriptionButton(): Promise<void> {
-        await this.editor.getByTestId('description-button').click();
     }
 
     async expectDescription(description: string): Promise<void> {

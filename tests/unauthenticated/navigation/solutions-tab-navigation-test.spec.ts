@@ -5,7 +5,7 @@ test.describe('Solutions tab navigation tests', {tag: '@smoke'}, () => {
     test.beforeEach(async({homePage}) => {
         await homePage.navigate();
         await homePage.cookieBanner.close();
-        await homePage.headerMenu.clickSolutions();
+        await homePage.headerMenu.solutionsButton.click();
     });
 
     test('Navigate to Marketing Teams', async ({homePage, marketingTeamsPage}) => {

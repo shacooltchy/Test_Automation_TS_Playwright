@@ -11,6 +11,8 @@ export class DatesDialog {
     private readonly dueDateFieldset: Locator;
     readonly recurringDropdown: Dropdown;
     readonly dueDateReminderDropdown: Dropdown;
+    readonly saveButton: Locator;
+    readonly removeButton: Locator;
 
     constructor(page: Page) {
         this.dialog = page.getByRole('dialog').filter({ has: page.getByRole('heading', { name: 'Dates', exact: true }) });
@@ -21,6 +23,8 @@ export class DatesDialog {
         this.dueDateFieldset = this.dialog.locator('fieldset').filter({ has: page.locator('legend').filter({ hasText: 'Due date' }) });
         this.recurringDropdown = new Dropdown(page, this.dialog.getByTestId('recurrence-select'));
         this.dueDateReminderDropdown = new Dropdown(page, this.dialog.getByTestId('due-date-reminder-select'));
+        this.saveButton = this.dialog.getByRole('button', { name: 'Save' });
+        this.removeButton = this.dialog.getByRole('button', { name: 'Remove' });
     }
 
     async expectVisible(): Promise<void> {
@@ -69,13 +73,5 @@ export class DatesDialog {
 
     async enterDueHour(hour: string): Promise<void> {
         await this.dueDateInput.fill(hour);
-    }
-
-    async clickSaveButton(): Promise<void> {
-        await this.dialog.getByRole('button', { name: 'Save' }).click();
-    }
-
-    async clickRemoveButton(): Promise<void> {
-        await this.dialog.getByRole('button', { name: 'Remove' }).click();
     }
 }

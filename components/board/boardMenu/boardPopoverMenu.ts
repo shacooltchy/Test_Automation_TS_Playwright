@@ -19,7 +19,6 @@ export class BoardPopoverMenu {
     }
 
     async expectMenuToBeVisible(): Promise<void> {
-        await this.popoverMenu.waitFor({ state: 'visible' });
         await expect(this.popoverMenu).toBeVisible();
     }
 

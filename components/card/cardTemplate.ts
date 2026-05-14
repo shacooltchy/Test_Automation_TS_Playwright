@@ -1,5 +1,4 @@
 import { expect, Locator, Page } from "@playwright/test";
-import { Card } from "./card";
 
 export class CardTemplate {
     private readonly page: Page;

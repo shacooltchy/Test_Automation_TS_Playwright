@@ -11,11 +11,11 @@ export class QuickCardEditor {
         this.moveCardActionDialog = new MoveCardActionDialog(page);
     }
 
-    async expectQuickCardEditorVisible(): Promise<void> {
+    async expectVisible(): Promise<void> {
         await expect(this.editor).toBeVisible();
     }
 
-    async expectQuickCardEditorNotVisible(): Promise<void> {
+    async expectNotVisible(): Promise<void> {
         await expect(this.editor).not.toBeVisible();
     }
 

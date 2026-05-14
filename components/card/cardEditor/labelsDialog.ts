@@ -2,13 +2,11 @@ import { expect, Locator, Page } from "@playwright/test";
 
 export class LabelsDialog {
     private readonly dialog: Locator;
+    readonly closeButton: Locator;
 
     constructor(page: Page) {
         this.dialog = page.getByTestId('labels-popover-labels-screen');
-    }
-
-    async closeDialog(): Promise<void> {
-        await this.dialog.getByRole('button', { name: 'Close popover' }).click();
+        this.closeButton = this.dialog.getByRole('button', { name: 'Close popover' });
     }
 
     async expectVisible(): Promise<void> {

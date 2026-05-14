@@ -1,3 +1,4 @@
+import { expect } from "@playwright/test";
 import { ListAction } from "../../../enums/listAction";
 import { test } from "../../../fixtures/pages";
 import { createBoard } from "../../../helpers/api/boards/createBoard";
@@ -40,8 +41,8 @@ test.describe('Add a card to the list tests', {tag: '@card'}, () => {
             await boardDetailsPage.list.enterATitle(cardTitle)
         });
 
-        await test.step('Click Add Card button', async() => {
-            await boardDetailsPage.list.clickAddCardButton();
+        await test.step('Click Add Card button in the card composer', async() => {
+            await boardDetailsPage.list.cardComposerCreateANewCardButton.click();
         });
 
         await test.step('Verify card is added', async() => {
@@ -52,8 +53,8 @@ test.describe('Add a card to the list tests', {tag: '@card'}, () => {
             await boardDetailsPage.list.enterATitle(cardTitle2)
         });
 
-        await test.step('Click Add Card button', async() => {
-            await boardDetailsPage.list.clickAddCardButton();
+        await test.step('Click Add Card button in the card composer', async() => {
+            await boardDetailsPage.list.cardComposerCreateANewCardButton.click();
         });
 
         await test.step('Verify card is added', async() => {
@@ -61,11 +62,11 @@ test.describe('Add a card to the list tests', {tag: '@card'}, () => {
         });
 
         await test.step('Close add a card form', async() => {
-            await boardDetailsPage.list.clickCloseAddCardFormButton();
+            await boardDetailsPage.list.cardComposerCloseButton.click();
         });
 
         await test.step('Verify add card form is not visible', async() => {
-            await boardDetailsPage.list.expectAddCardFormIsNotVisible();
+            await expect(boardDetailsPage.list.cardComposerForm).not.toBeVisible();
         });
     });
 
@@ -84,8 +85,8 @@ test.describe('Add a card to the list tests', {tag: '@card'}, () => {
             await boardDetailsPage.list.enterATitle(cardTitle)
         });
 
-        await test.step('Click Add Card button', async() => {
-            await boardDetailsPage.list.clickAddCardButton();
+        await test.step('Click Add Card button in the card composer', async() => {
+            await boardDetailsPage.list.cardComposerCreateANewCardButton.click();
         });
 
         await test.step('Verify card is added', async() => {
