@@ -51,6 +51,11 @@ export class Card {
         await expect(list.getByTestId('list-card').filter({hasText: cardTitle}).getByTestId('checklist-badge')).toBeVisible();
     }
 
+    async expectChecklistBadgeProgress(cardTitle: string, listName: string, expectedProgress: string) {
+        const list = this.getList(listName);
+        await expect(list.getByTestId('list-card').filter({hasText: cardTitle}).getByTestId('checklist-badge')).toHaveText(expectedProgress);
+    }
+
     async clickChecklistBadge(cardTitle: string, listName: string) {
         const list = this.getList(listName);
         await list.getByTestId('list-card').filter({hasText: cardTitle}).getByTestId('checklist-badge').click();

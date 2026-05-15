@@ -43,4 +43,24 @@ export class Checklist {
         const checklist = this.getChecklist(checklistTitle);
         await expect(checklist.getByTestId('check-item-name').filter({hasText: itemTitle})).toBeVisible();
     }
+
+    async checkItem(checklistTitle: string, itemTitle: string) {
+        const checklist = this.getChecklist(checklistTitle);
+        const item = checklist.getByRole('listitem').filter({hasText: itemTitle});
+        await item.getByTestId('clickable-checkbox').click();
+        await expect(item.getByRole('checkbox')).toBeChecked();
+    }
+
+    async uncheckItem(checklistTitle: string, itemTitle: string) {
+        const checklist = this.getChecklist(checklistTitle);
+        const item = checklist.getByRole('listitem').filter({hasText: itemTitle});
+        await item.getByTestId('clickable-checkbox').click();
+        await expect(item.getByRole('checkbox')).not.toBeChecked();
+    }
+
+    async expectChecklistProgress(checklistTitle: string, expectedProgress: string) {
+        const checklist = this.getChecklist(checklistTitle);
+        const progressBar = checklist.getByTestId('progress-bar');
+        await expect(progressBar.getAttribute('aria-valuenow')).resolves.toBe(expectedProgress);
+    }
 }

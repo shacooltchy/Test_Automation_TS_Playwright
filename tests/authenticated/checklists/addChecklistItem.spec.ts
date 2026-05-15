@@ -8,7 +8,7 @@ import { createChecklist } from "../../../helpers/api/checklists/createChecklist
 import { expect } from "@playwright/test";
 
 
-test.describe('Add and item to a checklist tests', {tag: '@checklist'}, () => {
+test.describe('Add an item to a checklist tests', {tag: '@checklist'}, () => {
     test.use({ storageState: 'playwright/.auth/user.json'});
     let boardName: string;
     let listName: string;
@@ -16,7 +16,7 @@ test.describe('Add and item to a checklist tests', {tag: '@checklist'}, () => {
     let checklistTitle: string;
             
     test.beforeEach(async({ page, boardDetailsPage }) => {
-        // Create a board and, a list and a card via API
+        // Create a board, a list, a card and a checklist via API
         boardName = randomName('Board');
         listName = randomName('List');
         cardTitle = randomName('Card');
@@ -38,7 +38,7 @@ test.describe('Add and item to a checklist tests', {tag: '@checklist'}, () => {
         await deleteTestBoard(boardName);
     });
 
-    test('Add an item', async({boardDetailsPage}) => {
+    test('Add an item to a checklist', async({boardDetailsPage}) => {
         const itemTitle = randomName('Checklist item');
 
         await test.step('Click card', async() => {
@@ -49,7 +49,7 @@ test.describe('Add and item to a checklist tests', {tag: '@checklist'}, () => {
             await boardDetailsPage.cardEditor.expectVisible();
         });
 
-        await test.step('Click Add an item button', async() => {
+        await test.step('Click Add button on a checklist', async() => {
             await boardDetailsPage.cardEditor.checklist.clickAddAnItemButton(checklistTitle);
         });
 
@@ -89,7 +89,7 @@ test.describe('Add and item to a checklist tests', {tag: '@checklist'}, () => {
             await boardDetailsPage.list.card.expectCardHasChecklist(cardTitle, listName);
         });
 
-        await test.step('Clisk the checklist badge', async() => {
+        await test.step('Click the checklist badge', async() => {
             await boardDetailsPage.list.card.clickChecklistBadge(cardTitle, listName);
         });
 
