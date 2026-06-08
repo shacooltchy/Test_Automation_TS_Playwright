@@ -22,7 +22,7 @@ export class CreateBoardDialog {
         expect(this.dialog).not.toBeVisible();
     }
 
-    async selectBackground(backgroundName: string = 'A lone figure stands on rolling sand dunes at sunset.'): Promise<void> {
+    async selectBackground(backgroundName: string = 'Mountain peaks glowing orange at sunset under a dark sky.'): Promise<void> {
         await this.dialog.getByRole('radio', { name: backgroundName }).click();
     }
 }

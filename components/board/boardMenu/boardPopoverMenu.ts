@@ -2,9 +2,11 @@ import { expect, Locator, Page } from "@playwright/test";
 import { BoardMenuOption } from "../../../enums/boardMenuOption";
 import { ArchivedItems } from "./archivedItems";
 import { ConfirmationDialog } from "../../confirmationDialog";
+import { AboutThisBoard } from "./aboutThisBoard";
 
 export class BoardPopoverMenu {
     private readonly popoverMenu: Locator;
+    readonly aboutThisBoard: AboutThisBoard;
     readonly archivedItems: ArchivedItems;
     readonly closeBoardConfirmationDialog: ConfirmationDialog;
     readonly reopenBoardConfirmationDialog: ConfirmationDialog;
@@ -12,6 +14,7 @@ export class BoardPopoverMenu {
 
     constructor(page: Page) {
         this.popoverMenu = page.getByTestId('board-menu-popover').filter({has: page.getByRole('heading', {name: 'Menu', exact: true})});
+        this.aboutThisBoard = new AboutThisBoard(page);
         this.archivedItems = new ArchivedItems(page);
         this.closeBoardConfirmationDialog = new ConfirmationDialog(page, 'Close board?', 'Close');
         this.reopenBoardConfirmationDialog = new ConfirmationDialog(page, 'Select a Workspace', 'Reopen board');
