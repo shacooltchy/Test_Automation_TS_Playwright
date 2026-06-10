@@ -1,4 +1,4 @@
-import { BoardMenuOption } from "../../../enums/boardMenuOption";
+import { BoardMenuOption } from "../../../components/board/boardMenu/boardPopoverMenu";
 import { test } from "../../../fixtures/pages";
 import { createBoard } from "../../../helpers/api/boards/createBoard";
 import { deleteTestBoard } from "../../../helpers/testDataHelpers/deleteTestBoard";

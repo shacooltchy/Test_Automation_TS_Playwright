@@ -1,13 +1,13 @@
 import { expect, Locator, Page } from "@playwright/test";
 
-export class LabelsDialog {
+export class BoardMenuLabelsDialog {
     private readonly dialog: Locator;
     readonly closeButton: Locator;
     readonly createNewLabelButton: Locator;
     readonly enableColorblindFriendlyModeButton: Locator;
 
     constructor(page: Page) {
-        this.dialog = page.getByTestId('labels-popover-labels-screen');
+        this.dialog = page.getByRole('dialog').filter({ has: page.getByRole('heading', { name: 'Labels' }) });
         this.closeButton = this.dialog.getByRole('button', { name: 'Close popover' });
         this.createNewLabelButton = this.dialog.getByRole('button', { name: 'Create a new label' });
         this.enableColorblindFriendlyModeButton = this.dialog.getByRole('button', { name: 'Enable colorblind friendly mode' });
