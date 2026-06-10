@@ -3,10 +3,10 @@ import { createList } from "../../../helpers/api/lists/createList";
 import { createBoard } from "../../../helpers/api/boards/createBoard";
 import { deleteTestBoard } from "../../../helpers/testDataHelpers/deleteTestBoard";
 import { createCard } from "../../../helpers/api/cards/createCard";
-import { BoardMenuOption } from "../../../enums/boardMenuOption";
 import { QuickCardEditorOption } from "../../../enums/quickCardEditorOption";
 import { CardEditorAction } from "../../../enums/cardEditorAction";
 import { randomName } from "../../../utils/stringUtils";
+import { BoardMenuOption } from "../../../components/board/boardMenu/boardPopoverMenu";
 
 test.describe('Archive a card tests', {tag: '@card'}, () => {
     test.use({ storageState: 'playwright/.auth/user.json'});

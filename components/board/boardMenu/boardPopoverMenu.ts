@@ -1,14 +1,17 @@
 import { expect, Locator, Page } from "@playwright/test";
-import { BoardMenuOption } from "../../../enums/boardMenuOption";
 import { ArchivedItems } from "./archivedItems";
 import { ConfirmationDialog } from "../../confirmationDialog";
 import { AboutThisBoard } from "./aboutThisBoard";
 import { ChangeVisibility } from "./changeVisibility";
+import { CreateNewLabelDialog } from "../../createNewLabelDialog";
+import { BoardMenuLabelsDialog } from "./boardMenuLabelsDialog";
 
 export class BoardPopoverMenu {
     private readonly popoverMenu: Locator;
     readonly aboutThisBoard: AboutThisBoard;
     readonly changeVisibilityPopover: ChangeVisibility;
+    readonly boardMenuLabelsDialog: BoardMenuLabelsDialog;
+    readonly createNewLabelDialog: CreateNewLabelDialog;
     readonly archivedItems: ArchivedItems;
     readonly closeBoardConfirmationDialog: ConfirmationDialog;
     readonly reopenBoardConfirmationDialog: ConfirmationDialog;
@@ -18,6 +21,8 @@ export class BoardPopoverMenu {
         this.popoverMenu = page.getByTestId('board-menu-popover').filter({has: page.getByRole('heading', {name: 'Menu', exact: true})});
         this.aboutThisBoard = new AboutThisBoard(page);
         this.changeVisibilityPopover = new ChangeVisibility(page);
+        this.boardMenuLabelsDialog = new BoardMenuLabelsDialog(page);
+        this.createNewLabelDialog = new CreateNewLabelDialog(page);
         this.archivedItems = new ArchivedItems(page);
         this.closeBoardConfirmationDialog = new ConfirmationDialog(page, 'Close board?', 'Close');
         this.reopenBoardConfirmationDialog = new ConfirmationDialog(page, 'Select a Workspace', 'Reopen board');
@@ -37,8 +42,19 @@ export class BoardPopoverMenu {
     }
 }
 
+export enum BoardMenuOption {
+    AboutThisBoard = 'About this board',
+    Visibility = 'Visibility',
+    Labels = 'Labels',
+    ArchivedItems = 'Archived items',
+    CloseBoard = 'Close board',
+    ReopenBoard = 'Reopen board',
+    DeleteBoard = 'Delete board'
+}
+
 export enum BoardMenuVisibilityStatus {
     Private = 'Private',
     Workspace = 'Workspace',
     Public = 'Public',
 }
+

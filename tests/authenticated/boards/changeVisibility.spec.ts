@@ -1,7 +1,5 @@
-import { BoardMenuVisibilityStatus } from "../../../components/board/boardMenu/boardPopoverMenu";
+import { BoardMenuOption, BoardMenuVisibilityStatus } from "../../../components/board/boardMenu/boardPopoverMenu";
 import { ChangeVisibilityPopoverOption } from "../../../components/board/boardMenu/changeVisibility";
-import { BoardMenuOption } from "../../../enums/boardMenuOption";
-import { BoardVisibility } from "../../../enums/boardVisibility";
 import { test } from "../../../fixtures/pages";
 import { createBoard } from "../../../helpers/api/boards/createBoard";
 import { deleteTestBoard } from "../../../helpers/testDataHelpers/deleteTestBoard";
