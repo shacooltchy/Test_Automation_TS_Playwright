@@ -41,7 +41,7 @@ test.describe('Reopen board tests', {tag: '@boards'}, () => {
         });
 
         await test.step('Confirm Reopen board action in the closed boards dialog', async () => {
-            await boardsPage.closedBoardsDialog.reopenBoardConfirmationDialog.clickConfirmButton();
+            await boardsPage.closedBoardsDialog.reopenBoardConfirmationDialog.confirmButton.click();
         });
 
         await test.step('Verify the board is no longer visible in the closed boards dialog', async () => {
@@ -69,7 +69,7 @@ test.describe('Reopen board tests', {tag: '@boards'}, () => {
         });
 
         await test.step('Click on board menu button', async () => {
-            await boardDetailsPage.clickOnBoardMenuButton();
+            await boardDetailsPage.boardMenuButton.click();
             await boardDetailsPage.boardMenu.expectMenuToBeVisible();
         });
 
@@ -82,15 +82,15 @@ test.describe('Reopen board tests', {tag: '@boards'}, () => {
         });
 
         await test.step('Confirm Reopen board action', async () => {
-            await boardDetailsPage.boardMenu.reopenBoardConfirmationDialog.clickConfirmButton();
+            await boardDetailsPage.boardMenu.reopenBoardConfirmationDialog.confirmButton.click();
         });
-
+        
         await test.step('Verify the board details page is visible and the board is reopened', async () => {
             await boardDetailsPage.expectBoardIsNotClosed();
         });
 
         await test.step('Navigate back to boards page', async () => {
-            await boardDetailsPage.authenticatedHeader.clickBackToHomeButton();
+            await boardDetailsPage.authenticatedHeader.backToHomeButton.click();
             await boardsPage.expectPageVisible();
         });
 

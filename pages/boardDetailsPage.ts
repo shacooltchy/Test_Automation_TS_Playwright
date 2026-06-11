@@ -17,6 +17,7 @@ export class BoardDetailsPage extends BasePage {
     readonly cardEditor: CardEditor;
     readonly cardTemplateEditor: CardTemplateEditor;
 
+    readonly boardMenuButton: Locator;
     readonly addListButton: Locator;
 
     constructor(page: Page) {
@@ -30,6 +31,7 @@ export class BoardDetailsPage extends BasePage {
         this.cardEditor = new CardEditor(page);
         this.cardTemplateEditor = new CardTemplateEditor(page);
 
+        this.boardMenuButton = page.getByTestId('board-header').getByRole('button', { name: 'Show menu' });
         this.addListButton = page.getByTestId('list-composer-button');
     };
 
@@ -38,20 +40,12 @@ export class BoardDetailsPage extends BasePage {
         await expect(this.page.getByTestId('board-name-container')).toHaveText(boardName);
     }
 
-    async clickOnBoardMenuButton(): Promise<void> {
-        await this.page.getByTestId('board-header').getByRole('button', { name: 'Show menu' }).click();
-    }
-
     async expectBoardIsClosed(): Promise<void> {
         await expect(this.page.getByText('This board is closed. Reopen the board to make changes.')).toBeVisible();
     }
 
     async expectBoardIsNotClosed(): Promise<void> {
         await expect(this.page.getByText('This board is closed. Reopen the board to make changes.')).not.toBeVisible();
-    }
-
-    async clickAddAListButton(): Promise<void> {
-        await this.addListButton.click();
     }
 
     async expectListPosition(uniqueListName: string, position: number): Promise<void> {

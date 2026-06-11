@@ -1,20 +1,16 @@
-import { expect, Locator, Page } from "@playwright/test";
+import { Locator, Page } from "@playwright/test";
 import { AccountMenu } from "./accountMenu";
 
 export class AuthenticatedHeader {
     private readonly header : Locator;
     readonly accountMenu: AccountMenu;
+    readonly memberButton: Locator;
+    readonly backToHomeButton: Locator;
 
     constructor(page: Page) {
         this.header = page.getByTestId('authenticated-header');
         this.accountMenu = new AccountMenu(page);
-    }
-
-    async clickMemberButton() {
-        await this.header.getByTestId('header-member-menu-button').click();
-    }
-
-    async clickBackToHomeButton() {
-        await this.header.getByRole('link', { name: 'Back to home' }).click();
+        this.memberButton = this.header.getByTestId('header-member-menu-button');
+        this.backToHomeButton = this.header.getByRole('link', { name: 'Back to home' });
     }
 }

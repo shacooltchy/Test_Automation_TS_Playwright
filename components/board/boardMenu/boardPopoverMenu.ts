@@ -3,8 +3,8 @@ import { ArchivedItems } from "./archivedItems";
 import { ConfirmationDialog } from "../../confirmationDialog";
 import { AboutThisBoard } from "./aboutThisBoard";
 import { ChangeVisibility } from "./changeVisibility";
-import { CreateNewLabelDialog } from "../../createNewLabelDialog";
 import { BoardMenuLabelsDialog } from "./boardMenuLabelsDialog";
+import { CreateNewLabelDialog } from "./createNewLabelDialog";
 
 export class BoardPopoverMenu {
     private readonly popoverMenu: Locator;

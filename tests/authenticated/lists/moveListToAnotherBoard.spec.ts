@@ -55,7 +55,7 @@ test.describe('Move list to another board tests', {tag: '@list'}, () => {
         });
 
         await test.step('Click Move button', async() => {
-            await boardDetailsPage.list.moveListActionDialog.clickActionButton();
+            await boardDetailsPage.list.moveListActionDialog.actionButton.click();
         });
 
         await test.step('Verify Moved list alert is visible', async() => {
@@ -67,7 +67,7 @@ test.describe('Move list to another board tests', {tag: '@list'}, () => {
         });
 
         await test.step('Navigate to the destination board', async() => {
-            await boardDetailsPage.authenticatedHeader.clickBackToHomeButton();
+            await boardDetailsPage.authenticatedHeader.backToHomeButton.click();
             await boardsPage.expectPageVisible();
             await boardsPage.navigateToBoardFromWorkspacesSection(boardName2);
             await boardDetailsPage.expectPageVisible(boardName2);

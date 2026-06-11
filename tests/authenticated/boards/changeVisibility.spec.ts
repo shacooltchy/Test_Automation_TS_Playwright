@@ -26,7 +26,7 @@ test.describe('Change board visibility tests', {tag: '@boards'}, () => {
 
     test('Change board visibility to workspace', async ({ boardDetailsPage, page }) => {
         await test.step('Open board menu', async () => {
-            await boardDetailsPage.clickOnBoardMenuButton();
+            await boardDetailsPage.boardMenuButton.click();
             await boardDetailsPage.boardMenu.expectMenuToBeVisible();
         });
 
@@ -62,7 +62,7 @@ test.describe('Change board visibility tests', {tag: '@boards'}, () => {
         await test.step('Refresh the page and verify visibility is still workspace', async () => {
             await page.reload();
             await boardDetailsPage.expectPageVisible(boardName);
-            await boardDetailsPage.clickOnBoardMenuButton();
+            await boardDetailsPage.boardMenuButton.click();
             await boardDetailsPage.boardMenu.expectVisibilitySelected(BoardMenuVisibilityStatus.Workspace);
         });
     });

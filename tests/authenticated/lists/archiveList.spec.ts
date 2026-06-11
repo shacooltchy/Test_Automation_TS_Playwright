@@ -48,7 +48,7 @@ test.describe('Archive a list tests', {tag: '@list'}, () => {
         });
 
         await test.step('Open board menu', async() => {
-            await boardDetailsPage.clickOnBoardMenuButton();
+            await boardDetailsPage.boardMenuButton.click();
             await boardDetailsPage.boardMenu.expectMenuToBeVisible();
         });
 

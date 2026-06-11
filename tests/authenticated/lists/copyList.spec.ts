@@ -57,7 +57,7 @@ test.describe('Copy list tests', {tag: '@list'}, () => {
         });
 
         await test.step('Click Create list button on the confirmation dialog', async() => {
-            await boardDetailsPage.list.copyListConfirmationDialog.clickConfirmButton();
+            await boardDetailsPage.list.copyListConfirmationDialog.confirmButton.click();
         });
 
         await test.step('Verify the list is copied with the correct name', async() => {

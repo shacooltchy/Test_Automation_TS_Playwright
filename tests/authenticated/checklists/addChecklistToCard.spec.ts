@@ -64,7 +64,7 @@ test.describe('Add checklist to a card', {tag: '@checklist'}, () => {
         });
 
         await test.step('Click the Add button', async() => {
-            await boardDetailsPage.cardEditor.addChecklistDialog.clickActionButton();
+            await boardDetailsPage.cardEditor.addChecklistDialog.actionButton.click();
         });
 
         await test.step('Verify Add checklist dialog is not visible', async() => {

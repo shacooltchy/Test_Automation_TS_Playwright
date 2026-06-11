@@ -1,6 +1,6 @@
 import { BoardMenuOption } from "../../../components/board/boardMenu/boardPopoverMenu";
+import { NewLabelColor } from "../../../components/board/boardMenu/createNewLabelDialog";
 import { LabelColor } from "../../../components/card/cardEditor/labelsDialog";
-import { NewLabelColor } from "../../../components/createNewLabelDialog";
 import { test } from "../../../fixtures/pages";
 import { createBoard } from "../../../helpers/api/boards/createBoard";
 import { deleteTestBoard } from "../../../helpers/testDataHelpers/deleteTestBoard";
@@ -28,7 +28,7 @@ test.describe('Create new label tests', {tag: '@labels'}, () => {
     test('Create a new label in the board menu', async ({ boardDetailsPage }) => {
         const labelName = randomName('Label');
         await test.step('Open board menu', async () => {
-            await boardDetailsPage.clickOnBoardMenuButton();
+            await boardDetailsPage.boardMenuButton.click();
         });
 
         await test.step('Click the Labels option in the board menu', async () => {

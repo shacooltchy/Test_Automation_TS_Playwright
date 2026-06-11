@@ -47,7 +47,7 @@ test.describe('Change list position in the board tests', {tag: '@list'}, () => {
         });
 
         await test.step('Click Move button', async() => {
-            await boardDetailsPage.list.moveListActionDialog.clickActionButton();
+            await boardDetailsPage.list.moveListActionDialog.actionButton.click();
         });
 
         await test.step('Verify list is visible', async() => {

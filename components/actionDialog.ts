@@ -2,11 +2,11 @@ import { expect, Locator, Page } from "@playwright/test";
 
 export class ActionDialog {
     readonly dialog: Locator;
-    private readonly actionButtonName: string;
+    readonly actionButton: Locator;
 
     constructor(page: Page, dialogTitle: string, actionButton: string, exactTitle: boolean = true) {
         this.dialog = page.getByRole('dialog').filter({ has: page.getByRole('heading', { name: dialogTitle, exact: exactTitle }) });
-        this.actionButtonName = actionButton;
+        this.actionButton = this.dialog.getByRole('button', { name: actionButton, exact: true });
     }
 
     async expectDialogVisible(): Promise<void> {
@@ -15,10 +15,6 @@ export class ActionDialog {
 
     async expectDialogNotVisible(): Promise<void> {
         await expect(this.dialog).not.toBeVisible();
-    }
-
-    async clickActionButton(): Promise<void> {
-        await this.dialog.getByRole('button', { name: this.actionButtonName, exact: true }).click();
     }
 
     async closeDialog(): Promise<void> {
