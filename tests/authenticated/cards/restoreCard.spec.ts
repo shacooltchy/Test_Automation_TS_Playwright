@@ -38,7 +38,7 @@ test.describe('Unarchive a card tests', {tag: '@card'}, () => {
 
     test('Restore a card', async( {boardDetailsPage} ) => {
         await test.step('Open board menu', async() => {
-            await boardDetailsPage.clickOnBoardMenuButton();
+            await boardDetailsPage.boardMenuButton.click();
             await boardDetailsPage.boardMenu.expectMenuToBeVisible();
         });
     
@@ -81,7 +81,7 @@ test.describe('Unarchive a card tests', {tag: '@card'}, () => {
 
     test('Restore a card in the card editor', async( {boardDetailsPage} ) => {
         await test.step('Open board menu', async() => {
-            await boardDetailsPage.clickOnBoardMenuButton();
+            await boardDetailsPage.boardMenuButton.click();
             await boardDetailsPage.boardMenu.expectMenuToBeVisible();
         });
     

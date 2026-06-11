@@ -73,7 +73,7 @@ test.describe('Move card to another board', {tag: '@card'}, () => {
         });
 
         await test.step('Click Move button', async() => {
-            await boardDetailsPage.list.card.quickCardEditor.moveCardActionDialog.clickActionButton();
+            await boardDetailsPage.list.card.quickCardEditor.moveCardActionDialog.actionButton.click();
         });
 
         await test.step('Verify Move card dialog is not visible', async() => {
@@ -89,7 +89,7 @@ test.describe('Move card to another board', {tag: '@card'}, () => {
         });
 
         await test.step('Navigate to the second board', async() => {
-            await boardDetailsPage.authenticatedHeader.clickBackToHomeButton();
+            await boardDetailsPage.authenticatedHeader.backToHomeButton.click();
             await boardsPage.expectPageVisible();
             await boardsPage.navigateToBoardFromWorkspacesSection(boardName2);
             await boardDetailsPage.expectPageVisible(boardName2);

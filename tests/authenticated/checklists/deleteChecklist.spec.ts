@@ -56,7 +56,7 @@ test.describe('Delete checklist tests', {tag: '@checklist'}, () => {
         });
 
         await test.step('Click Delete checklist button in the confirmation dialog', async() => {
-            await boardDetailsPage.cardEditor.checklist.deleteChecklistConfirmationDialog.clickActionButton();
+            await boardDetailsPage.cardEditor.checklist.deleteChecklistConfirmationDialog.actionButton.click();
         });
 
         await test.step('Verify checklist is removed from card editor', async() => {

@@ -56,7 +56,7 @@ test.describe('Change card position on list tests', {tag: '@card'}, () => {
         });
 
         await test.step('Click Move button', async() => {
-            await boardDetailsPage.list.card.quickCardEditor.moveCardActionDialog.clickActionButton();
+            await boardDetailsPage.list.card.quickCardEditor.moveCardActionDialog.actionButton.click();
         });
 
         await test.step('Verify Move card dialog is not visible', async() => {

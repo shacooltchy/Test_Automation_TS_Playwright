@@ -2,12 +2,12 @@ import { expect, Locator, Page } from "@playwright/test";
 
 export class ConfirmationDialog {
     private readonly dialog: Locator;
-    private readonly confirmButtonName: string;
+    readonly confirmButton: Locator;
     private readonly textArea: Locator | undefined;
 
     constructor(page: Page, dialogTitle: string, confirmButtonName: string, hasTextArea: boolean = false) {
         this.dialog = page.getByRole('dialog').filter({ has: page.getByRole('heading', { name: dialogTitle, exact: true }) });
-        this.confirmButtonName = confirmButtonName;
+        this.confirmButton = this.dialog.getByRole('button', { name: confirmButtonName, exact: true });
         if (hasTextArea) {
             this.textArea = this.dialog.getByRole('textbox');
         }
@@ -15,10 +15,6 @@ export class ConfirmationDialog {
 
     async expectDialogToBeVisible(): Promise<void> {
         await expect(this.dialog).toBeVisible();
-    }
-
-    async clickConfirmButton(): Promise<void> {
-        await this.dialog.getByRole('button', { name: this.confirmButtonName, exact: true }).click();
     }
 
     async expectTextAreaValue(expectedValue: string): Promise<void> {

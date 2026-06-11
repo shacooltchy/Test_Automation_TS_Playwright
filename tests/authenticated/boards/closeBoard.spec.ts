@@ -30,7 +30,7 @@ test.describe('Close board tests', {tag: '@boards'}, () => {
         }); 
 
         await test.step('Click on board menu button', async () => {
-            await boardDetailsPage.clickOnBoardMenuButton();
+            await boardDetailsPage.boardMenuButton.click();
             await boardDetailsPage.boardMenu.expectMenuToBeVisible();
         });
 
@@ -40,7 +40,7 @@ test.describe('Close board tests', {tag: '@boards'}, () => {
         });
 
         await test.step('Confirm Close board action', async () => {
-            await boardDetailsPage.boardMenu.closeBoardConfirmationDialog.clickConfirmButton();
+            await boardDetailsPage.boardMenu.closeBoardConfirmationDialog.confirmButton.click();
         });
 
         await test.step('Verify the board is closed', async () => {
@@ -48,7 +48,7 @@ test.describe('Close board tests', {tag: '@boards'}, () => {
         }); 
 
         await test.step('Navigate back to boards page', async () => {
-            await boardDetailsPage.authenticatedHeader.clickBackToHomeButton();
+            await boardDetailsPage.authenticatedHeader.backToHomeButton.click();
             await boardsPage.expectPageVisible();
         });
 

@@ -29,7 +29,7 @@ test.describe('Delete board tests', {tag: '@boards'}, () => {
         });
 
         await test.step('Click on board menu button', async () => {
-            await boardDetailsPage.clickOnBoardMenuButton();
+            await boardDetailsPage.boardMenuButton.click();
             await boardDetailsPage.boardMenu.expectMenuToBeVisible();
         });
 
@@ -39,7 +39,7 @@ test.describe('Delete board tests', {tag: '@boards'}, () => {
         });
 
         await test.step('Confirm Close board action', async () => {
-            await boardDetailsPage.boardMenu.closeBoardConfirmationDialog.clickConfirmButton();
+            await boardDetailsPage.boardMenu.closeBoardConfirmationDialog.confirmButton.click();
         });
 
         await test.step('Verify the board is closed', async () => {
@@ -47,7 +47,7 @@ test.describe('Delete board tests', {tag: '@boards'}, () => {
         });
 
         await test.step('Click on board menu button again', async () => {
-            await boardDetailsPage.clickOnBoardMenuButton();
+            await boardDetailsPage.boardMenuButton.click();
             await boardDetailsPage.boardMenu.expectMenuToBeVisible();
         });
 
@@ -57,7 +57,7 @@ test.describe('Delete board tests', {tag: '@boards'}, () => {
         });
 
         await test.step('Confirm Delete board action', async () => {
-            await boardDetailsPage.boardMenu.deleteBoardConfirmationDialog.clickConfirmButton();
+            await boardDetailsPage.boardMenu.deleteBoardConfirmationDialog.confirmButton.click();
         });
 
         await test.step('Verify the board is no longer visible in the workspace section', async () => {

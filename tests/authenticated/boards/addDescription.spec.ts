@@ -26,7 +26,7 @@ test.describe('Add description to board tests', {tag: '@boards'}, () => {
 
     test('Add description to board on the Board details page', async ({ boardDetailsPage, page }) => {
         await test.step('Open board menu', async () => {
-            await boardDetailsPage.clickOnBoardMenuButton();
+            await boardDetailsPage.boardMenuButton.click();
             await boardDetailsPage.boardMenu.expectMenuToBeVisible();
         });
 
@@ -39,7 +39,7 @@ test.describe('Add description to board tests', {tag: '@boards'}, () => {
         });
 
         await test.step('Click description button', async () => {
-            await boardDetailsPage.boardMenu.aboutThisBoard.clickDescriptionButton();
+            await boardDetailsPage.boardMenu.aboutThisBoard.descriptionButton.click();
         });
 
         await test.step('Verify description editor is visible', async () => {
@@ -62,7 +62,7 @@ test.describe('Add description to board tests', {tag: '@boards'}, () => {
 
         await test.step('Refresh the page and verify description is still visible', async () => {
             await page.reload();
-            await boardDetailsPage.clickOnBoardMenuButton();
+            await boardDetailsPage.boardMenuButton.click();
             await boardDetailsPage.boardMenu.clickOption(BoardMenuOption.AboutThisBoard);
             await boardDetailsPage.boardMenu.aboutThisBoard.expectDescription(descriptionText);
         });

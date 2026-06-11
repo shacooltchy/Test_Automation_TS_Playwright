@@ -13,7 +13,7 @@ test.describe('Log out tests', {tag: '@log_out'}, () => {
 
     test('Log out of Trello', async ({ page, boardsPage, logOutConfirmationPage }) => {
         await test.step('Click the member button in the header', async () => {
-            await boardsPage.authenticatedHeader.clickMemberButton();
+            await boardsPage.authenticatedHeader.memberButton.click();
             await boardsPage.authenticatedHeader.accountMenu.expectVisible();
         });
 
@@ -26,7 +26,7 @@ test.describe('Log out tests', {tag: '@log_out'}, () => {
         });
 
         await test.step('Click the Log out button in the log out confirmation page', async () => {
-            await logOutConfirmationPage.clickLogOutButton();
+            await logOutConfirmationPage.logOutButton.click();
         });
 
         await test.step('Verify the user is logged out and redirected to home page', async () => {

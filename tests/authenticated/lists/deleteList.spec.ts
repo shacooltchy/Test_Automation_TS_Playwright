@@ -32,7 +32,7 @@ test.describe('Delete a list tests', {tag: '@list'}, () => {
 
     test('Delete a list', async({ boardDetailsPage } ) => {
         await test.step('Open board menu', async() => {
-            await boardDetailsPage.clickOnBoardMenuButton();
+            await boardDetailsPage.boardMenuButton.click();
         });
 
         await test.step('Verify board menu is visible', async() => {
@@ -64,7 +64,7 @@ test.describe('Delete a list tests', {tag: '@list'}, () => {
         });
 
         await test.step('Confirm list deletion', async() => {
-            await boardDetailsPage.boardMenu.archivedItems.deleteItemConfirmationDialog.clickConfirmButton();
+            await boardDetailsPage.boardMenu.archivedItems.deleteItemConfirmationDialog.confirmButton.click();
         });
     
         await test.step('Verify the list in not on the Archived items list', async() => {

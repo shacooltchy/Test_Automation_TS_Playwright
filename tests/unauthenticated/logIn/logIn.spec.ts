@@ -15,7 +15,7 @@ test.describe('Log in tests', () => {
         });
 
         await test.step('Click the Continue button in the login form', async() => {
-            await loginPage.clickContinueLogInButton();
+            await loginPage.continueLogInButton.click();
         });
 
         await test.step('Enter user password', async() => {
@@ -23,7 +23,7 @@ test.describe('Log in tests', () => {
         });
 
         await test.step('Click the Log in button in the login form', async() => {
-            await loginPage.clickContinueLogInButton();
+            await loginPage.continueLogInButton.click();
         });
 
         await test.step('Verify the user is logged in', async() => {
@@ -41,7 +41,7 @@ test.describe('Log in tests', () => {
         });
 
         await test.step('Click the Continue button in the login form', async() => {
-            await loginPage.clickContinueLogInButton();
+            await loginPage.continueLogInButton.click();
         });
 
         await test.step('Expect user is redirected to sign up page', async() => {

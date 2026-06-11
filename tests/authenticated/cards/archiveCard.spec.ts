@@ -53,7 +53,7 @@ test.describe('Archive a card tests', {tag: '@card'}, () => {
         });
 
         await test.step('Click the board menu', async() => {
-            await boardDetailsPage.clickOnBoardMenuButton();
+            await boardDetailsPage.boardMenuButton.click();
         });
 
         await test.step('Click Archived items option', async() => {
@@ -107,7 +107,7 @@ test.describe('Archive a card tests', {tag: '@card'}, () => {
         });
 
         await test.step('Click the board menu', async() => {
-            await boardDetailsPage.clickOnBoardMenuButton();
+            await boardDetailsPage.boardMenuButton.click();
         });
 
         await test.step('Click Archived items option', async() => {

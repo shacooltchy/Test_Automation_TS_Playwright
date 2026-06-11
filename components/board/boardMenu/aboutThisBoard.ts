@@ -3,7 +3,7 @@ import { DescriptionTextEditor } from "../../descriptionTextEditor";
 
 export class AboutThisBoard {
     private readonly root: Locator;
-    private readonly descriptionButton: Locator;
+    readonly descriptionButton: Locator;
     private readonly descriptionText: Locator;
     readonly descriptionEditor: DescriptionTextEditor;
 
@@ -16,10 +16,6 @@ export class AboutThisBoard {
 
     async expectVisible(): Promise<void> {
         await expect(this.root).toBeVisible();
-    }
-
-    async clickDescriptionButton(): Promise<void> {
-        await this.descriptionButton.click();
     }
 
     async expectDescription(description: string): Promise<void> {

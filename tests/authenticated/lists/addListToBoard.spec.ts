@@ -26,7 +26,7 @@ test.describe('Add a list test', {tag: '@list'}, () => {
 
     test('Cancel adding list to the board', async({boardDetailsPage}) => {
         await test.step('Click Add a list button', async() => {
-            await boardDetailsPage.clickAddAListButton();
+            await boardDetailsPage.addListButton.click();
         });
 
         await test.step('Verify new list form is visible', async() => {
@@ -49,7 +49,7 @@ test.describe('Add a list test', {tag: '@list'}, () => {
     test('Add a list to the board', async({ boardDetailsPage }) => {
         let listName = randomName('List');
         await test.step('Click Add a list button', async() => {
-            await boardDetailsPage.clickAddAListButton();
+            await boardDetailsPage.addListButton.click();
         });
 
         await test.step('Verify new list form is visible', async() => {

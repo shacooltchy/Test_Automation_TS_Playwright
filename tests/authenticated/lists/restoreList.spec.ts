@@ -32,7 +32,7 @@ test.describe('Unarchive a list tests', {tag: '@list'}, () => {
 
     test('Restore a list', async({ boardDetailsPage } ) => {
         await test.step('Open board menu', async() => {
-            await boardDetailsPage.clickOnBoardMenuButton();
+            await boardDetailsPage.boardMenuButton.click();
             await boardDetailsPage.boardMenu.expectMenuToBeVisible();
         });
     

@@ -50,7 +50,7 @@ test.describe('Add a card to the list using a template tests', {tag: '@card'}, (
         });
 
         await test.step('Click Create card button', async() => {
-            await boardDetailsPage.list.createCardDialog.clickCreateCardButton();
+            await boardDetailsPage.list.createCardDialog.createCardButton.click();
         });
 
         await test.step('Verify Create card dialog is not visible', async() => {

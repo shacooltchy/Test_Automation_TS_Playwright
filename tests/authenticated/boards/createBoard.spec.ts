@@ -48,8 +48,8 @@ test.describe('Create board tests', {tag: '@boards'}, () => {
             await boardDetailsPage.expectPageVisible(boardName);
         });
 
-        await test.step('Go back to home', async () => {
-            await boardDetailsPage.authenticatedHeader.clickBackToHomeButton();
+        await test.step('Go back to home button', async () => {
+            await boardDetailsPage.authenticatedHeader.backToHomeButton.click();
             await boardsPage.expectPageVisible();
         });
 
