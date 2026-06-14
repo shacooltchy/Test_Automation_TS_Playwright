@@ -1,6 +1,5 @@
 import { Page } from "@playwright/test";
 
-//refactoring z uzyciem enuma
 export class SolutionsHeaderMenu {
     private readonly page: Page;
 

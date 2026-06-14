@@ -10,12 +10,10 @@ function requireEnv(name: string): string {
 }
 
 export const ENV = {
-    baseUrl: requireEnv('BASE_URL'), // use it in playwright.config.ts
+    baseUrl: requireEnv('BASE_URL'),
     email: requireEnv('EMAIL'),
     password: requireEnv('PASSWORD'),
     apiUrl: requireEnv('API_URL'),
     apiKey: requireEnv('TRELLO_KEY'),
     apiToken: requireEnv('TRELLO_TOKEN')
-    //debug: process.env.DEBUG === 'true',
-    //environment: process.env.ENV ?? 'local'
 };

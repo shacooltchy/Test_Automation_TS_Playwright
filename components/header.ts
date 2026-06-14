@@ -1,6 +1,5 @@
 import { expect, Page } from "@playwright/test";
 
-//w komponentach powtarzalne UI np. modale, wlasne locatory i metody, komponenty wykorzystywane w page'ach
 export class Header {
     private readonly page: Page;
 

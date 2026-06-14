@@ -1,5 +1,5 @@
 import { SolutionsLinkButton } from "../../../components/headerMenu/solutionsHeaderMenu";
-import { test } from "../../../fixtures/pages"; //to trzeba recznie dodac
+import { test } from "../../../fixtures/pages";
 
 test.describe('Solutions tab navigation tests', {tag: '@smoke'}, () => {
     test.beforeEach(async({homePage}) => {
