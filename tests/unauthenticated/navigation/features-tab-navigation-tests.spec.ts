@@ -10,7 +10,6 @@ import { TemplatesPage } from '../../../pages/templatesPage';
 test.describe.skip('Features tab navigation tests - inbox, planner', {tag: '@smoke'}, () => {
     let homePage: HomePage;
 
-    //use beforeEach hook to perform common operations
     test.beforeEach(async ({page}) => {
         homePage = new HomePage(page);
         await homePage.navigate();

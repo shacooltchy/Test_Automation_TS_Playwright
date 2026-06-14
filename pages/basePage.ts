@@ -1,4 +1,4 @@
-import { expect, Locator, Page } from "@playwright/test";
+import { expect, Page } from "@playwright/test";
 import { AuthenticatedHeader } from "../components/authHeader/authenticatedHeader";
 import { HeaderMenu } from "../components/headerMenu/headerMenu";
 import { cookieBanner } from "../components/banners/cookieBanner";
