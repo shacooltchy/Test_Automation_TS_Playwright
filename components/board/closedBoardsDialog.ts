@@ -1,17 +1,15 @@
 import { expect, Locator, Page } from "@playwright/test";
 import { ConfirmationDialog } from "../confirmationDialog";
+import { ComponentBase } from "../componentBase";
 
-export class ClosedBoardsDialog {
+export class ClosedBoardsDialog extends ComponentBase {
     private readonly dialog: Locator;
     readonly reopenBoardConfirmationDialog: ConfirmationDialog;
 
-    constructor(page: Page) {
-        this.dialog = page.locator('#overlay-contents').filter({ has: page.getByRole('heading', { name: 'Closed boards' }) });
+    constructor(page: Page, rootLocator: Locator = page.locator('#overlay-contents').filter({ has: page.getByRole('heading', { name: 'Closed boards' }) })) {
+        super(rootLocator);
+        this.dialog = rootLocator;
         this.reopenBoardConfirmationDialog = new ConfirmationDialog(page, 'Select a Workspace', 'Reopen board');
-    }
-
-    async expectVisible(): Promise<void> {
-        await expect(this.dialog).toBeVisible();
     }
 
     async clickReopenBoardButton(boardName: string): Promise<void> {

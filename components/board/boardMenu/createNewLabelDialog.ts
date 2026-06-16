@@ -1,24 +1,18 @@
 import { expect, Locator, Page } from "@playwright/test";
+import { ComponentBase } from "../../componentBase";
 
-export class CreateNewLabelDialog {
+export class CreateNewLabelDialog extends ComponentBase {
     private readonly dialog: Locator;
     readonly labelTitle: Locator;
     readonly colorPalette: Locator;
     readonly createButton: Locator;
 
-    constructor(page: Page) {
-        this.dialog = page.getByRole('dialog').filter({ has: page.getByRole('heading', { name: 'Create a new label' }) });
+    constructor(page: Page, rootLocator: Locator = page.getByRole('dialog').filter({ has: page.getByRole('heading', { name: 'Create a new label' }) })) {
+        super(rootLocator);
+        this.dialog = rootLocator;
         this.labelTitle = this.dialog.getByLabel('Title');
         this.colorPalette = this.dialog.getByTestId('color-palette');
         this.createButton = this.dialog.getByRole('button', { name: 'Create' });
-    }
-
-    async expectVisible(): Promise<void> {
-        await expect(this.dialog).toBeVisible();
-    }
-
-    async expectNotVisible(): Promise<void> {
-        await expect(this.dialog).not.toBeVisible();
     }
 
     async selectColor(color: string): Promise<void> {

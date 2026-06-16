@@ -52,7 +52,7 @@ test.describe('Delete checklist tests', {tag: '@checklist'}, () => {
         });
 
         await test.step('Verify Delete checklist confirmation dialog is visible', async() => {
-            await boardDetailsPage.cardEditor.checklist.deleteChecklistConfirmationDialog.expectDialogVisible();
+            await boardDetailsPage.cardEditor.checklist.deleteChecklistConfirmationDialog.expectVisible();
         });
 
         await test.step('Click Delete checklist button in the confirmation dialog', async() => {

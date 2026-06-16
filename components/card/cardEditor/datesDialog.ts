@@ -1,8 +1,9 @@
-import { expect, Locator, Page } from "@playwright/test";
+import { Locator, Page } from "@playwright/test";
 import { Dropdown } from "../../dropdown";
 import { Calendar } from "../../calendar";
+import { ComponentBase } from "../../componentBase";
 
-export class DatesDialog {
+export class DatesDialog extends ComponentBase {
     private readonly dialog: Locator;
     readonly calendar: Calendar;
     private readonly startDateInput: Locator;
@@ -14,8 +15,9 @@ export class DatesDialog {
     readonly saveButton: Locator;
     readonly removeButton: Locator;
 
-    constructor(page: Page) {
-        this.dialog = page.getByRole('dialog').filter({ has: page.getByRole('heading', { name: 'Dates', exact: true }) });
+    constructor(page: Page, rootLocator: Locator = page.getByRole('dialog').filter({ has: page.getByRole('heading', { name: 'Dates', exact: true }) })) {
+        super(rootLocator);
+        this.dialog = rootLocator;
         this.calendar = new Calendar(page);
         this.startDateInput = this.dialog.getByTestId('start-date-field');
         this.dueDateInput = this.dialog.getByTestId('due-date-field');
@@ -25,14 +27,6 @@ export class DatesDialog {
         this.dueDateReminderDropdown = new Dropdown(page, this.dialog.getByTestId('due-date-reminder-select'));
         this.saveButton = this.dialog.getByRole('button', { name: 'Save' });
         this.removeButton = this.dialog.getByRole('button', { name: 'Remove' });
-    }
-
-    async expectVisible(): Promise<void> {
-        await expect(this.dialog).toBeVisible();
-    }
-
-    async expectNotVisible(): Promise<void> {
-        await expect(this.dialog).not.toBeVisible();
     }
 
     async selectStartDateCheckbox(): Promise<void> {

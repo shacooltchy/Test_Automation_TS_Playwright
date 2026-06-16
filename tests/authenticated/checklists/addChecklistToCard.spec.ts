@@ -55,7 +55,7 @@ test.describe('Add checklist to a card', {tag: '@checklist'}, () => {
         });
 
         await test.step('Verify Checklist dialog is visible', async() => {
-            await boardDetailsPage.cardEditor.addChecklistDialog.expectDialogVisible();
+            await boardDetailsPage.cardEditor.addChecklistDialog.expectVisible();
         });
 
         const checklistTitle = randomName('Checklist');
@@ -68,7 +68,7 @@ test.describe('Add checklist to a card', {tag: '@checklist'}, () => {
         });
 
         await test.step('Verify Add checklist dialog is not visible', async() => {
-            await boardDetailsPage.cardEditor.addChecklistDialog.expectDialogNotVisible();
+            await boardDetailsPage.cardEditor.addChecklistDialog.expectNotVisible();
         });
 
         await test.step('Verify checklist is added to the card editor', async() => {

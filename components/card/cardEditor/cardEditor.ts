@@ -6,8 +6,9 @@ import { DatesDialog } from "./datesDialog";
 import { AddChecklistDialog } from "./checklist/addChecklistDialog";
 import { Checklist } from "./checklist/checklist";
 import { DescriptionTextEditor } from "../../descriptionTextEditor";
+import { ComponentBase } from "../../componentBase";
 
-export class CardEditor {
+export class CardEditor extends ComponentBase {
     private readonly page: Page;
     private readonly editor: Locator;
     readonly addButton: Locator;
@@ -21,9 +22,10 @@ export class CardEditor {
     readonly checklist: Checklist;
     readonly descriptionTextEditor: DescriptionTextEditor;
 
-    constructor(page: Page) {
+    constructor(page: Page, rootLocator: Locator = page.getByTestId('card-back-name')) {
+        super(rootLocator);
         this.page = page;
-        this.editor = page.getByTestId('card-back-name');
+        this.editor = rootLocator;
         this.addButton = this.editor.getByRole('button', { name: 'Add to card' });
         this.closeButton = this.editor.getByRole('button', {name: 'Close'});
         this.actionsButton = this.editor.getByRole('button', {name: 'Actions'});
@@ -34,14 +36,6 @@ export class CardEditor {
         this.addChecklistDialog = new AddChecklistDialog(page);
         this.checklist = new Checklist(page);
         this.descriptionTextEditor = new DescriptionTextEditor(page);
-    }
-
-    async expectVisible(): Promise<void> {
-        await expect(this.editor).toBeVisible();
-    }
-
-    async expectNotVisible(): Promise<void> {
-        await expect(this.editor).not.toBeVisible();
     }
 
     async close() {

@@ -1,15 +1,13 @@
-import { expect, Locator, Page } from "@playwright/test";
+import { Locator, Page } from "@playwright/test";
 import { ListAction } from "../../enums/listAction";
+import { ComponentBase } from "../componentBase";
 
-export class ListActionsMenu {
+export class ListActionsMenu extends ComponentBase {
     private readonly listActionsMenu: Locator;
 
-    constructor(page: Page) {
-        this.listActionsMenu = page.getByTestId('list-actions-popover');
-    }
-
-    async expectVisible(): Promise<void> {
-        await expect(this.listActionsMenu).toBeVisible();
+    constructor(page: Page, rootLocator: Locator = page.getByTestId('list-actions-popover')) {
+        super(rootLocator);
+        this.listActionsMenu = rootLocator;
     }
 
     async clickAction(action: ListAction) {

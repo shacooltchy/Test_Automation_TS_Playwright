@@ -46,7 +46,7 @@ test.describe('Add a card to the list tests', {tag: '@card'}, () => {
         });
 
         await test.step('Verify card is added', async() => {
-            await boardDetailsPage.list.card.expectCardVisible(cardTitle, listName);
+            await boardDetailsPage.list.card.expectVisible(cardTitle, listName);
         });
 
         await test.step('Enter a title of another card', async() => {
@@ -58,7 +58,7 @@ test.describe('Add a card to the list tests', {tag: '@card'}, () => {
         });
 
         await test.step('Verify card is added', async() => {
-            await boardDetailsPage.list.card.expectCardVisible(cardTitle2, listName);
+            await boardDetailsPage.list.card.expectVisible(cardTitle2, listName);
         });
 
         await test.step('Close add a card form', async() => {
@@ -90,7 +90,7 @@ test.describe('Add a card to the list tests', {tag: '@card'}, () => {
         });
 
         await test.step('Verify card is added', async() => {
-            await boardDetailsPage.list.card.expectCardVisible(cardTitle, listName);
+            await boardDetailsPage.list.card.expectVisible(cardTitle, listName);
         });
     });
 });

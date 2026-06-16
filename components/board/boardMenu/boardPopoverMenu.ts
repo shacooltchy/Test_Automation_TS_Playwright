@@ -5,8 +5,9 @@ import { AboutThisBoard } from "./aboutThisBoard";
 import { ChangeVisibility } from "./changeVisibility";
 import { BoardMenuLabelsDialog } from "./boardMenuLabelsDialog";
 import { CreateNewLabelDialog } from "./createNewLabelDialog";
+import { ComponentBase } from "../../componentBase";
 
-export class BoardPopoverMenu {
+export class BoardPopoverMenu extends ComponentBase {
     private readonly popoverMenu: Locator;
     readonly aboutThisBoard: AboutThisBoard;
     readonly changeVisibilityPopover: ChangeVisibility;
@@ -17,8 +18,9 @@ export class BoardPopoverMenu {
     readonly reopenBoardConfirmationDialog: ConfirmationDialog;
     readonly deleteBoardConfirmationDialog: ConfirmationDialog;
 
-    constructor(page: Page) {
-        this.popoverMenu = page.getByTestId('board-menu-popover').filter({has: page.getByRole('heading', {name: 'Menu', exact: true})});
+    constructor(page: Page, rootLocator: Locator = page.getByTestId('board-menu-popover').filter({has: page.getByRole('heading', {name: 'Menu', exact: true})})) {
+        super(rootLocator);
+        this.popoverMenu = rootLocator;
         this.aboutThisBoard = new AboutThisBoard(page);
         this.changeVisibilityPopover = new ChangeVisibility(page);
         this.boardMenuLabelsDialog = new BoardMenuLabelsDialog(page);
@@ -27,10 +29,6 @@ export class BoardPopoverMenu {
         this.closeBoardConfirmationDialog = new ConfirmationDialog(page, 'Close board?', 'Close');
         this.reopenBoardConfirmationDialog = new ConfirmationDialog(page, 'Select a Workspace', 'Reopen board');
         this.deleteBoardConfirmationDialog = new ConfirmationDialog(page, 'Delete board?', 'Delete');
-    }
-
-    async expectMenuToBeVisible(): Promise<void> {
-        await expect(this.popoverMenu).toBeVisible();
     }
 
     async clickOption(option: BoardMenuOption): Promise<void> {

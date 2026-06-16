@@ -31,12 +31,12 @@ test.describe('Close board tests', {tag: '@boards'}, () => {
 
         await test.step('Click on board menu button', async () => {
             await boardDetailsPage.boardMenuButton.click();
-            await boardDetailsPage.boardMenu.expectMenuToBeVisible();
+            await boardDetailsPage.boardMenu.expectVisible();
         });
 
         await test.step('Click on Close board button', async () => {
             await boardDetailsPage.boardMenu.clickOption(BoardMenuOption.CloseBoard);
-            await boardDetailsPage.boardMenu.closeBoardConfirmationDialog.expectDialogToBeVisible();
+            await boardDetailsPage.boardMenu.closeBoardConfirmationDialog.expectVisible();
         });
 
         await test.step('Confirm Close board action', async () => {
