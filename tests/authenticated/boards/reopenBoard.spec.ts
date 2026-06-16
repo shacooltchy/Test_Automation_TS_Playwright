@@ -37,7 +37,7 @@ test.describe('Reopen board tests', {tag: '@boards'}, () => {
         });
 
         await test.step('Verify the Reopen board confirmation banner is visible in the closed boards dialog', async () => {
-            await boardsPage.closedBoardsDialog.reopenBoardConfirmationDialog.expectDialogToBeVisible();
+            await boardsPage.closedBoardsDialog.reopenBoardConfirmationDialog.expectVisible();
         });
 
         await test.step('Confirm Reopen board action in the closed boards dialog', async () => {
@@ -70,7 +70,7 @@ test.describe('Reopen board tests', {tag: '@boards'}, () => {
 
         await test.step('Click on board menu button', async () => {
             await boardDetailsPage.boardMenuButton.click();
-            await boardDetailsPage.boardMenu.expectMenuToBeVisible();
+            await boardDetailsPage.boardMenu.expectVisible();
         });
 
         await test.step('Click on Reopen board button', async () => {
@@ -78,7 +78,7 @@ test.describe('Reopen board tests', {tag: '@boards'}, () => {
         });
 
         await test.step('Verify the Reopen board confirmation dialog is visible', async () => {
-            await boardDetailsPage.boardMenu.reopenBoardConfirmationDialog.expectDialogToBeVisible();
+            await boardDetailsPage.boardMenu.reopenBoardConfirmationDialog.expectVisible();
         });
 
         await test.step('Confirm Reopen board action', async () => {

@@ -1,6 +1,7 @@
-import { expect, Locator, Page } from "@playwright/test";
+import { Locator, Page } from "@playwright/test";
+import { ComponentBase } from "./componentBase";
 
-export class Calendar {
+export class Calendar extends ComponentBase {
     private readonly calendar: Locator;
     private readonly nextMonthButton: Locator;
     private readonly previousMonthButton: Locator;
@@ -9,21 +10,14 @@ export class Calendar {
     private readonly monthYearHeader: Locator;
 
 
-    constructor(page: Page) {
-        this.calendar = page.getByLabel('Calendar');
+    constructor(page: Page, rootLocator: Locator = page.getByLabel('Calendar')) {
+        super(rootLocator);
+        this.calendar = rootLocator;
         this.nextMonthButton = this.calendar.getByRole('button', { name: 'Next month' });
         this.previousMonthButton = this.calendar.getByRole('button', { name: 'Previous month' });
         this.nextYearButton = this.calendar.getByRole('button', { name: 'Next year' });
         this.previousYearButton = this.calendar.getByRole('button', { name: 'Previous year' });
         this.monthYearHeader = this.calendar.getByRole('heading', { name: /\w+ \d{4}/ }); // Matches headers like "January 2024", "February 2024", etc.
-    }
-
-    async expectVisible(): Promise<void> {
-        await expect(this.calendar).toBeVisible();
-    }
-
-    async expectNotVisible(): Promise<void> {
-        await expect(this.calendar).not.toBeVisible();
     }
 
     async selectDate(dateString: string /* format: M/D/YYYY */): Promise<void> {

@@ -1,24 +1,18 @@
 import { expect, Locator, Page } from "@playwright/test";
+import { ComponentBase } from "../../componentBase";
 
-export class BoardMenuLabelsDialog {
+export class BoardMenuLabelsDialog extends ComponentBase {
     private readonly dialog: Locator;
     readonly closeButton: Locator;
     readonly createNewLabelButton: Locator;
     readonly enableColorblindFriendlyModeButton: Locator;
 
-    constructor(page: Page) {
-        this.dialog = page.getByRole('dialog').filter({ has: page.getByRole('heading', { name: 'Labels' }) });
-        this.closeButton = this.dialog.getByRole('button', { name: 'Close popover' });
-        this.createNewLabelButton = this.dialog.getByRole('button', { name: 'Create a new label' });
-        this.enableColorblindFriendlyModeButton = this.dialog.getByRole('button', { name: 'Enable colorblind friendly mode' });
-    }
-
-    async expectVisible(): Promise<void> {
-        await expect(this.dialog).toBeVisible();
-    }
-
-    async expectNotVisible(): Promise<void> {
-        await expect(this.dialog).not.toBeVisible();
+    constructor(page: Page, rootLocator: Locator = page.getByRole('dialog').filter({ has: page.getByRole('heading', { name: 'Labels' }) })) {
+        super(rootLocator);
+        this.dialog = rootLocator;
+        this.closeButton = rootLocator.getByRole('button', { name: 'Close popover' });
+        this.createNewLabelButton = rootLocator.getByRole('button', { name: 'Create a new label' });
+        this.enableColorblindFriendlyModeButton = rootLocator.getByRole('button', { name: 'Enable colorblind friendly mode' });
     }
 
     async expectLabel(labelColor?: string, labelTitle?: string): Promise<void> {

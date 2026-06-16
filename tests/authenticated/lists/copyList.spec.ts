@@ -43,7 +43,7 @@ test.describe('Copy list tests', {tag: '@list'}, () => {
         });
 
         await test.step('Verify Copy list confirmation dialog is visible', async() => {
-            await boardDetailsPage.list.copyListConfirmationDialog.expectDialogToBeVisible();
+            await boardDetailsPage.list.copyListConfirmationDialog.expectVisible();
         });
 
         await test.step('Verify the default name in the confirmation dialog is correct', async() => {
@@ -65,12 +65,12 @@ test.describe('Copy list tests', {tag: '@list'}, () => {
         });
 
         await test.step('Verify the card from the original list is copied to the new list', async() => {
-            await boardDetailsPage.list.card.expectCardVisible(cardTitle, copiedListName);
+            await boardDetailsPage.list.card.expectVisible(cardTitle, copiedListName);
         });
 
         await test.step('Verify the original list is still visible', async() => {
             await boardDetailsPage.list.expectVisible(listName);
-            await boardDetailsPage.list.card.expectCardVisible(cardTitle, listName);
+            await boardDetailsPage.list.card.expectVisible(cardTitle, listName);
         });
     });
 });

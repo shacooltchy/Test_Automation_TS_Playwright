@@ -27,7 +27,7 @@ test.describe('Change board visibility tests', {tag: '@boards'}, () => {
     test('Change board visibility to workspace', async ({ boardDetailsPage, page }) => {
         await test.step('Open board menu', async () => {
             await boardDetailsPage.boardMenuButton.click();
-            await boardDetailsPage.boardMenu.expectMenuToBeVisible();
+            await boardDetailsPage.boardMenu.expectVisible();
         });
 
         await test.step('Click visibility option', async () => {

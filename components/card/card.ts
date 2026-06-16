@@ -21,12 +21,12 @@ export class Card {
         return list;
     }
 
-    async expectCardVisible(cardTitle: string, listName: string): Promise<void> {
+    async expectVisible(cardTitle: string, listName: string): Promise<void> {
         const list = this.getList(listName);
         await expect(list.getByTestId('list-card').filter({hasText: cardTitle, hasNot: this.page.getByTestId('badge-card-template')})).toBeVisible();
     }
 
-    async expectCardNotVisible(cardTitle: string, listName: string): Promise<void> {
+    async expectNotVisible(cardTitle: string, listName: string): Promise<void> {
         const list = this.getList(listName);
         await expect(list.getByTestId('list-card').filter({hasText: cardTitle})).not.toBeVisible();
     }

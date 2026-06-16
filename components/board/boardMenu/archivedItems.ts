@@ -1,25 +1,19 @@
 import { expect, Locator, Page } from "@playwright/test";
 import { ConfirmationDialog } from "../../confirmationDialog";
+import { ComponentBase } from "../../componentBase";
 
-export class ArchivedItems {
+export class ArchivedItems extends ComponentBase {
     private readonly page: Page;
     private readonly archivedItemsPopover: Locator;
     readonly closeButton: Locator;
     readonly deleteItemConfirmationDialog: ConfirmationDialog;
 
-    constructor(page: Page) {
+    constructor(page: Page, rootLocator: Locator = page.getByTestId('board-menu-popover').filter({has: page.getByRole('heading', {name: 'Archived items', exact: true})})) {
+        super(rootLocator);
         this.page = page;
-        this.archivedItemsPopover = page.getByTestId('board-menu-popover').filter({has: page.getByRole('heading', {name: 'Archived items', exact: true})});
-        this.closeButton = this.archivedItemsPopover.getByRole('button', { name: 'Close popover' });
+        this.archivedItemsPopover = rootLocator;
+        this.closeButton = rootLocator.getByRole('button', { name: 'Close popover' });
         this.deleteItemConfirmationDialog = new ConfirmationDialog(page, 'Delete list?', 'Delete');
-    }
-
-    async expectVisible(): Promise<void> {
-        await expect(this.archivedItemsPopover).toBeVisible();
-    }
-
-    async expectNotVisible(): Promise<void> {
-        await expect(this.archivedItemsPopover).not.toBeVisible();
     }
 
     async viewArchivedItems(option: 'Lists' | 'Cards'): Promise<void> {

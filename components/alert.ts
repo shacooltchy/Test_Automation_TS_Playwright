@@ -1,14 +1,12 @@
-import { expect, Locator, Page } from "@playwright/test";
+import { Locator, Page } from "@playwright/test";
+import { ComponentBase } from "./componentBase";
 
-export class Alert {
+export class Alert extends ComponentBase {
     private readonly alert: Locator;
 
-    constructor(page: Page, alertTitle: string | RegExp) {
-        this.alert = page.getByRole('alert').filter({has: page.getByRole('heading', { name: alertTitle })});
-    }
-
-    async expectVisible() {
-        await expect(this.alert).toBeVisible();
+    constructor(page: Page, alertTitle: string | RegExp, rootLocator: Locator = page.getByRole('alert').filter({has: page.getByRole('heading', { name: alertTitle })})) {
+        super(rootLocator);
+        this.alert = rootLocator;
     }
 
     async clickButton(buttonName:string): Promise<void> {

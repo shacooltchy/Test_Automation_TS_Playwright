@@ -36,7 +36,7 @@ test.describe('Delete a list tests', {tag: '@list'}, () => {
         });
 
         await test.step('Verify board menu is visible', async() => {
-            await boardDetailsPage.boardMenu.expectMenuToBeVisible();
+            await boardDetailsPage.boardMenu.expectVisible();
         });
         
         await test.step('Click Archived items option', async() => {
@@ -60,7 +60,7 @@ test.describe('Delete a list tests', {tag: '@list'}, () => {
         });
 
         await test.step('Verify confirmation dialog is visible', async() => {
-            await boardDetailsPage.boardMenu.archivedItems.deleteItemConfirmationDialog.expectDialogToBeVisible();
+            await boardDetailsPage.boardMenu.archivedItems.deleteItemConfirmationDialog.expectVisible();
         });
 
         await test.step('Confirm list deletion', async() => {

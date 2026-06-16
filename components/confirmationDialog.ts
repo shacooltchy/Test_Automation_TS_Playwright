@@ -1,20 +1,18 @@
 import { expect, Locator, Page } from "@playwright/test";
+import { ComponentBase } from "./componentBase";
 
-export class ConfirmationDialog {
-    private readonly dialog: Locator;
+export class ConfirmationDialog extends ComponentBase {
+    //private readonly dialog: Locator;
     readonly confirmButton: Locator;
     private readonly textArea: Locator | undefined;
 
-    constructor(page: Page, dialogTitle: string, confirmButtonName: string, hasTextArea: boolean = false) {
-        this.dialog = page.getByRole('dialog').filter({ has: page.getByRole('heading', { name: dialogTitle, exact: true }) });
-        this.confirmButton = this.dialog.getByRole('button', { name: confirmButtonName, exact: true });
+    constructor(page: Page, dialogTitle: string, confirmButtonName: string, hasTextArea: boolean = false, rootLocator: Locator = page.getByRole('dialog').filter({ has: page.getByRole('heading', { name: dialogTitle, exact: true }) })) {
+        super(rootLocator);
+        //this.dialog = rootLocator;
+        this.confirmButton = rootLocator.getByRole('button', { name: confirmButtonName, exact: true });
         if (hasTextArea) {
-            this.textArea = this.dialog.getByRole('textbox');
+            this.textArea = rootLocator.getByRole('textbox');
         }
-    }
-
-    async expectDialogToBeVisible(): Promise<void> {
-        await expect(this.dialog).toBeVisible();
     }
 
     async expectTextAreaValue(expectedValue: string): Promise<void> {

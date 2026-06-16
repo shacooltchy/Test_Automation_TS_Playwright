@@ -39,7 +39,7 @@ test.describe('Unarchive a card tests', {tag: '@card'}, () => {
     test('Restore a card', async( {boardDetailsPage} ) => {
         await test.step('Open board menu', async() => {
             await boardDetailsPage.boardMenuButton.click();
-            await boardDetailsPage.boardMenu.expectMenuToBeVisible();
+            await boardDetailsPage.boardMenu.expectVisible();
         });
     
         await test.step('Click Archived items option', async() => {
@@ -75,14 +75,14 @@ test.describe('Unarchive a card tests', {tag: '@card'}, () => {
         });
 
         await test.step('Verify card is visible on the board', async() => {
-            await boardDetailsPage.list.card.expectCardVisible(cardTitle, listName);
+            await boardDetailsPage.list.card.expectVisible(cardTitle, listName);
         });
     });
 
     test('Restore a card in the card editor', async( {boardDetailsPage} ) => {
         await test.step('Open board menu', async() => {
             await boardDetailsPage.boardMenuButton.click();
-            await boardDetailsPage.boardMenu.expectMenuToBeVisible();
+            await boardDetailsPage.boardMenu.expectVisible();
         });
     
         await test.step('Click Archived items option', async() => {
@@ -126,7 +126,7 @@ test.describe('Unarchive a card tests', {tag: '@card'}, () => {
         });
 
         await test.step('Verify card is visible on the board', async() => {
-            await boardDetailsPage.list.card.expectCardVisible(cardTitle, listName);
+            await boardDetailsPage.list.card.expectVisible(cardTitle, listName);
         });
     });
 });

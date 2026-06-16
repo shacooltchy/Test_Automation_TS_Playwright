@@ -1,24 +1,18 @@
 import { expect, Locator, Page } from "@playwright/test";
+import { ComponentBase } from "../../componentBase";
 
-export class LabelsDialog {
+export class LabelsDialog extends ComponentBase {
     private readonly dialog: Locator;
     readonly closeButton: Locator;
     readonly createNewLabelButton: Locator;
     readonly enableColorblindFriendlyModeButton: Locator;
 
-    constructor(page: Page) {
-        this.dialog = page.getByTestId('labels-popover-labels-screen');
+    constructor(page: Page, rootLocator: Locator = page.getByTestId('labels-popover-labels-screen')) {
+        super(rootLocator);
+        this.dialog = rootLocator;
         this.closeButton = this.dialog.getByRole('button', { name: 'Close popover' });
         this.createNewLabelButton = this.dialog.getByRole('button', { name: 'Create a new label' });
         this.enableColorblindFriendlyModeButton = this.dialog.getByRole('button', { name: 'Enable colorblind friendly mode' });
-    }
-
-    async expectVisible(): Promise<void> {
-        await expect(this.dialog).toBeVisible();
-    }
-
-    async expectNotVisible(): Promise<void> {
-        await expect(this.dialog).not.toBeVisible();
     }
 
     async expectLabel(labelColor?: string, labelTitle?: string): Promise<void> {

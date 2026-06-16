@@ -1,13 +1,15 @@
 import { expect, Locator, Page } from "@playwright/test";
 import { QuickCardEditorOption } from "../../../enums/quickCardEditorOption";
 import { MoveCardActionDialog } from "./moveCardActionDialog";
+import { ComponentBase } from "../../componentBase";
 
-export class QuickCardEditor {
+export class QuickCardEditor extends ComponentBase {
     private readonly editor: Locator;
     readonly moveCardActionDialog: MoveCardActionDialog;
 
-    constructor(page: Page) {
-        this.editor = page.getByTestId('quick-card-editor-buttons');
+    constructor(page: Page, rootLocator: Locator = page.getByTestId('quick-card-editor-buttons')) {
+        super(rootLocator);
+        this.editor = rootLocator;
         this.moveCardActionDialog = new MoveCardActionDialog(page);
     }
 

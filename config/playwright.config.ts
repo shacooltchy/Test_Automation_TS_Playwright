@@ -38,7 +38,7 @@ export default defineConfig({
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
     trace: 'on-all-retries',
 
-    viewport: { width: 1280, height: 720 },
+    viewport: { width: 1920, height: 1080 },
   },
 
   /* Changes default timeout for expect assertions from 5000 to 15_000ms */

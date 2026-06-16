@@ -48,7 +48,7 @@ test.describe('Change card position on list tests', {tag: '@card'}, () => {
         });
 
         await test.step('Verify Move card dialog is visible', async() => {
-            await boardDetailsPage.list.card.quickCardEditor.moveCardActionDialog.expectDialogVisible();
+            await boardDetailsPage.list.card.quickCardEditor.moveCardActionDialog.expectVisible();
         });
 
         await test.step('Select new position', async() => {
@@ -60,7 +60,7 @@ test.describe('Change card position on list tests', {tag: '@card'}, () => {
         });
 
         await test.step('Verify Move card dialog is not visible', async() => {
-            await boardDetailsPage.list.card.quickCardEditor.moveCardActionDialog.expectDialogNotVisible();
+            await boardDetailsPage.list.card.quickCardEditor.moveCardActionDialog.expectNotVisible();
         });
 
         await test.step('Verify quick card editor is not visible', async() => {
@@ -68,7 +68,7 @@ test.describe('Change card position on list tests', {tag: '@card'}, () => {
         });
 
         await test.step('Verify card is visible in the list', async() => {
-            await boardDetailsPage.list.card.expectCardVisible(cardTitle, listName);
+            await boardDetailsPage.list.card.expectVisible(cardTitle, listName);
         });
 
         await test.step('Verify card position in the list', async() => {

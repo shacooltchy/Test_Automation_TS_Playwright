@@ -58,7 +58,7 @@ test.describe('Add a card to the list using a template tests', {tag: '@card'}, (
         });
 
         await test.step('Verify card is added and has the same name as card template', async() => {
-            await boardDetailsPage.list.card.expectCardVisible(cardTemplateTitle, listName);
+            await boardDetailsPage.list.card.expectVisible(cardTemplateTitle, listName);
         });
     });
 });

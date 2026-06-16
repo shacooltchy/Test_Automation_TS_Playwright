@@ -1,20 +1,14 @@
 import { expect, Locator, Page } from "@playwright/test";
+import { ComponentBase } from "../../componentBase";
 
-export class ChangeVisibility {
+export class ChangeVisibility extends ComponentBase {
     private readonly popover: Locator;
     readonly closeButton: Locator;
 
-    constructor(page: Page) {
-        this.popover = page.getByRole('dialog').filter({has: page.getByRole('heading', { name: 'Change visibility', exact: true })});
+    constructor(page: Page, rootLocator: Locator = page.getByRole('dialog').filter({has: page.getByRole('heading', { name: 'Change visibility', exact: true })})) {
+        super(rootLocator);
+        this.popover = rootLocator;
         this.closeButton = this.popover.getByRole('button', { name: 'Close popover' });
-    }
-
-    async expectVisible() {
-        await expect(this.popover).toBeVisible();
-    }
-
-    async expectNotVisible() {
-        await expect(this.popover).not.toBeVisible();
     }
 
     async expectVisibilitySelected(visibility: ChangeVisibilityPopoverOption) {

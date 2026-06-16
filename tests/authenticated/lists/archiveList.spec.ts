@@ -49,7 +49,7 @@ test.describe('Archive a list tests', {tag: '@list'}, () => {
 
         await test.step('Open board menu', async() => {
             await boardDetailsPage.boardMenuButton.click();
-            await boardDetailsPage.boardMenu.expectMenuToBeVisible();
+            await boardDetailsPage.boardMenu.expectVisible();
         });
 
         await test.step('Click Archived items option', async() => {

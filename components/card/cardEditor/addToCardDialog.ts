@@ -1,18 +1,12 @@
-import { expect, Locator, Page } from "@playwright/test";
+import { Locator, Page } from "@playwright/test";
+import { ComponentBase } from "../../componentBase";
 
-export class AddToCardDialog {
+export class AddToCardDialog extends ComponentBase {
     private readonly dialog: Locator;
 
-    constructor(page: Page) {
-        this.dialog = page.getByRole('dialog').filter({ has: page.getByRole('heading', { name: 'Add to card', exact: true }) });
-    }
-
-    async expectVisible(): Promise<void> {
-        await expect(this.dialog).toBeVisible();
-    }
-
-    async expectNotVisible(): Promise<void> {
-        await expect(this.dialog).not.toBeVisible();
+    constructor(page: Page, rootLocator: Locator = page.getByRole('dialog').filter({ has: page.getByRole('heading', { name: 'Add to card', exact: true }) })) {
+        super(rootLocator);
+        this.dialog = rootLocator;
     }
 
     async clickAddToCardAction(action: AddToCardAction): Promise<void> {

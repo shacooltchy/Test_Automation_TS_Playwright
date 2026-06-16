@@ -27,7 +27,7 @@ test.describe('Add description to board tests', {tag: '@boards'}, () => {
     test('Add description to board on the Board details page', async ({ boardDetailsPage, page }) => {
         await test.step('Open board menu', async () => {
             await boardDetailsPage.boardMenuButton.click();
-            await boardDetailsPage.boardMenu.expectMenuToBeVisible();
+            await boardDetailsPage.boardMenu.expectVisible();
         });
 
         await test.step('Click About this board option', async () => {
